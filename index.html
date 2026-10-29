@@ -30,8 +30,9 @@
   .carte .nom { font-size: 24px; font-weight: bold; }
   .carte canvas { width: 200px; height: 150px; }
   .options { text-align: center; margin-top: 12px; font-size: 22px; }
-  .options .groupe { display: inline-block; margin: 0 14px; vertical-align: middle; }
-  .opt { font-size: 22px; font-weight: bold; padding: 10px 16px; margin: 0 2px; border-radius: 12px;
+  .options .groupe { display: inline-block; margin: 0 8px; vertical-align: middle; }
+  #infoNiveau { font-size: 20px; margin-top: 10px; }
+  .opt { font-size: 22px; font-weight: bold; padding: 10px 12px; margin: 0 2px; border-radius: 12px;
     background: #fff; color: #2f6d18; border: 3px solid #fff; }
   .opt.choisi { background: #f2b705; color: #3b2a00; border-color: #c99600; }
   #btnJouer { position: absolute; left: 380px; top: 478px; width: 240px; }
@@ -130,9 +131,10 @@
       <div class="groupe">Joueurs :
         <button class="opt" data-joueurs="1">1 joueur</button><button class="opt" data-joueurs="2">2 joueurs</button>
       </div>
-      <div class="groupe">Points de vie :
-        <button class="opt" data-pv="100">100</button><button class="opt" data-pv="150">150</button><button class="opt" data-pv="200">200</button>
+      <div class="groupe">Niveau :
+        <button class="opt" data-niv="0">Facile</button><button class="opt" data-niv="1">Moyen</button><button class="opt" data-niv="2">Difficile</button><button class="opt" data-niv="3">Expert</button>
       </div>
+      <div id="infoNiveau"></div>
     </div>
     <button class="gros" id="btnJouer">Combattre !</button>
   </div>
@@ -322,7 +324,23 @@ function dessinerDino(canvas, d, versGauche, ko) {
 }
 
 /* ---------- État du jeu ---------- */
-var reglages = { joueurs: lire('joueurs') === '2' ? 2 : 1, pv: parseInt(lire('pv') || '150', 10) || 150 };
+var NIVEAUX = [
+  { pv: 100, info: 'Facile : 100 PV, des attaques rondes (10, 25, 45...)' },
+  { pv: 150, info: 'Moyen : 150 PV, comme 150 − 45' },
+  { pv: 500, info: 'Difficile : 500 PV, des attaques à 3 chiffres (comme 500 − 137)' },
+  { pv: 1000, info: 'Expert : 1000 PV, des attaques encore plus fortes (comme 1000 − 278)' }
+];
+var reglages = { joueurs: lire('joueurs') === '2' ? 2 : 1, niv: parseInt(lire('niveau') || '1', 10) || 0 };
+if (!NIVEAUX[reglages.niv]) reglages.niv = 1;
+
+function hasard(min, max) { return min + Math.floor(Math.random() * (max - min + 1)); }
+/* Points d'une attaque selon le niveau (tirés à chaque tour aux niveaux Difficile et Expert). */
+function degats(base) {
+  if (reglages.niv === 0) return Math.max(5, Math.round(base / 5) * 5);
+  if (reglages.niv === 2) return base * 3 + hasard(-9, 9);
+  if (reglages.niv === 3) return base * 6 + hasard(-19, 19);
+  return base;
+}
 var choix = [0, null];   // dinos choisis (joueur 1, joueur 2)
 var etapeChoix = 0;      // en mode 2 joueurs : 0 = joueur 1 choisit, 1 = joueur 2
 var j = [];              // combattants
@@ -352,7 +370,7 @@ function construireAccueil() {
   for (var o = 0; o < opts.length; o++) {
     opts[o].onclick = function () {
       if (this.getAttribute('data-joueurs')) { reglages.joueurs = parseInt(this.getAttribute('data-joueurs'), 10); stocker('joueurs', reglages.joueurs); }
-      if (this.getAttribute('data-pv')) { reglages.pv = parseInt(this.getAttribute('data-pv'), 10); stocker('pv', reglages.pv); }
+      if (this.getAttribute('data-niv')) { reglages.niv = parseInt(this.getAttribute('data-niv'), 10); stocker('niveau', reglages.niv); }
       etapeChoix = 0;
       majAccueil();
     };
@@ -371,11 +389,12 @@ function majAccueil() {
   var opts = document.querySelectorAll('.opt');
   for (var o = 0; o < opts.length; o++) {
     var b = opts[o], on = b.getAttribute('data-joueurs') ? parseInt(b.getAttribute('data-joueurs'), 10) === reglages.joueurs
-                                                     : parseInt(b.getAttribute('data-pv'), 10) === reglages.pv;
+                                                     : parseInt(b.getAttribute('data-niv'), 10) === reglages.niv;
     b.className = 'opt' + (on ? ' choisi' : '');
   }
   if (reglages.joueurs === 2) $('soustitre').innerHTML = etapeChoix === 0 ? 'Joueur 1 : choisis ton dinosaure !' : 'Joueur 2 : choisis ton dinosaure !';
   else $('soustitre').innerHTML = 'Choisis ton dinosaure !';
+  $('infoNiveau').innerHTML = NIVEAUX[reglages.niv].info;
   $('btnJouer').innerHTML = (reglages.joueurs === 2 && etapeChoix === 0) ? 'Suivant' : 'Combattre !';
   var v = parseInt(lire('victoires') || '0', 10);
   $('victoires').innerHTML = 'Victoires : ' + v;
@@ -406,7 +425,7 @@ function jouer() {
   debutTour();
 }
 
-function creer(d, ordi, qui) { return { d: d, pv: reglages.pv, max: reglages.pv, ordi: ordi, qui: qui, superFait: false }; }
+function creer(d, ordi, qui) { var pv = NIVEAUX[reglages.niv].pv; return { d: d, pv: pv, max: pv, vals: [], ordi: ordi, qui: qui, superFait: false }; }
 
 /* ---------- Combat ---------- */
 function majVies() {
@@ -428,6 +447,7 @@ function debutTour() {
   var a = j[tour], cible = j[1 - tour];
   $('calcul').style.display = 'none';
   $('attaques').style.display = 'none';
+  for (var v = 0; v < a.d.attaques.length; v++) a.vals[v] = degats(a.d.attaques[v].pts);
   if (a.ordi) {
     bulle('<b>' + a.d.nom + '</b> prépare une attaque...');
     setTimeout(tourOrdi, 1300);
@@ -439,7 +459,7 @@ function debutTour() {
   for (var i = 0; i < a.d.attaques.length; i++) {
     var at = a.d.attaques[i], util = at.sup && a.superFait;
     h += '<button class="att' + (at.sup ? ' super' : '') + (util ? ' utilise' : '') + '" data-i="' + i + '">' + at.nom +
-         '<span class="pts">' + (util ? 'déjà utilisée' : at.pts + ' points' + (at.sup ? ' (1 seule fois)' : '')) + '</span></button>';
+         '<span class="pts">' + (util ? 'déjà utilisée' : a.vals[i] + ' points' + (at.sup ? ' (1 seule fois)' : '')) + '</span></button>';
   }
   $('listeAttaques').innerHTML = h;
   var bs = $('listeAttaques').getElementsByTagName('button');
@@ -452,10 +472,10 @@ function choisirAttaque(i) {
   var a = j[tour], at = a.d.attaques[i];
   if (at.sup && a.superFait) return;
   var cible = j[1 - tour];
-  var pts = Math.min(at.pts, cible.pv);
+  var force = a.vals[i], pts = Math.min(force, cible.pv);
   q = { at: at, a: cible.pv, b: pts, rep: cible.pv - pts, essais: 0 };
-  var txt = '<b>' + at.nom + '</b> : ' + at.pts + ' points !<br>';
-  if (pts < at.pts) txt += 'Il ne reste que ' + cible.pv + ' PV à ' + cible.d.nom + '.<br>';
+  var txt = '<b>' + at.nom + '</b> : ' + force + ' points !<br>';
+  if (pts < force) txt += 'Il ne reste que ' + cible.pv + ' PV à ' + cible.d.nom + '.<br>';
   txt += 'Combien restera-t-il de PV à ' + cible.d.nom + ' ?';
   bulle(txt);
   $('attaques').style.display = 'none';
@@ -470,11 +490,11 @@ function tourOrdi() {
     var at = a.d.attaques[i];
     if (at.sup && a.superFait) continue;
     if (at.sup && cible.pv > cible.max * 0.6) continue; // garde la super attaque pour plus tard
-    possibles.push(at);
+    possibles.push(i);
   }
-  var choisie = possibles[Math.floor(Math.random() * possibles.length)];
+  var n = possibles[Math.floor(Math.random() * possibles.length)], choisie = a.d.attaques[n];
   if (choisie.sup) a.superFait = true;
-  var pts = Math.min(choisie.pts, cible.pv), avant = cible.pv;
+  var pts = Math.min(a.vals[n], cible.pv), avant = cible.pv;
   bulle('<b>' + a.d.nom + '</b> utilise <b>' + choisie.nom + '</b> !<br>' + avant + ' − ' + pts + ' = ' + (avant - pts) +
         '<br>Il te reste <b>' + (avant - pts) + ' PV</b>.');
   frapper(pts, function () { setTimeout(finTour, 1700); });
