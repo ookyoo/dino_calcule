@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Dino Calcule</title>
+<style>
+  html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden;
+    background: #7cc35a; font-family: Arial, Helvetica, sans-serif; color: #1f3a12;
+    -webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: rgba(0,0,0,0); }
+  #app { position: absolute; left: 0; top: 0; width: 1000px; height: 560px; overflow: hidden;
+    background: #bfe6ff;
+    background: -webkit-linear-gradient(top, #bfe6ff 0%, #e6f7ff 40%, #9ad47a 40%, #6fb44c 100%);
+    background: linear-gradient(to bottom, #bfe6ff 0%, #e6f7ff 40%, #9ad47a 40%, #6fb44c 100%);
+    -webkit-transform-origin: 0 0; transform-origin: 0 0; }
+  .ecran { position: absolute; left: 0; top: 0; width: 1000px; height: 560px; display: none; }
+  button { font-family: Arial, Helvetica, sans-serif; border: 0; cursor: pointer; outline: none; }
+  .gros { font-size: 30px; font-weight: bold; padding: 14px 30px; border-radius: 16px;
+    background: #4a9d2b; color: #fff; border-bottom: 6px solid #2f6d18; }
+  .gros:active { border-bottom-width: 2px; margin-top: 4px; }
+
+  /* Accueil */
+  #accueil h1 { margin: 14px 0 0; text-align: center; font-size: 52px; color: #1f5a0e;
+    text-shadow: 3px 3px 0 #fff; }
+  #accueil .soustitre { text-align: center; font-size: 24px; margin: 4px 0 8px; }
+  .cartes { text-align: center; }
+  .carte { display: inline-block; vertical-align: top; width: 220px; margin: 0 6px; padding: 6px 0 8px;
+    background: #fff; border-radius: 18px; border: 5px solid #fff; text-align: center; }
+  .carte.choisi { border-color: #f2b705; background: #fff7d1; }
+  .carte .nom { font-size: 24px; font-weight: bold; }
+  .carte canvas { width: 200px; height: 150px; }
+  .options { text-align: center; margin-top: 12px; font-size: 22px; }
+  .options .groupe { display: inline-block; margin: 0 14px; vertical-align: middle; }
+  .opt { font-size: 22px; font-weight: bold; padding: 10px 16px; margin: 0 2px; border-radius: 12px;
+    background: #fff; color: #2f6d18; border: 3px solid #fff; }
+  .opt.choisi { background: #f2b705; color: #3b2a00; border-color: #c99600; }
+  #btnJouer { position: absolute; left: 380px; top: 478px; width: 240px; }
+  #victoires { position: absolute; right: 16px; top: 14px; font-size: 20px; background: #fff;
+    padding: 6px 12px; border-radius: 12px; }
+  #consigne2j { position: absolute; left: 0; width: 1000px; top: 12px; text-align: center; font-size: 34px;
+    font-weight: bold; color: #1f5a0e; text-shadow: 2px 2px 0 #fff; display: none; }
+
+  /* Combat */
+  .cote { position: absolute; top: 6px; width: 330px; text-align: center; }
+  #coteG { left: 10px; } #coteD { right: 10px; }
+  .etiquette { font-size: 24px; font-weight: bold; }
+  .barre { position: relative; height: 30px; margin: 4px 15px 0; background: #fff; border-radius: 15px;
+    border: 3px solid #1f3a12; overflow: hidden; }
+  .barre .vie { position: absolute; left: 0; top: 0; bottom: 0; background: #3cc23c;
+    -webkit-transition: width 0.8s; transition: width 0.8s; }
+  .barre .txt { position: absolute; left: 0; right: 0; top: 2px; font-size: 21px; font-weight: bold; }
+  .combattant { position: relative; width: 240px; height: 180px; margin: 0 auto;
+    -webkit-transition: -webkit-transform 0.25s; transition: transform 0.25s; }
+  .combattant canvas { width: 240px; height: 180px; }
+  .actif .etiquette { color: #b35c00; }
+  .degat { position: absolute; left: 70px; top: 20px; font-size: 54px; font-weight: bold; color: #e01b1b;
+    text-shadow: 2px 2px 0 #fff; display: none; }
+  #bulle { position: absolute; left: 350px; top: 20px; width: 300px; min-height: 120px; background: #fff;
+    border-radius: 20px; border: 4px solid #1f3a12; padding: 12px; font-size: 24px; text-align: center;
+    box-sizing: border-box; -webkit-box-sizing: border-box; }
+  #bulle b { color: #b35c00; }
+  #panneau { position: absolute; left: 10px; right: 10px; top: 244px; height: 306px; background: #fffbe8;
+    border-radius: 22px; border: 4px solid #1f3a12; }
+
+  /* Choix des attaques */
+  #attaques .titre { font-size: 28px; font-weight: bold; text-align: center; margin: 12px 0 10px; }
+  .att { display: inline-block; width: 452px; height: 104px; margin: 6px 10px; border-radius: 18px;
+    background: #4a9d2b; color: #fff; font-size: 30px; font-weight: bold; border-bottom: 7px solid #2f6d18;
+    vertical-align: top; }
+  .att .pts { display: block; font-size: 24px; color: #fff6b0; margin-top: 4px; }
+  .att.super { background: #d9480f; border-bottom-color: #8a2c06; }
+  .att.utilise { background: #aaa; border-bottom-color: #777; color: #eee; }
+  .att:active { border-bottom-width: 2px; margin-top: 11px; }
+
+  /* Calcul */
+  #calcul { display: none; }
+  #onglets { position: absolute; left: 14px; top: 10px; }
+  .onglet { font-size: 22px; font-weight: bold; padding: 10px 16px; border-radius: 12px; margin-right: 6px;
+    background: #e3e3d0; color: #555; }
+  .onglet.choisi { background: #2b7bd9; color: #fff; }
+  #zoneCalcul { position: absolute; left: 14px; top: 60px; width: 580px; height: 200px; }
+  #direct { text-align: center; padding-top: 18px; }
+  #direct .operation { font-size: 58px; font-weight: bold; }
+  #reponseDirecte { display: inline-block; min-width: 150px; height: 72px; line-height: 72px; padding: 0 12px;
+    border: 4px solid #2b7bd9; border-radius: 14px; background: #fff; vertical-align: middle; color: #2b7bd9; }
+  #pose { display: none; padding-left: 150px; }
+  .ligne { height: 48px; white-space: nowrap; }
+  .ligne.ret { height: 22px; }
+  .case { display: inline-block; width: 58px; height: 48px; line-height: 48px; margin: 0 3px; text-align: center;
+    font-size: 42px; font-weight: bold; vertical-align: top; }
+  .signe { color: #1f3a12; }
+  .ret .case { height: 22px; line-height: 22px; }
+  .petite { display: inline-block; width: 34px; height: 22px; line-height: 20px; font-size: 20px;
+    border: 2px dashed #b9b59a; border-radius: 6px; color: #d9480f; font-weight: bold; box-sizing: border-box;
+    -webkit-box-sizing: border-box; }
+  .petite.pleine { border-style: solid; border-color: #d9480f; background: #fff1e6; }
+  .trait { height: 0; border-top: 5px solid #1f3a12; margin: 2px 0 4px 0; }
+  .rep { background: #fff; border: 4px solid #b9b59a; border-radius: 10px; color: #2b7bd9;
+    box-sizing: border-box; -webkit-box-sizing: border-box; line-height: 40px; }
+  .rep.sel { border-color: #2b7bd9; background: #e3f0ff; }
+  .rep.faux { border-color: #e01b1b; background: #ffe3e3; color: #e01b1b; }
+  #pave { position: absolute; right: 12px; top: 8px; width: 330px; }
+  .touche { display: inline-block; width: 100px; height: 66px; margin: 3px; border-radius: 14px; font-size: 36px;
+    font-weight: bold; background: #fff; color: #1f3a12; border: 3px solid #1f3a12; border-bottom-width: 7px;
+    vertical-align: top; }
+  .touche:active { border-bottom-width: 3px; margin-top: 7px; }
+  .touche.eff { background: #ffd9b3; font-size: 24px; }
+  .touche.ok { background: #4a9d2b; color: #fff; font-size: 26px; }
+  #aide { position: absolute; left: 14px; bottom: 8px; width: 580px; font-size: 22px; text-align: center;
+    font-weight: bold; min-height: 28px; }
+
+  /* Fin */
+  #fin { text-align: center; }
+  #fin h2 { font-size: 60px; margin: 24px 0 0; color: #b35c00; text-shadow: 3px 3px 0 #fff; }
+  #fin canvas { width: 320px; height: 240px; }
+  #fin p { font-size: 28px; margin: 4px 0 16px; }
+  .etoile { position: absolute; font-size: 40px; color: #f2b705; }
+</style>
+</head>
+<body>
+<div id="app">
+
+  <!-- ===== Accueil ===== -->
+  <div id="accueil" class="ecran">
+    <div id="victoires"></div>
+    <h1>Dino Calcule</h1>
+    <div class="soustitre" id="soustitre">Choisis ton dinosaure !</div>
+    <div class="cartes" id="cartes"></div>
+    <div class="options">
+      <div class="groupe">Joueurs :
+        <button class="opt" data-joueurs="1">1 joueur</button><button class="opt" data-joueurs="2">2 joueurs</button>
+      </div>
+      <div class="groupe">Points de vie :
+        <button class="opt" data-pv="100">100</button><button class="opt" data-pv="150">150</button><button class="opt" data-pv="200">200</button>
+      </div>
+    </div>
+    <button class="gros" id="btnJouer">Combattre !</button>
+  </div>
+
+  <!-- ===== Combat ===== -->
+  <div id="combat" class="ecran">
+    <div class="cote" id="coteG">
+      <div class="etiquette" id="nomG"></div>
+      <div class="barre"><div class="vie" id="vieG"></div><div class="txt" id="pvG"></div></div>
+      <div class="combattant" id="dinoG"><canvas id="canG" width="480" height="360"></canvas><div class="degat" id="degatG"></div></div>
+    </div>
+    <div id="bulle"></div>
+    <div class="cote" id="coteD">
+      <div class="etiquette" id="nomD"></div>
+      <div class="barre"><div class="vie" id="vieD"></div><div class="txt" id="pvD"></div></div>
+      <div class="combattant" id="dinoD"><canvas id="canD" width="480" height="360"></canvas><div class="degat" id="degatD"></div></div>
+    </div>
+
+    <div id="panneau">
+      <div id="attaques">
+        <div class="titre" id="titreAttaques"></div>
+        <div id="listeAttaques" style="text-align:center"></div>
+      </div>
+      <div id="calcul">
+        <div id="onglets">
+          <button class="onglet" id="ongletPose">Poser la soustraction</button><button class="onglet" id="ongletDirect">Réponse directe</button>
+        </div>
+        <div id="zoneCalcul">
+          <div id="pose"></div>
+          <div id="direct"><div class="operation"><span id="opDirecte"></span> = <span id="reponseDirecte"></span></div></div>
+        </div>
+        <div id="pave"></div>
+        <div id="aide"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Fin ===== -->
+  <div id="fin" class="ecran">
+    <h2 id="titreFin"></h2>
+    <canvas id="canFin" width="640" height="480"></canvas>
+    <p id="texteFin"></p>
+    <button class="gros" id="btnRejouer">Rejouer</button>
+  </div>
+</div>
+
+<script>
+/* Dino Calcule — JavaScript volontairement "ancien" (ES5) pour le navigateur de la Storio. */
+
+var DINOS = [
+  { id: 'rex', nom: 'Rex', espece: 'le T-Rex', couleur: '#5fae3a', fonce: '#2f6d18', ventre: '#c9e8a0',
+    attaques: [ { nom: 'Coup de griffe', pts: 15 }, { nom: 'Coup de queue', pts: 27 },
+                { nom: 'Morsure', pts: 45 }, { nom: 'Méga-morsure', pts: 68, sup: true } ] },
+  { id: 'trico', nom: 'Trico', espece: 'le Tricératops', couleur: '#e8913a', fonce: '#9a4f0e', ventre: '#f8d7a8',
+    attaques: [ { nom: 'Piétinement', pts: 16 }, { nom: 'Charge', pts: 25 },
+                { nom: 'Coup de corne', pts: 38 }, { nom: 'Triple corne', pts: 65, sup: true } ] },
+  { id: 'stego', nom: 'Stégo', espece: 'le Stégosaure', couleur: '#8e6bc4', fonce: '#523485', ventre: '#d9c9f0',
+    attaques: [ { nom: 'Roulade', pts: 12 }, { nom: 'Coup de tête', pts: 24 },
+                { nom: 'Queue à pics', pts: 41 }, { nom: 'Pluie de pics', pts: 63, sup: true } ] },
+  { id: 'spino', nom: 'Spino', espece: 'le Spinosaure', couleur: '#3a8ec4', fonce: '#1b5680', ventre: '#bfe0f5',
+    attaques: [ { nom: 'Éclaboussure', pts: 14 }, { nom: 'Coup de nageoire', pts: 29 },
+                { nom: 'Grande morsure', pts: 43 }, { nom: 'Tsunami', pts: 70, sup: true } ] }
+];
+
+function $(id) { return document.getElementById(id); }
+function stocker(cle, val) { try { localStorage.setItem('dino-' + cle, val); } catch (e) {} }
+function lire(cle) { try { return localStorage.getItem('dino-' + cle); } catch (e) { return null; } }
+
+/* ---------- Mise à l'échelle de l'écran ---------- */
+function ajuster() {
+  var w = window.innerWidth, h = window.innerHeight;
+  var s = Math.min(w / 1000, h / 560);
+  var x = Math.round((w - 1000 * s) / 2), y = Math.round((h - 560 * s) / 2);
+  var t = 'translate(' + x + 'px,' + y + 'px) scale(' + s + ')';
+  var st = $('app').style;
+  st.webkitTransform = t; st.transform = t;
+}
+window.addEventListener('resize', ajuster);
+window.addEventListener('orientationchange', function () { setTimeout(ajuster, 300); });
+
+/* ---------- Son (facultatif) ---------- */
+var audio = null;
+function son(freqs, duree) {
+  try {
+    if (!audio) { var AC = window.AudioContext || window.webkitAudioContext; if (!AC) return; audio = new AC(); }
+    var t = audio.currentTime;
+    for (var i = 0; i < freqs.length; i++) {
+      var o = audio.createOscillator(), g = audio.createGain();
+      o.frequency.value = freqs[i]; g.gain.value = 0.15;
+      o.connect(g); g.connect(audio.destination);
+      o.start(t + i * duree); o.stop(t + (i + 1) * duree);
+    }
+  } catch (e) {}
+}
+function sonBravo() { son([523, 659, 784], 0.12); }
+function sonFaux() { son([300, 220], 0.18); }
+function sonCoup() { son([140, 90], 0.1); }
+
+/* ---------- Dessin des dinosaures ---------- */
+function ell(c, x, y, rx, ry) {
+  c.save(); c.translate(x, y); c.scale(rx, ry); c.beginPath(); c.arc(0, 0, 1, 0, Math.PI * 2); c.restore();
+}
+function poly(c, pts) {
+  c.beginPath(); c.moveTo(pts[0], pts[1]);
+  for (var i = 2; i < pts.length; i += 2) c.lineTo(pts[i], pts[i + 1]);
+  c.closePath();
+}
+function remplir(c, coul) { c.fillStyle = coul; c.fill(); c.lineWidth = 3; c.strokeStyle = '#1f3a12'; c.stroke(); }
+function oeil(c, x, y) {
+  c.beginPath(); c.arc(x, y, 7, 0, Math.PI * 2); c.fillStyle = '#fff'; c.fill(); c.lineWidth = 2; c.strokeStyle = '#1f3a12'; c.stroke();
+  c.beginPath(); c.arc(x + 2, y, 3.5, 0, Math.PI * 2); c.fillStyle = '#000'; c.fill();
+}
+function pattes4(c, d) {
+  var xs = [72, 96, 138, 160];
+  for (var i = 0; i < 4; i++) { poly(c, [xs[i], 125, xs[i] + 18, 125, xs[i] + 18, 165, xs[i], 165]); remplir(c, i % 2 ? d.fonce : d.couleur); }
+}
+
+function dessinerDino(canvas, d, versGauche, ko) {
+  var c = canvas.getContext('2d');
+  var k = canvas.width / 240;
+  c.setTransform(1, 0, 0, 1, 0, 0);
+  c.clearRect(0, 0, canvas.width, canvas.height);
+  c.scale(k, k);
+  if (versGauche) { c.translate(240, 0); c.scale(-1, 1); }
+  if (ko) { c.translate(120, 170); c.rotate(Math.PI / 2 * 0.9); c.translate(-120, -150); }
+  c.lineJoin = 'round';
+  // ombre
+  c.fillStyle = 'rgba(0,0,0,0.15)'; ell(c, 120, 168, 95, 9); c.fill();
+
+  if (d.id === 'rex' || d.id === 'spino') {
+    if (d.id === 'spino') {
+      // voile
+      c.beginPath(); c.moveTo(60, 95); c.bezierCurveTo(70, 15, 140, 15, 150, 85); c.closePath();
+      remplir(c, '#e85d3a');
+      c.strokeStyle = '#9a2f12'; c.lineWidth = 2;
+      for (var r = 75; r <= 135; r += 15) { c.beginPath(); c.moveTo(r, 90); c.lineTo(r + 3, 38); c.stroke(); }
+    }
+    poly(c, [70, 95, 4, 92, 70, 125]); remplir(c, d.couleur);              // queue
+    poly(c, [118, 125, 136, 125, 140, 165, 112, 165]); remplir(c, d.fonce);   // patte arrière
+    ell(c, 100, 108, 48, 30); remplir(c, d.couleur);                           // corps
+    ell(c, 106, 118, 30, 14); c.fillStyle = d.ventre; c.fill();
+    poly(c, [80, 125, 100, 125, 104, 165, 76, 165]); remplir(c, d.couleur);    // patte
+    poly(c, [124, 92, 142, 52, 162, 62, 146, 108]); remplir(c, d.couleur);     // cou
+    if (d.id === 'rex') {
+      ell(c, 168, 58, 38, 22); remplir(c, d.couleur);                          // tête
+      poly(c, [150, 70, 206, 66, 200, 82, 152, 82]); remplir(c, d.couleur);    // mâchoire
+      c.fillStyle = '#fff';
+      for (var t = 0; t < 4; t++) { poly(c, [168 + t * 9, 66, 176 + t * 9, 66, 172 + t * 9, 74]); c.fill(); }
+      oeil(c, 172, 48);
+      c.lineWidth = 5; c.strokeStyle = d.fonce; c.beginPath(); c.moveTo(140, 100); c.lineTo(156, 112); c.lineTo(160, 106); c.stroke();
+    } else {
+      ell(c, 172, 60, 44, 13); remplir(c, d.couleur);                          // museau long
+      oeil(c, 160, 52);
+      c.fillStyle = '#fff';
+      for (var t2 = 0; t2 < 5; t2++) { poly(c, [176 + t2 * 8, 70, 182 + t2 * 8, 70, 179 + t2 * 8, 76]); c.fill(); }
+      c.lineWidth = 5; c.strokeStyle = d.fonce; c.beginPath(); c.moveTo(140, 100); c.lineTo(158, 114); c.stroke();
+    }
+  } else if (d.id === 'trico') {
+    poly(c, [60, 100, 2, 122, 60, 128]); remplir(c, d.couleur);
+    pattes4(c, d);
+    ell(c, 110, 108, 62, 34); remplir(c, d.couleur);
+    ell(c, 110, 124, 40, 12); c.fillStyle = d.ventre; c.fill();
+    c.beginPath(); c.arc(168, 88, 34, 0, Math.PI * 2); remplir(c, d.fonce);   // collerette
+    ell(c, 192, 106, 30, 20); remplir(c, d.couleur);                           // tête
+    poly(c, [214, 98, 238, 112, 212, 122]); remplir(c, '#f8e6c0');           // bec
+    poly(c, [184, 90, 230, 56, 194, 96]); remplir(c, '#fff7e0');             // cornes
+    poly(c, [196, 92, 236, 68, 204, 98]); remplir(c, '#fff7e0');
+    poly(c, [212, 98, 222, 82, 220, 102]); remplir(c, '#fff7e0');
+    oeil(c, 196, 100);
+  } else {
+    // stégosaure : plaques
+    var px = [55, 78, 102, 126, 148];
+    for (var p = 0; p < px.length; p++) {
+      poly(c, [px[p] - 14, 92 - (p === 2 ? 0 : 6), px[p], 40 + Math.abs(p - 2) * 10, px[p] + 14, 92 - (p === 2 ? 0 : 6)]);
+      remplir(c, p % 2 ? '#f2b705' : '#e85d3a');
+    }
+    poly(c, [55, 105, 0, 112, 55, 128]); remplir(c, d.couleur);
+    poly(c, [8, 110, 0, 88, 18, 106]); remplir(c, '#fff7e0');                // pics de queue
+    poly(c, [20, 108, 16, 86, 30, 106]); remplir(c, '#fff7e0');
+    pattes4(c, d);
+    ell(c, 108, 112, 62, 30); remplir(c, d.couleur);
+    ell(c, 108, 126, 40, 10); c.fillStyle = d.ventre; c.fill();
+    poly(c, [160, 108, 186, 112, 186, 126, 160, 128]); remplir(c, d.couleur);
+    ell(c, 196, 122, 22, 12); remplir(c, d.couleur);
+    oeil(c, 200, 118);
+  }
+}
+
+/* ---------- État du jeu ---------- */
+var reglages = { joueurs: lire('joueurs') === '2' ? 2 : 1, pv: parseInt(lire('pv') || '150', 10) || 150 };
+var choix = [0, null];   // dinos choisis (joueur 1, joueur 2)
+var etapeChoix = 0;      // en mode 2 joueurs : 0 = joueur 1 choisit, 1 = joueur 2
+var j = [];              // combattants
+var tour = 0;            // index du combattant qui attaque
+var occupe = false;
+var modeCalcul = lire('mode') === 'direct' ? 'direct' : 'pose';
+var q = null;            // question en cours
+
+function afficher(id) {
+  var e = ['accueil', 'combat', 'fin'];
+  for (var i = 0; i < e.length; i++) $(e[i]).style.display = e[i] === id ? 'block' : 'none';
+}
+
+/* ---------- Accueil ---------- */
+function construireAccueil() {
+  var h = '';
+  for (var i = 0; i < DINOS.length; i++) {
+    h += '<div class="carte" data-i="' + i + '"><canvas width="400" height="300" id="carte' + i + '"></canvas>' +
+         '<div class="nom">' + DINOS[i].nom + '</div><div>' + DINOS[i].espece + '</div></div>';
+  }
+  $('cartes').innerHTML = h;
+  for (var k = 0; k < DINOS.length; k++) {
+    dessinerDino($('carte' + k), DINOS[k], false);
+    $('carte' + k).parentNode.onclick = (function (n) { return function () { choisirDino(n); }; })(k);
+  }
+  var opts = document.querySelectorAll('.opt');
+  for (var o = 0; o < opts.length; o++) {
+    opts[o].onclick = function () {
+      if (this.getAttribute('data-joueurs')) { reglages.joueurs = parseInt(this.getAttribute('data-joueurs'), 10); stocker('joueurs', reglages.joueurs); }
+      if (this.getAttribute('data-pv')) { reglages.pv = parseInt(this.getAttribute('data-pv'), 10); stocker('pv', reglages.pv); }
+      etapeChoix = 0;
+      majAccueil();
+    };
+  }
+  $('btnJouer').onclick = jouer;
+}
+
+function choisirDino(n) {
+  choix[etapeChoix] = n;
+  majAccueil();
+}
+
+function majAccueil() {
+  var cartes = document.querySelectorAll('.carte');
+  for (var i = 0; i < cartes.length; i++) cartes[i].className = 'carte' + (choix[etapeChoix] === i ? ' choisi' : '');
+  var opts = document.querySelectorAll('.opt');
+  for (var o = 0; o < opts.length; o++) {
+    var b = opts[o], on = b.getAttribute('data-joueurs') ? parseInt(b.getAttribute('data-joueurs'), 10) === reglages.joueurs
+                                                     : parseInt(b.getAttribute('data-pv'), 10) === reglages.pv;
+    b.className = 'opt' + (on ? ' choisi' : '');
+  }
+  if (reglages.joueurs === 2) $('soustitre').innerHTML = etapeChoix === 0 ? 'Joueur 1 : choisis ton dinosaure !' : 'Joueur 2 : choisis ton dinosaure !';
+  else $('soustitre').innerHTML = 'Choisis ton dinosaure !';
+  $('btnJouer').innerHTML = (reglages.joueurs === 2 && etapeChoix === 0) ? 'Suivant' : 'Combattre !';
+  var v = parseInt(lire('victoires') || '0', 10);
+  $('victoires').innerHTML = 'Victoires : ' + v;
+  $('victoires').style.display = v > 0 ? 'block' : 'none';
+}
+
+function jouer() {
+  if (reglages.joueurs === 2 && etapeChoix === 0) {
+    etapeChoix = 1;
+    if (choix[1] === null || choix[1] === choix[0]) choix[1] = (choix[0] + 1) % DINOS.length;
+    majAccueil();
+    return;
+  }
+  var adv = choix[1];
+  if (reglages.joueurs === 1) {
+    do { adv = Math.floor(Math.random() * DINOS.length); } while (adv === choix[0]);
+  }
+  j = [creer(DINOS[choix[0]], false, reglages.joueurs === 2 ? 'Joueur 1' : 'Toi'),
+       creer(DINOS[adv], reglages.joueurs === 1, reglages.joueurs === 2 ? 'Joueur 2' : 'Ordi')];
+  etapeChoix = 0;
+  tour = 0;
+  afficher('combat');
+  $('nomG').innerHTML = j[0].d.nom + ' <small>(' + j[0].qui + ')</small>';
+  $('nomD').innerHTML = j[1].d.nom + ' <small>(' + j[1].qui + ')</small>';
+  dessinerDino($('canG'), j[0].d, false);
+  dessinerDino($('canD'), j[1].d, true);
+  majVies();
+  debutTour();
+}
+
+function creer(d, ordi, qui) { return { d: d, pv: reglages.pv, max: reglages.pv, ordi: ordi, qui: qui, superFait: false }; }
+
+/* ---------- Combat ---------- */
+function majVies() {
+  for (var i = 0; i < 2; i++) {
+    var s = i === 0 ? 'G' : 'D', p = j[i];
+    var pc = Math.round(p.pv / p.max * 100);
+    $('vie' + s).style.width = pc + '%';
+    $('vie' + s).style.background = pc > 50 ? '#3cc23c' : (pc > 20 ? '#f2b705' : '#e01b1b');
+    $('pv' + s).innerHTML = p.pv + ' PV';
+    $('cote' + s).className = 'cote' + (tour === i ? ' actif' : '');
+  }
+}
+
+function bulle(h) { $('bulle').innerHTML = h; }
+
+function debutTour() {
+  occupe = false;
+  majVies();
+  var a = j[tour], cible = j[1 - tour];
+  $('calcul').style.display = 'none';
+  $('attaques').style.display = 'none';
+  if (a.ordi) {
+    bulle('<b>' + a.d.nom + '</b> prépare une attaque...');
+    setTimeout(tourOrdi, 1300);
+    return;
+  }
+  bulle('Il reste <b>' + cible.pv + ' PV</b> à ' + cible.d.nom + '.');
+  $('titreAttaques').innerHTML = (reglages.joueurs === 2 ? a.qui + ' : ' : '') + 'à toi, ' + a.d.nom + ' ! Choisis une attaque :';
+  var h = '';
+  for (var i = 0; i < a.d.attaques.length; i++) {
+    var at = a.d.attaques[i], util = at.sup && a.superFait;
+    h += '<button class="att' + (at.sup ? ' super' : '') + (util ? ' utilise' : '') + '" data-i="' + i + '">' + at.nom +
+         '<span class="pts">' + (util ? 'déjà utilisée' : at.pts + ' points' + (at.sup ? ' (1 seule fois)' : '')) + '</span></button>';
+  }
+  $('listeAttaques').innerHTML = h;
+  var bs = $('listeAttaques').getElementsByTagName('button');
+  for (var b = 0; b < bs.length; b++) bs[b].onclick = function () { choisirAttaque(parseInt(this.getAttribute('data-i'), 10)); };
+  $('attaques').style.display = 'block';
+}
+
+function choisirAttaque(i) {
+  if (occupe) return;
+  var a = j[tour], at = a.d.attaques[i];
+  if (at.sup && a.superFait) return;
+  var cible = j[1 - tour];
+  var pts = Math.min(at.pts, cible.pv);
+  q = { at: at, a: cible.pv, b: pts, rep: cible.pv - pts, essais: 0 };
+  var txt = '<b>' + at.nom + '</b> : ' + at.pts + ' points !<br>';
+  if (pts < at.pts) txt += 'Il ne reste que ' + cible.pv + ' PV à ' + cible.d.nom + '.<br>';
+  txt += 'Combien restera-t-il de PV à ' + cible.d.nom + ' ?';
+  bulle(txt);
+  $('attaques').style.display = 'none';
+  $('calcul').style.display = 'block';
+  ouvrirCalcul();
+}
+
+function tourOrdi() {
+  var a = j[tour], cible = j[1 - tour];
+  var possibles = [];
+  for (var i = 0; i < a.d.attaques.length; i++) {
+    var at = a.d.attaques[i];
+    if (at.sup && a.superFait) continue;
+    if (at.sup && cible.pv > cible.max * 0.6) continue; // garde la super attaque pour plus tard
+    possibles.push(at);
+  }
+  var choisie = possibles[Math.floor(Math.random() * possibles.length)];
+  if (choisie.sup) a.superFait = true;
+  var pts = Math.min(choisie.pts, cible.pv), avant = cible.pv;
+  bulle('<b>' + a.d.nom + '</b> utilise <b>' + choisie.nom + '</b> !<br>' + avant + ' − ' + pts + ' = ' + (avant - pts) +
+        '<br>Il te reste <b>' + (avant - pts) + ' PV</b>.');
+  frapper(pts, function () { setTimeout(finTour, 1700); });
+}
+
+function frapper(pts, ensuite) {
+  occupe = true;
+  var att = tour === 0 ? 'G' : 'D', def = tour === 0 ? 'D' : 'G';
+  var cible = j[1 - tour];
+  var el = $('dino' + att);
+  var dx = tour === 0 ? 90 : -90;
+  el.style.webkitTransform = 'translateX(' + dx + 'px)'; el.style.transform = 'translateX(' + dx + 'px)';
+  setTimeout(function () {
+    el.style.webkitTransform = ''; el.style.transform = '';
+    sonCoup();
+    cible.pv -= pts;
+    majVies();
+    var dg = $('degat' + def);
+    dg.innerHTML = '−' + pts; dg.style.display = 'block';
+    var dd = $('dino' + def), n = 0;
+    var secousse = setInterval(function () {
+      n++;
+      var v = (n % 2 ? 12 : -12) + 'px';
+      dd.style.webkitTransform = 'translateX(' + v + ')'; dd.style.transform = 'translateX(' + v + ')';
+      dd.style.opacity = n % 2 ? 0.5 : 1;
+      if (n >= 7) {
+        clearInterval(secousse);
+        dd.style.webkitTransform = ''; dd.style.transform = ''; dd.style.opacity = 1;
+        setTimeout(function () { dg.style.display = 'none'; ensuite(); }, 500);
+      }
+    }, 90);
+  }, 280);
+}
+
+function finTour() {
+  var cible = j[1 - tour];
+  if (cible.pv <= 0) {
+    dessinerDino($(tour === 0 ? 'canD' : 'canG'), cible.d, tour === 0, true);
+    setTimeout(function () { victoire(j[tour]); }, 1400);
+    bulle('<b>' + cible.d.nom + '</b> est K.O. !');
+    return;
+  }
+  tour = 1 - tour;
+  debutTour();
+}
+
+function victoire(g) {
+  afficher('fin');
+  var humainGagne = !g.ordi;
+  $('titreFin').innerHTML = humainGagne ? 'Bravo ! &#9733;' : 'Oh non !';
+  if (reglages.joueurs === 2) $('texteFin').innerHTML = g.qui + ' a gagné avec ' + g.d.nom + ' ' + g.d.espece + ' !';
+  else if (humainGagne) $('texteFin').innerHTML = g.d.nom + ' ' + g.d.espece + ' a gagné le combat !';
+  else $('texteFin').innerHTML = g.d.nom + ' a gagné cette fois. Tu prends ta revanche ?';
+  dessinerDino($('canFin'), g.d, false);
+  if (humainGagne) {
+    sonBravo(); setTimeout(sonBravo, 450);
+    if (reglages.joueurs === 1) stocker('victoires', parseInt(lire('victoires') || '0', 10) + 1);
+  }
+}
+
+/* ---------- Calcul : poser la soustraction ou réponse directe ---------- */
+var saisie = [];   // chiffres saisis (mode posé), de gauche à droite
+var sel = 0;
+var directe = '';
+
+function chiffres(n) { return String(n).split(''); }
+
+function ouvrirCalcul() {
+  var n = chiffres(q.a).length;
+  saisie = []; for (var i = 0; i < n; i++) saisie.push('');
+  sel = n - 1;
+  directe = '';
+  $('aide').innerHTML = '';
+  montrerMode();
+}
+
+function montrerMode() {
+  if (!q) return;
+  $('ongletPose').className = 'onglet' + (modeCalcul === 'pose' ? ' choisi' : '');
+  $('ongletDirect').className = 'onglet' + (modeCalcul === 'direct' ? ' choisi' : '');
+  $('pose').style.display = modeCalcul === 'pose' ? 'block' : 'none';
+  $('direct').style.display = modeCalcul === 'direct' ? 'block' : 'none';
+  if (modeCalcul === 'pose') dessinerPose(); else dessinerDirect();
+}
+
+function dessinerDirect() {
+  $('opDirecte').innerHTML = q.a + ' − ' + q.b;
+  $('reponseDirecte').innerHTML = directe || '?';
+}
+
+function dessinerPose(fautes) {
+  if (!q) return;
+  var ha = chiffres(q.a), hb = chiffres(q.b), n = ha.length;
+  while (hb.length < n) hb.unshift('');
+  var ancienRet = q.ret || {};
+  var h = '';
+  // retenues du haut
+  h += '<div class="ligne ret"><span class="case"></span>';
+  for (var i = 0; i < n; i++) h += '<span class="case"><span class="petite' + (ancienRet['h' + i] ? ' pleine' : '') + '" data-r="h' + i + '">' + (ancienRet['h' + i] ? '1' : '') + '</span></span>';
+  h += '</div><div class="ligne"><span class="case"></span>';
+  for (i = 0; i < n; i++) h += '<span class="case">' + ha[i] + '</span>';
+  h += '</div><div class="ligne"><span class="case signe">−</span>';
+  for (i = 0; i < n; i++) h += '<span class="case">' + hb[i] + '</span>';
+  h += '</div><div class="ligne ret"><span class="case"></span>';
+  for (i = 0; i < n; i++) h += '<span class="case"><span class="petite' + (ancienRet['b' + i] ? ' pleine' : '') + '" data-r="b' + i + '">' + (ancienRet['b' + i] ? '+1' : '') + '</span></span>';
+  h += '</div><div class="trait" style="width:' + ((n + 1) * 64) + 'px"></div><div class="ligne"><span class="case"></span>';
+  for (i = 0; i < n; i++) {
+    h += '<span class="case rep' + (i === sel ? ' sel' : '') + (fautes && fautes[i] ? ' faux' : '') + '" data-c="' + i + '">' + saisie[i] + '</span>';
+  }
+  h += '</div>';
+  $('pose').innerHTML = h;
+  var reps = $('pose').querySelectorAll('.rep');
+  for (var r = 0; r < reps.length; r++) reps[r].onclick = function () { sel = parseInt(this.getAttribute('data-c'), 10); dessinerPose(); };
+  var pets = $('pose').querySelectorAll('.petite');
+  for (var p = 0; p < pets.length; p++) pets[p].onclick = function () {
+    if (!q || occupe) return;
+    q.ret = q.ret || {};
+    var k = this.getAttribute('data-r');
+    q.ret[k] = !q.ret[k];
+    dessinerPose();
+  };
+}
+
+function construirePave() {
+  var t = ['7', '8', '9', '4', '5', '6', '1', '2', '3', 'eff', '0', 'ok'], h = '';
+  for (var i = 0; i < t.length; i++) {
+    var lib = t[i] === 'eff' ? 'Effacer' : (t[i] === 'ok' ? 'Valider' : t[i]);
+    h += '<button class="touche' + (t[i] === 'eff' ? ' eff' : '') + (t[i] === 'ok' ? ' ok' : '') + '" data-t="' + t[i] + '">' + lib + '</button>';
+  }
+  $('pave').innerHTML = h;
+  var bs = $('pave').getElementsByTagName('button');
+  for (var b = 0; b < bs.length; b++) bs[b].onclick = function () { touche(this.getAttribute('data-t')); };
+  $('ongletPose').onclick = function () { modeCalcul = 'pose'; stocker('mode', 'pose'); montrerMode(); };
+  $('ongletDirect').onclick = function () { modeCalcul = 'direct'; stocker('mode', 'direct'); montrerMode(); };
+}
+
+function touche(t) {
+  if (occupe || !q) return;
+  if (t === 'ok') { valider(); return; }
+  if (modeCalcul === 'direct') {
+    if (t === 'eff') directe = directe.slice(0, -1);
+    else if (directe.length < 4) directe = (directe === '0' ? '' : directe) + t;
+    dessinerDirect();
+    return;
+  }
+  if (t === 'eff') {
+    if (saisie[sel] === '' && sel < saisie.length - 1) sel++;
+    saisie[sel] = '';
+  } else {
+    saisie[sel] = t;
+    if (sel > 0) sel--;   // on écrit de droite à gauche, comme sur le cahier
+  }
+  dessinerPose();
+}
+
+function lireReponse() {
+  if (modeCalcul === 'direct') return directe === '' ? null : parseInt(directe, 10);
+  var debut = true, txt = '';
+  for (var i = 0; i < saisie.length; i++) {
+    if (saisie[i] === '') { if (!debut) return 'trou'; continue; }
+    debut = false; txt += saisie[i];
+  }
+  return txt === '' ? null : parseInt(txt, 10);
+}
+
+function valider() {
+  var r = lireReponse();
+  if (r === null) { $('aide').innerHTML = 'Écris ta réponse avec les chiffres.'; return; }
+  if (r === 'trou') { $('aide').innerHTML = 'Il manque un chiffre au milieu !'; return; }
+  if (r === q.rep) {
+    sonBravo();
+    var a = j[tour], cible = j[1 - tour];
+    if (q.at.sup) a.superFait = true;
+    $('aide').innerHTML = '<span style="color:#1c7a1c">Bravo ! ' + q.a + ' − ' + q.b + ' = ' + q.rep + '</span>';
+    bulle('Bravo ! <b>' + q.at.nom + '</b> !<br>Il reste <b>' + q.rep + ' PV</b> à ' + cible.d.nom + '.');
+    var pts = q.b;
+    q = null;
+    setTimeout(function () { frapper(pts, function () { setTimeout(finTour, 700); }); }, 500);
+    return;
+  }
+  q.essais++;
+  sonFaux();
+  if (q.essais === 1) {
+    $('aide').innerHTML = '<span style="color:#e01b1b">Pas tout à fait... Vérifie ton calcul !</span>';
+  } else if (q.essais === 2) {
+    if (modeCalcul === 'pose') {
+      var bon = chiffres(q.rep), n = saisie.length, fautes = [];
+      while (bon.length < n) bon.unshift('');
+      for (var i = 0; i < n; i++) {
+        var v = saisie[i] === '' ? '' : saisie[i];
+        var attendu = bon[i];
+        fautes.push(!(v === attendu || (attendu === '' && (v === '' || v === '0'))));
+      }
+      dessinerPose(fautes);
+      $('aide').innerHTML = '<span style="color:#e01b1b">Les cases rouges sont fausses. Dernier essai !</span>';
+    } else {
+      $('aide').innerHTML = '<span style="color:#e01b1b">Encore raté. Essaie de poser la soustraction ! Dernier essai.</span>';
+    }
+  } else {
+    occupe = true;
+    $('aide').innerHTML = 'La bonne réponse était <b>' + q.a + ' − ' + q.b + ' = ' + q.rep + '</b>';
+    bulle('Oh non, l\'attaque <b>' + q.at.nom + '</b> a raté !');
+    if (q.at.sup) j[tour].superFait = true;
+    q = null;
+    setTimeout(function () { tour = 1 - tour; debutTour(); }, 3200);
+  }
+}
+
+/* ---------- Démarrage ---------- */
+$('btnRejouer').onclick = function () { afficher('accueil'); majAccueil(); };
+construireAccueil();
+construirePave();
+majAccueil();
+afficher('accueil');
+ajuster();
+</script>
+</body>
+</html>
