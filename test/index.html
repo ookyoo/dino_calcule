@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<title>Test Dino Calcule</title>
+<style>
+  body { margin: 0; padding: 16px; background: #e8f5d0; color: #1f3a12;
+         font-family: Arial, Helvetica, sans-serif; font-size: 20px; }
+  h1 { margin: 0 0 12px; font-size: 30px; }
+  .dino { font-size: 64px; }
+  ul { list-style: none; padding: 0; margin: 12px 0; }
+  li { padding: 6px 0; border-bottom: 1px solid #c3dca0; }
+  .ok { color: #1c7a1c; font-weight: bold; }
+  .ko { color: #b3261e; font-weight: bold; }
+  button { font-size: 28px; padding: 16px 28px; margin: 6px; border: 0;
+           border-radius: 14px; background: #4a9d2b; color: #fff; }
+  #zone { margin-top: 10px; font-size: 26px; min-height: 40px; }
+  canvas { background: #fff; border-radius: 10px; display: block; margin-top: 10px; }
+  #infos { font-size: 14px; color: #555; word-wrap: break-word; }
+</style>
+</head>
+<body>
+<h1>Test Dino Calcule <span class="dino">&#129430;</span></h1>
+<p>Si tu lis cette page, la tablette sait l'ouvrir !</p>
+
+<ul id="liste">
+  <li>JavaScript : <span id="t-js" class="ko">non</span></li>
+</ul>
+
+<div>Combien font 2 + 3 ?</div>
+<button onclick="rep(4)">4</button>
+<button onclick="rep(5)">5</button>
+<button onclick="rep(6)">6</button>
+<div id="zone"></div>
+
+<canvas id="c" width="300" height="80"></canvas>
+
+<p id="infos"></p>
+
+<script>
+var liste = document.getElementById('liste');
+document.getElementById('t-js').className = 'ok';
+document.getElementById('t-js').innerHTML = 'oui';
+
+function ligne(nom, ok) {
+  var li = document.createElement('li');
+  li.innerHTML = nom + ' : <span class="' + (ok ? 'ok' : 'ko') + '">' + (ok ? 'oui' : 'non') + '</span>';
+  liste.appendChild(li);
+}
+
+var canvasOk = false;
+try {
+  var ctx = document.getElementById('c').getContext('2d');
+  ctx.fillStyle = '#4a9d2b';
+  ctx.fillRect(10, 20, 60, 40);
+  ctx.fillStyle = '#1f3a12';
+  ctx.font = '24px Arial';
+  ctx.fillText('Dessin OK', 90, 50);
+  canvasOk = true;
+} catch (e) {}
+ligne('Dessin (canvas)', canvasOk);
+
+var memoireOk = false;
+try {
+  localStorage.setItem('dino-test', '1');
+  memoireOk = localStorage.getItem('dino-test') === '1';
+} catch (e) {}
+ligne('Mémoire des scores', memoireOk);
+
+ligne('Écran tactile', 'ontouchstart' in window);
+
+var es6Ok = false;
+try { es6Ok = eval('(() => 1)()') === 1; } catch (e) {}
+ligne('JavaScript moderne', es6Ok);
+
+var sonOk = false;
+function bip(freq) {
+  try {
+    var AC = window.AudioContext || window.webkitAudioContext;
+    var a = new AC(), o = a.createOscillator();
+    o.frequency.value = freq; o.connect(a.destination);
+    o.start(0); o.stop(a.currentTime + 0.25);
+    sonOk = true;
+  } catch (e) {}
+}
+ligne('Son', !!(window.AudioContext || window.webkitAudioContext));
+
+function rep(n) {
+  var z = document.getElementById('zone');
+  if (n === 5) { z.innerHTML = 'Bravo ! &#127881;'; bip(880); }
+  else { z.innerHTML = 'Essaie encore &#128062;'; bip(220); }
+}
+
+document.getElementById('infos').innerHTML =
+  'Écran : ' + window.innerWidth + ' x ' + window.innerHeight +
+  '<br>Navigateur : ' + navigator.userAgent;
+</script>
+</body>
+</html>
