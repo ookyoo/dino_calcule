@@ -20,24 +20,27 @@
   .gros:active { border-bottom-width: 2px; margin-top: 4px; }
 
   /* Accueil */
-  #accueil h1 { margin: 14px 0 0; text-align: center; font-size: 52px; color: #1f5a0e;
+  #accueil h1 { margin: 6px 0 0; text-align: center; font-size: 42px; color: #1f5a0e;
     text-shadow: 3px 3px 0 #fff; }
-  #accueil .soustitre { text-align: center; font-size: 24px; margin: 4px 0 8px; }
+  #accueil .soustitre { text-align: center; font-size: 22px; margin: 0 0 4px; height: 28px; }
   .cartes { text-align: center; }
-  .carte { display: inline-block; vertical-align: top; width: 220px; margin: 0 6px; padding: 6px 0 8px;
-    background: #fff; border-radius: 18px; border: 5px solid #fff; text-align: center; }
+  .carte { display: inline-block; vertical-align: top; width: 172px; margin: 3px 4px; padding: 2px 0 4px;
+    background: #fff; border-radius: 16px; border: 4px solid #fff; text-align: center; }
   .carte.choisi { border-color: #f2b705; background: #fff7d1; }
-  .carte .nom { font-size: 24px; font-weight: bold; }
-  .carte canvas { width: 200px; height: 150px; }
-  .options { text-align: center; margin-top: 12px; font-size: 22px; }
-  .options .groupe { display: inline-block; margin: 0 8px; vertical-align: middle; }
-  #infoNiveau { font-size: 20px; margin-top: 10px; }
-  .opt { font-size: 22px; font-weight: bold; padding: 10px 12px; margin: 0 2px; border-radius: 12px;
+  .carte.verrou { background: #e6e6da; border-color: #e6e6da; color: #777; }
+  .carte .nom { font-size: 20px; font-weight: bold; }
+  .carte .esp { font-size: 14px; }
+  .carte canvas { width: 128px; height: 96px; }
+  .options { text-align: center; margin-top: 8px; font-size: 20px; }
+  .options .groupe { display: inline-block; margin: 0 6px; vertical-align: middle; }
+  #infoNiveau { position: absolute; left: 24px; top: 482px; width: 640px; font-size: 20px; text-align: left; line-height: 28px; }
+  #infoNiveau .monte { color: #b35c00; font-weight: bold; }
+  .opt { font-size: 20px; font-weight: bold; padding: 9px 9px; margin: 0 1px; border-radius: 12px;
     background: #fff; color: #2f6d18; border: 3px solid #fff; }
   .opt.choisi { background: #f2b705; color: #3b2a00; border-color: #c99600; }
-  #btnJouer { position: absolute; left: 380px; top: 478px; width: 240px; }
-  #victoires { position: absolute; right: 16px; top: 14px; font-size: 20px; background: #fff;
-    padding: 6px 12px; border-radius: 12px; }
+  #btnJouer { position: absolute; left: 700px; top: 478px; width: 270px; }
+  #victoires { position: absolute; right: 12px; top: 10px; font-size: 18px; background: #fff;
+    padding: 5px 10px; border-radius: 12px; text-align: right; }
   #consigne2j { position: absolute; left: 0; width: 1000px; top: 12px; text-align: center; font-size: 34px;
     font-weight: bold; color: #1f5a0e; text-shadow: 2px 2px 0 #fff; display: none; }
 
@@ -56,6 +59,7 @@
   .actif .etiquette { color: #b35c00; }
   .degat { position: absolute; left: 70px; top: 20px; font-size: 54px; font-weight: bold; color: #e01b1b;
     text-shadow: 2px 2px 0 #fff; display: none; }
+  .degat.soin { color: #1c9a1c; }
   #bulle { position: absolute; left: 350px; top: 20px; width: 300px; min-height: 120px; background: #fff;
     border-radius: 20px; border: 4px solid #1f3a12; padding: 12px; font-size: 24px; text-align: center;
     box-sizing: border-box; -webkit-box-sizing: border-box; }
@@ -65,11 +69,14 @@
 
   /* Choix des attaques */
   #attaques .titre { font-size: 28px; font-weight: bold; text-align: center; margin: 12px 0 10px; }
-  .att { display: inline-block; width: 452px; height: 104px; margin: 6px 10px; border-radius: 18px;
+  #grilleAtt { display: inline-block; width: 760px; vertical-align: top; }
+  .att { display: inline-block; width: 360px; height: 104px; margin: 6px 10px; border-radius: 18px;
     background: #4a9d2b; color: #fff; font-size: 30px; font-weight: bold; border-bottom: 7px solid #2f6d18;
     vertical-align: top; }
   .att .pts { display: block; font-size: 24px; color: #fff6b0; margin-top: 4px; }
   .att.super { background: #d9480f; border-bottom-color: #8a2c06; }
+  .att.potion { width: 180px; height: 222px; background: #9b3fc4; border-bottom-color: #5e1f7d; font-size: 28px; }
+  .att.potion canvas { display: block; width: 80px; height: 100px; margin: 0 auto 4px; }
   .att.utilise { background: #aaa; border-bottom-color: #777; color: #eee; }
   .att:active { border-bottom-width: 2px; margin-top: 11px; }
 
@@ -112,9 +119,10 @@
 
   /* Fin */
   #fin { text-align: center; }
-  #fin h2 { font-size: 60px; margin: 24px 0 0; color: #b35c00; text-shadow: 3px 3px 0 #fff; }
-  #fin canvas { width: 320px; height: 240px; }
-  #fin p { font-size: 28px; margin: 4px 0 16px; }
+  #fin h2 { font-size: 56px; margin: 14px 0 0; color: #b35c00; text-shadow: 3px 3px 0 #fff; }
+  #fin canvas { width: 280px; height: 210px; }
+  #fin p { font-size: 28px; margin: 4px 0 10px; }
+  #fin #bonusFin { font-size: 26px; color: #6b1f8a; font-weight: bold; }
   .etoile { position: absolute; font-size: 40px; color: #f2b705; }
 </style>
 </head>
@@ -132,7 +140,7 @@
         <button class="opt" data-joueurs="1">1 joueur</button><button class="opt" data-joueurs="2">2 joueurs</button>
       </div>
       <div class="groupe">Niveau :
-        <button class="opt" data-niv="0">Facile</button><button class="opt" data-niv="1">Moyen</button><button class="opt" data-niv="2">Difficile</button><button class="opt" data-niv="3">Expert</button>
+        <button class="opt" data-niv="0">Débutant</button><button class="opt" data-niv="1">Facile</button><button class="opt" data-niv="2">Moyen</button><button class="opt" data-niv="3">Difficile</button><button class="opt" data-niv="4">Expert</button>
       </div>
       <div id="infoNiveau"></div>
     </div>
@@ -177,6 +185,7 @@
     <h2 id="titreFin"></h2>
     <canvas id="canFin" width="640" height="480"></canvas>
     <p id="texteFin"></p>
+    <p id="bonusFin"></p>
     <button class="gros" id="btnRejouer">Rejouer</button>
   </div>
 </div>
@@ -196,8 +205,28 @@ var DINOS = [
                 { nom: 'Queue à pics', pts: 41 }, { nom: 'Pluie de pics', pts: 63, sup: true } ] },
   { id: 'spino', nom: 'Spino', espece: 'le Spinosaure', couleur: '#3a8ec4', fonce: '#1b5680', ventre: '#bfe0f5',
     attaques: [ { nom: 'Éclaboussure', pts: 14 }, { nom: 'Coup de nageoire', pts: 29 },
-                { nom: 'Grande morsure', pts: 43 }, { nom: 'Tsunami', pts: 70, sup: true } ] }
+                { nom: 'Grande morsure', pts: 43 }, { nom: 'Tsunami', pts: 70, sup: true } ] },
+  /* Dinos à débloquer : un nouveau à chaque victoire contre l'ordi. */
+  { id: 'raptor', nom: 'Raptor', espece: 'le Vélociraptor', couleur: '#c08040', fonce: '#6b3f14', ventre: '#f0d3a8',
+    attaques: [ { nom: 'Saut', pts: 13 }, { nom: 'Griffe tueuse', pts: 28 },
+                { nom: 'Attaque en meute', pts: 44 }, { nom: 'Tornade de griffes', pts: 67, sup: true } ] },
+  { id: 'ptero', nom: 'Ptéro', espece: 'le Ptéranodon', couleur: '#d06a8c', fonce: '#7e2c4a', ventre: '#f6c9d8',
+    attaques: [ { nom: 'Coup de bec', pts: 14 }, { nom: 'Piqué', pts: 26 },
+                { nom: 'Bourrasque', pts: 42 }, { nom: 'Tempête du ciel', pts: 66, sup: true } ] },
+  { id: 'ankylo', nom: 'Ankylo', espece: 'l\'Ankylosaure', couleur: '#c2a04a', fonce: '#7a5f1c', ventre: '#f1e2b0',
+    attaques: [ { nom: 'Bouclier', pts: 11 }, { nom: 'Coup de massue', pts: 29 },
+                { nom: 'Carapace roulante', pts: 39 }, { nom: 'Méga-massue', pts: 69, sup: true } ] },
+  { id: 'diplo', nom: 'Diplo', espece: 'le Diplodocus', couleur: '#9aa64a', fonce: '#5b6420', ventre: '#e3e8b0',
+    attaques: [ { nom: 'Coup de cou', pts: 17 }, { nom: 'Fouet de queue', pts: 26 },
+                { nom: 'Écrasement', pts: 46 }, { nom: 'Tremblement de terre', pts: 71, sup: true } ] },
+  { id: 'para', nom: 'Para', espece: 'le Parasaurolophus', couleur: '#4f9e8a', fonce: '#24614f', ventre: '#c4e6dc',
+    attaques: [ { nom: 'Cri de trompette', pts: 12 }, { nom: 'Coup de crête', pts: 27 },
+                { nom: 'Ruade', pts: 41 }, { nom: 'Super trompette', pts: 64, sup: true } ] },
+  { id: 'pachy', nom: 'Pachy', espece: 'le Pachycéphalosaure', couleur: '#b8513a', fonce: '#6e2a17', ventre: '#f2c3b0',
+    attaques: [ { nom: 'Petit coup de tête', pts: 16 }, { nom: 'Bélier', pts: 28 },
+                { nom: 'Coup de crâne', pts: 43 }, { nom: 'Crâne de fer', pts: 72, sup: true } ] }
 ];
+var NB_DEPART = 4;   // les 4 premiers dinos sont disponibles dès le début
 
 function $(id) { return document.getElementById(id); }
 function stocker(cle, val) { try { localStorage.setItem('dino-' + cle, val); } catch (e) {} }
@@ -252,7 +281,100 @@ function pattes4(c, d) {
   for (var i = 0; i < 4; i++) { poly(c, [xs[i], 125, xs[i] + 18, 125, xs[i] + 18, 165, xs[i], 165]); remplir(c, i % 2 ? d.fonce : d.couleur); }
 }
 
-function dessinerDino(canvas, d, versGauche, ko) {
+function bras(c, d, pts) {
+  c.lineWidth = 5; c.strokeStyle = d.fonce; c.beginPath(); c.moveTo(pts[0], pts[1]);
+  for (var i = 2; i < pts.length; i += 2) c.lineTo(pts[i], pts[i + 1]);
+  c.stroke();
+}
+
+/* Dessins des dinos à débloquer (même repère 240 x 180, tête à droite). */
+var DESSINS = {
+  raptor: function (c, d) {
+    poly(c, [78, 92, 2, 78, 6, 88, 78, 110]); remplir(c, d.couleur);              // queue
+    poly(c, [112, 112, 126, 112, 136, 163, 118, 163]); remplir(c, d.fonce);       // patte arrière
+    ell(c, 100, 102, 38, 20); remplir(c, d.couleur);                               // corps
+    ell(c, 104, 110, 24, 8); c.fillStyle = d.ventre; c.fill();
+    c.lineWidth = 3; c.strokeStyle = d.fonce;
+    for (var r = 0; r < 3; r++) { c.beginPath(); c.moveTo(82 + r * 14, 86); c.lineTo(86 + r * 14, 97); c.stroke(); }
+    poly(c, [86, 112, 100, 112, 106, 163, 86, 163]); remplir(c, d.couleur);       // patte
+    poly(c, [100, 158, 112, 140, 110, 160]); remplir(c, '#fff7e0');               // grande griffe
+    poly(c, [126, 96, 150, 58, 166, 66, 140, 108]); remplir(c, d.couleur);        // cou
+    ell(c, 176, 62, 30, 12); remplir(c, d.couleur);                                // tête
+    c.fillStyle = '#fff';
+    for (var t = 0; t < 4; t++) { poly(c, [180 + t * 7, 70, 186 + t * 7, 70, 183 + t * 7, 76]); c.fill(); }
+    oeil(c, 172, 58);
+    bras(c, d, [134, 102, 150, 116, 156, 110]);
+  },
+  ptero: function (c, d) {
+    poly(c, [100, 92, 30, 30, 8, 46, 76, 104]); remplir(c, d.fonce);              // aile du fond
+    poly(c, [128, 92, 190, 22, 218, 32, 146, 104]); remplir(c, d.couleur);        // aile de devant
+    bras(c, d, [108, 108, 104, 126]); bras(c, d, [122, 108, 120, 126]);           // pattes
+    ell(c, 114, 98, 34, 14); remplir(c, d.couleur);                                // corps
+    ell(c, 114, 104, 20, 6); c.fillStyle = d.ventre; c.fill();
+    poly(c, [150, 78, 108, 56, 112, 66, 152, 86]); remplir(c, d.fonce);           // crête
+    poly(c, [160, 78, 228, 90, 160, 94]); remplir(c, '#f2b705');                  // bec
+    ell(c, 156, 84, 15, 12); remplir(c, d.couleur);                                // tête
+    oeil(c, 158, 82);
+  },
+  ankylo: function (c, d) {
+    poly(c, [60, 108, 22, 114, 22, 124, 60, 126]); remplir(c, d.couleur);         // queue
+    ell(c, 16, 119, 14, 12); remplir(c, d.fonce);                                  // massue
+    pattes4(c, d);
+    for (var x = 62; x <= 158; x += 16) {                                          // piques du dos
+      var y = 112 - 32 * Math.sqrt(Math.max(0, 1 - Math.pow((x - 110) / 66, 2)));
+      poly(c, [x - 8, y + 6, x, y - 10, x + 8, y + 6]); remplir(c, '#fff7e0');
+    }
+    ell(c, 110, 112, 64, 30); remplir(c, d.couleur);                               // corps
+    c.fillStyle = d.fonce;
+    for (var k = 0; k < 6; k++) {
+      c.beginPath(); c.arc(72 + k * 16, 100, 5, 0, Math.PI * 2); c.fill();
+      if (k < 5) { c.beginPath(); c.arc(80 + k * 16, 114, 5, 0, Math.PI * 2); c.fill(); }
+    }
+    ell(c, 110, 130, 40, 8); c.fillStyle = d.ventre; c.fill();
+    poly(c, [176, 106, 168, 94, 186, 104]); remplir(c, '#fff7e0');                // cornes
+    ell(c, 188, 120, 24, 15); remplir(c, d.couleur);                               // tête
+    oeil(c, 192, 114);
+  },
+  diplo: function (c, d) {
+    poly(c, [62, 100, 0, 140, 6, 146, 68, 124]); remplir(c, d.couleur);           // longue queue
+    pattes4(c, d);
+    ell(c, 112, 108, 58, 30); remplir(c, d.couleur);                               // corps
+    ell(c, 112, 124, 38, 10); c.fillStyle = d.ventre; c.fill();
+    poly(c, [148, 98, 186, 28, 202, 34, 168, 114]); remplir(c, d.couleur);        // long cou
+    ell(c, 204, 30, 22, 12); remplir(c, d.couleur);                                // petite tête
+    oeil(c, 206, 26);
+  },
+  para: function (c, d) {
+    c.beginPath(); c.moveTo(166, 56); c.quadraticCurveTo(140, 18, 104, 24); c.lineTo(108, 34);
+    c.quadraticCurveTo(140, 32, 178, 62); c.closePath(); remplir(c, '#e8913a'); // crête en tube
+    poly(c, [62, 100, 2, 118, 62, 124]); remplir(c, d.couleur);                   // queue
+    poly(c, [120, 122, 138, 122, 142, 165, 114, 165]); remplir(c, d.fonce);       // patte arrière
+    ell(c, 102, 108, 50, 30); remplir(c, d.couleur);                               // corps
+    ell(c, 106, 120, 32, 12); c.fillStyle = d.ventre; c.fill();
+    poly(c, [80, 122, 100, 122, 104, 165, 76, 165]); remplir(c, d.couleur);       // patte
+    poly(c, [128, 94, 156, 58, 172, 66, 148, 110]); remplir(c, d.couleur);        // cou
+    ell(c, 204, 72, 16, 8); remplir(c, '#f8e6c0');                                 // bec de canard
+    ell(c, 178, 64, 24, 14); remplir(c, d.couleur);                                // tête
+    oeil(c, 180, 60);
+    bras(c, d, [140, 102, 156, 118]);
+  },
+  pachy: function (c, d) {
+    poly(c, [70, 95, 4, 92, 70, 125]); remplir(c, d.couleur);                     // queue
+    poly(c, [118, 125, 136, 125, 140, 165, 112, 165]); remplir(c, d.fonce);       // patte arrière
+    ell(c, 100, 108, 46, 30); remplir(c, d.couleur);                               // corps
+    ell(c, 106, 118, 30, 13); c.fillStyle = d.ventre; c.fill();
+    poly(c, [80, 125, 100, 125, 104, 165, 76, 165]); remplir(c, d.couleur);       // patte
+    poly(c, [124, 94, 142, 64, 160, 70, 146, 108]); remplir(c, d.couleur);        // cou
+    ell(c, 168, 74, 26, 17); remplir(c, d.couleur);                                // tête
+    c.beginPath(); c.arc(164, 66, 22, Math.PI, 0); c.closePath(); remplir(c, '#f1e2b0'); // crâne en dôme
+    c.fillStyle = d.fonce;
+    for (var k = 0; k < 5; k++) { c.beginPath(); c.arc(140 + k * 12, 70, 3, 0, Math.PI * 2); c.fill(); }
+    oeil(c, 176, 76);
+    bras(c, d, [140, 100, 156, 112]);
+  }
+};
+
+function dessinerDino(canvas, d, versGauche, ko, cache) {
   var c = canvas.getContext('2d');
   var k = canvas.width / 240;
   c.setTransform(1, 0, 0, 1, 0, 0);
@@ -264,7 +386,9 @@ function dessinerDino(canvas, d, versGauche, ko) {
   // ombre
   c.fillStyle = 'rgba(0,0,0,0.15)'; ell(c, 120, 168, 95, 9); c.fill();
 
-  if (d.id === 'rex' || d.id === 'spino') {
+  if (DESSINS[d.id]) {
+    DESSINS[d.id](c, d);
+  } else if (d.id === 'rex' || d.id === 'spino') {
     if (d.id === 'spino') {
       // voile
       c.beginPath(); c.moveTo(60, 95); c.bezierCurveTo(70, 15, 140, 15, 150, 85); c.closePath();
@@ -321,26 +445,100 @@ function dessinerDino(canvas, d, versGauche, ko) {
     ell(c, 196, 122, 22, 12); remplir(c, d.couleur);
     oeil(c, 200, 118);
   }
+  if (cache) {   // dino pas encore débloqué : silhouette sombre
+    c.setTransform(1, 0, 0, 1, 0, 0);
+    c.globalCompositeOperation = 'source-atop';
+    c.fillStyle = '#4a4a4a'; c.fillRect(0, 0, canvas.width, canvas.height);
+    c.globalCompositeOperation = 'source-over';
+  }
+}
+
+function dessinerPotion(canvas) {
+  var c = canvas.getContext('2d'), k = canvas.width / 80;
+  c.setTransform(k, 0, 0, k, 0, 0);
+  c.clearRect(0, 0, 80, 100);
+  c.lineJoin = 'round';
+  c.beginPath(); c.arc(40, 64, 30, 0, Math.PI * 2); remplir(c, '#ffffff');      // flacon
+  c.save(); c.beginPath(); c.arc(40, 64, 27, 0, Math.PI * 2); c.clip();
+  c.fillStyle = '#ff4f8b'; c.fillRect(0, 52, 80, 48); c.restore();             // liquide
+  poly(c, [31, 8, 49, 8, 49, 38, 31, 38]); remplir(c, '#ffffff');               // goulot
+  poly(c, [28, 2, 52, 2, 52, 12, 28, 12]); remplir(c, '#8a5a2b');               // bouchon
+  c.fillStyle = 'rgba(255,255,255,0.7)'; ell(c, 28, 54, 6, 10); c.fill();       // reflet
 }
 
 /* ---------- État du jeu ---------- */
 var NIVEAUX = [
-  { pv: 100, info: 'Facile : 100 PV, des attaques rondes (10, 25, 45...)' },
-  { pv: 150, info: 'Moyen : 150 PV, comme 150 − 45' },
-  { pv: 500, info: 'Difficile : 500 PV, des attaques à 3 chiffres (comme 500 − 137)' },
-  { pv: 1000, info: 'Expert : 1000 PV, des attaques encore plus fortes (comme 1000 − 278)' }
+  { nom: 'Débutant', pv: 99, info: 'Débutant : 99 PV, sans retenue (comme 87 − 25)' },
+  { nom: 'Facile', pv: 100, info: 'Facile : 100 PV, des attaques rondes (10, 25, 45...)' },
+  { nom: 'Moyen', pv: 150, info: 'Moyen : 150 PV, avec des retenues (comme 150 − 45)' },
+  { nom: 'Difficile', pv: 500, info: 'Difficile : 500 PV, des attaques à 3 chiffres (comme 500 − 137)' },
+  { nom: 'Expert', pv: 1000, info: 'Expert : 1000 PV, des attaques encore plus fortes (comme 1000 − 278)' }
 ];
-var reglages = { joueurs: lire('joueurs') === '2' ? 2 : 1, niv: parseInt(lire('niveau') || '1', 10) || 0 };
-if (!NIVEAUX[reglages.niv]) reglages.niv = 1;
+var POUR_MONTER = 3;   // victoires contre l'ordi pour passer au niveau suivant
+var POTIONS = 2;       // potions de soin par combat
+
+function nivDepart() {
+  var n = lire('niv');
+  if (n !== null) return parseInt(n, 10) || 0;
+  var ancien = lire('niveau');   // ancienne version du jeu (sans le niveau Débutant)
+  return ancien !== null ? (parseInt(ancien, 10) || 0) + 1 : 0;
+}
+var reglages = { joueurs: lire('joueurs') === '2' ? 2 : 1, niv: nivDepart() };
+if (!NIVEAUX[reglages.niv]) reglages.niv = 0;
 
 function hasard(min, max) { return min + Math.floor(Math.random() * (max - min + 1)); }
-/* Points d'une attaque selon le niveau (tirés à chaque tour aux niveaux Difficile et Expert). */
-function degats(base) {
-  if (reglages.niv === 0) return Math.max(5, Math.round(base / 5) * 5);
-  if (reglages.niv === 2) return base * 3 + hasard(-9, 9);
-  if (reglages.niv === 3) return base * 6 + hasard(-19, 19);
+function chiffres(n) { return String(n).split(''); }
+
+/* Garde v chiffre par chiffre en dessous de ceux de pv : "pv − v" se calcule sans retenue. */
+function sansRetenue(v, pv) {
+  var a = chiffres(pv), b = chiffres(v), r = '';
+  if (b.length > a.length) b = b.slice(b.length - a.length);
+  while (b.length < a.length) b.unshift('0');
+  for (var i = 0; i < a.length; i++) r += Math.min(parseInt(a[i], 10), parseInt(b[i], 10));
+  return parseInt(r, 10) || pv;
+}
+
+/* Points d'une attaque selon le niveau (tirés à chaque tour, sauf au niveau Moyen). */
+function degats(base, cible) {
+  if (reglages.niv === 0) return sansRetenue(base + hasard(-3, 3), cible.pv);
+  if (reglages.niv === 1) return Math.max(5, Math.round(base / 5) * 5);
+  if (reglages.niv === 3) return base * 3 + hasard(-9, 9);
+  if (reglages.niv === 4) return base * 6 + hasard(-19, 19);
   return base;
 }
+
+/* PV rendus par une potion (jamais plus que la vie perdue). */
+function soin(a) {
+  var manque = a.max - a.pv, v;
+  if (manque <= 0) return 0;
+  if (reglages.niv === 0) {
+    // addition sans retenue : chaque chiffre de pv + soin reste sous 10
+    var p = chiffres(a.pv), w;
+    while (p.length < 2) p.unshift('0');
+    do { w = hasard(12, 35); } while (w % 10 === 0);
+    v = Math.min(Math.floor(w / 10), 9 - parseInt(p[0], 10)) * 10 + Math.min(w % 10, 9 - parseInt(p[1], 10));
+  } else if (reglages.niv === 1) v = hasard(3, 6) * 5;
+  else if (reglages.niv === 2) v = hasard(18, 35);
+  else if (reglages.niv === 3) v = hasard(60, 110);
+  else v = hasard(120, 220);
+  return Math.min(v, manque);
+}
+
+/* ---------- Collection ---------- */
+function collection() { var c = lire('collection'); return c ? c.split(',') : []; }
+function debloque(i) { return i < NB_DEPART || collection().indexOf(DINOS[i].id) >= 0; }
+function nbDebloques() { var n = 0; for (var i = 0; i < DINOS.length; i++) if (debloque(i)) n++; return n; }
+/* Après une victoire : on gagne le dino battu s'il était caché, sinon le prochain de la liste. */
+function gagnerDino(battu) {
+  var n = -1;
+  if (!debloque(battu)) n = battu;
+  else for (var i = 0; i < DINOS.length; i++) if (!debloque(i)) { n = i; break; }
+  if (n < 0) return null;
+  var col = collection(); col.push(DINOS[n].id);
+  stocker('collection', col.join(','));
+  return DINOS[n];
+}
+function gagnesNiveau(n) { return parseInt(lire('gagnes-' + n) || '0', 10); }
 var choix = [0, null];   // dinos choisis (joueur 1, joueur 2)
 var etapeChoix = 0;      // en mode 2 joueurs : 0 = joueur 1 choisit, 1 = joueur 2
 var j = [];              // combattants
@@ -358,19 +556,19 @@ function afficher(id) {
 function construireAccueil() {
   var h = '';
   for (var i = 0; i < DINOS.length; i++) {
-    h += '<div class="carte" data-i="' + i + '"><canvas width="400" height="300" id="carte' + i + '"></canvas>' +
-         '<div class="nom">' + DINOS[i].nom + '</div><div>' + DINOS[i].espece + '</div></div>';
+    h += '<div class="carte" data-i="' + i + '"><canvas width="256" height="192" id="carte' + i + '"></canvas>' +
+         '<div class="nom" id="nomCarte' + i + '"></div><div class="esp" id="espCarte' + i + '"></div></div>';
   }
   $('cartes').innerHTML = h;
   for (var k = 0; k < DINOS.length; k++) {
-    dessinerDino($('carte' + k), DINOS[k], false);
     $('carte' + k).parentNode.onclick = (function (n) { return function () { choisirDino(n); }; })(k);
   }
+  dessinerCartes();
   var opts = document.querySelectorAll('.opt');
   for (var o = 0; o < opts.length; o++) {
     opts[o].onclick = function () {
       if (this.getAttribute('data-joueurs')) { reglages.joueurs = parseInt(this.getAttribute('data-joueurs'), 10); stocker('joueurs', reglages.joueurs); }
-      if (this.getAttribute('data-niv')) { reglages.niv = parseInt(this.getAttribute('data-niv'), 10); stocker('niveau', reglages.niv); }
+      if (this.getAttribute('data-niv')) { reglages.niv = parseInt(this.getAttribute('data-niv'), 10); stocker('niv', reglages.niv); }
       etapeChoix = 0;
       majAccueil();
     };
@@ -378,14 +576,25 @@ function construireAccueil() {
   $('btnJouer').onclick = jouer;
 }
 
+function dessinerCartes() {
+  for (var k = 0; k < DINOS.length; k++) {
+    var ok = debloque(k);
+    dessinerDino($('carte' + k), DINOS[k], false, false, !ok);
+    $('nomCarte' + k).innerHTML = ok ? DINOS[k].nom : '???';
+    $('espCarte' + k).innerHTML = ok ? DINOS[k].espece : 'à gagner';
+  }
+}
+
+var messageAccueil = '';
 function choisirDino(n) {
+  if (!debloque(n)) { messageAccueil = 'Gagne un combat pour débloquer ce dino !'; majAccueil(); return; }
   choix[etapeChoix] = n;
   majAccueil();
 }
 
 function majAccueil() {
   var cartes = document.querySelectorAll('.carte');
-  for (var i = 0; i < cartes.length; i++) cartes[i].className = 'carte' + (choix[etapeChoix] === i ? ' choisi' : '');
+  for (var i = 0; i < cartes.length; i++) cartes[i].className = 'carte' + (choix[etapeChoix] === i ? ' choisi' : '') + (debloque(i) ? '' : ' verrou');
   var opts = document.querySelectorAll('.opt');
   for (var o = 0; o < opts.length; o++) {
     var b = opts[o], on = b.getAttribute('data-joueurs') ? parseInt(b.getAttribute('data-joueurs'), 10) === reglages.joueurs
@@ -394,22 +603,34 @@ function majAccueil() {
   }
   if (reglages.joueurs === 2) $('soustitre').innerHTML = etapeChoix === 0 ? 'Joueur 1 : choisis ton dinosaure !' : 'Joueur 2 : choisis ton dinosaure !';
   else $('soustitre').innerHTML = 'Choisis ton dinosaure !';
-  $('infoNiveau').innerHTML = NIVEAUX[reglages.niv].info;
+  if (messageAccueil) { $('soustitre').innerHTML = messageAccueil; messageAccueil = ''; }
+  var info = NIVEAUX[reglages.niv].info, reste = POUR_MONTER - gagnesNiveau(reglages.niv);
+  if (NIVEAUX[reglages.niv + 1] && reste > 0) {
+    info += '<br><span class="monte">Encore ' + reste + ' victoire' + (reste > 1 ? 's' : '') +
+            ' pour passer au niveau ' + NIVEAUX[reglages.niv + 1].nom + ' !</span>';
+  }
+  $('infoNiveau').innerHTML = info;
   $('btnJouer').innerHTML = (reglages.joueurs === 2 && etapeChoix === 0) ? 'Suivant' : 'Combattre !';
   var v = parseInt(lire('victoires') || '0', 10);
-  $('victoires').innerHTML = 'Victoires : ' + v;
-  $('victoires').style.display = v > 0 ? 'block' : 'none';
+  $('victoires').innerHTML = (v > 0 ? 'Victoires : ' + v + '<br>' : '') + 'Dinos : ' + nbDebloques() + ' / ' + DINOS.length;
+}
+
+/* Prochain dino débloqué après n (pour le joueur 2). */
+function suivantDebloque(n) {
+  do { n = (n + 1) % DINOS.length; } while (!debloque(n));
+  return n;
 }
 
 function jouer() {
   if (reglages.joueurs === 2 && etapeChoix === 0) {
     etapeChoix = 1;
-    if (choix[1] === null || choix[1] === choix[0]) choix[1] = (choix[0] + 1) % DINOS.length;
+    if (choix[1] === null || choix[1] === choix[0] || !debloque(choix[1])) choix[1] = suivantDebloque(choix[0]);
     majAccueil();
     return;
   }
+  if (!debloque(choix[0])) choix[0] = 0;
   var adv = choix[1];
-  if (reglages.joueurs === 1) {
+  if (reglages.joueurs === 1) {   // l'ordi peut prendre n'importe quel dino, même un pas encore gagné
     do { adv = Math.floor(Math.random() * DINOS.length); } while (adv === choix[0]);
   }
   j = [creer(DINOS[choix[0]], false, reglages.joueurs === 2 ? 'Joueur 1' : 'Toi'),
@@ -425,7 +646,7 @@ function jouer() {
   debutTour();
 }
 
-function creer(d, ordi, qui) { var pv = NIVEAUX[reglages.niv].pv; return { d: d, pv: pv, max: pv, vals: [], ordi: ordi, qui: qui, superFait: false }; }
+function creer(d, ordi, qui) { var pv = NIVEAUX[reglages.niv].pv; return { d: d, pv: pv, max: pv, vals: [], ordi: ordi, qui: qui, superFait: false, potions: POTIONS, soin: 0 }; }
 
 /* ---------- Combat ---------- */
 function majVies() {
@@ -447,7 +668,8 @@ function debutTour() {
   var a = j[tour], cible = j[1 - tour];
   $('calcul').style.display = 'none';
   $('attaques').style.display = 'none';
-  for (var v = 0; v < a.d.attaques.length; v++) a.vals[v] = degats(a.d.attaques[v].pts);
+  for (var v = 0; v < a.d.attaques.length; v++) a.vals[v] = degats(a.d.attaques[v].pts, cible);
+  a.soin = soin(a);
   if (a.ordi) {
     bulle('<b>' + a.d.nom + '</b> prépare une attaque...');
     setTimeout(tourOrdi, 1300);
@@ -455,16 +677,47 @@ function debutTour() {
   }
   bulle('Il reste <b>' + cible.pv + ' PV</b> à ' + cible.d.nom + '.');
   $('titreAttaques').innerHTML = (reglages.joueurs === 2 ? a.qui + ' : ' : '') + 'à toi, ' + a.d.nom + ' ! Choisis une attaque :';
-  var h = '';
+  var h = '<div id="grilleAtt">';
   for (var i = 0; i < a.d.attaques.length; i++) {
     var at = a.d.attaques[i], util = at.sup && a.superFait;
     h += '<button class="att' + (at.sup ? ' super' : '') + (util ? ' utilise' : '') + '" data-i="' + i + '">' + at.nom +
          '<span class="pts">' + (util ? 'déjà utilisée' : a.vals[i] + ' points' + (at.sup ? ' (1 seule fois)' : '')) + '</span></button>';
   }
+  h += '</div>';
+  var txtPotion = !a.potions ? 'plus de potion' : (!a.soin ? 'vie pleine' : '+' + a.soin + ' PV');
+  h += '<button class="att potion' + (a.potions && a.soin ? '' : ' utilise') + '" id="btnPotion">' +
+       '<canvas id="canPotion" width="160" height="200"></canvas>Potion<span class="pts">' + txtPotion + '</span>' +
+       '<span class="pts">(' + a.potions + ' sur ' + POTIONS + ')</span></button>';
   $('listeAttaques').innerHTML = h;
-  var bs = $('listeAttaques').getElementsByTagName('button');
+  dessinerPotion($('canPotion'));
+  var bs = $('grilleAtt').getElementsByTagName('button');
   for (var b = 0; b < bs.length; b++) bs[b].onclick = function () { choisirAttaque(parseInt(this.getAttribute('data-i'), 10)); };
+  $('btnPotion').onclick = choisirPotion;
   $('attaques').style.display = 'block';
+}
+
+function choisirPotion() {
+  if (occupe) return;
+  var a = j[tour];
+  if (!a.potions || !a.soin) return;
+  q = { potion: true, op: '+', a: a.pv, b: a.soin, rep: a.pv + a.soin, essais: 0 };
+  bulle('<b>Potion</b> : +' + a.soin + ' PV !<br>' + a.d.nom + ' a ' + a.pv + ' PV.<br>Combien en aura-t-il ?');
+  $('attaques').style.display = 'none';
+  $('calcul').style.display = 'block';
+  ouvrirCalcul();
+}
+
+/* Le dino qui joue boit sa potion : sa barre de vie remonte. */
+function soigner(pts, ensuite) {
+  occupe = true;
+  var a = j[tour], s = tour === 0 ? 'G' : 'D';
+  a.potions--;
+  son([392, 523, 659, 784], 0.1);
+  a.pv = Math.min(a.max, a.pv + pts);
+  majVies();
+  var dg = $('degat' + s);
+  dg.innerHTML = '+' + pts; dg.className = 'degat soin'; dg.style.display = 'block';
+  setTimeout(function () { dg.style.display = 'none'; dg.className = 'degat'; ensuite(); }, 1300);
 }
 
 function choisirAttaque(i) {
@@ -473,7 +726,7 @@ function choisirAttaque(i) {
   if (at.sup && a.superFait) return;
   var cible = j[1 - tour];
   var force = a.vals[i], pts = Math.min(force, cible.pv);
-  q = { at: at, a: cible.pv, b: pts, rep: cible.pv - pts, essais: 0 };
+  q = { at: at, op: '−', a: cible.pv, b: pts, rep: cible.pv - pts, essais: 0 };
   var txt = '<b>' + at.nom + '</b> : ' + force + ' points !<br>';
   if (pts < force) txt += 'Il ne reste que ' + cible.pv + ' PV à ' + cible.d.nom + '.<br>';
   txt += 'Combien restera-t-il de PV à ' + cible.d.nom + ' ?';
@@ -485,6 +738,13 @@ function choisirAttaque(i) {
 
 function tourOrdi() {
   var a = j[tour], cible = j[1 - tour];
+  if (a.potions && a.soin && a.pv < a.max * 0.4 && Math.random() < 0.6) {
+    var avantSoin = a.pv;
+    bulle('<b>' + a.d.nom + '</b> boit une <b>potion</b> !<br>' + avantSoin + ' + ' + a.soin + ' = ' + (avantSoin + a.soin) +
+          '<br>Il a maintenant <b>' + (avantSoin + a.soin) + ' PV</b>.');
+    soigner(a.soin, function () { setTimeout(finTour, 1500); });
+    return;
+  }
   var possibles = [];
   for (var i = 0; i < a.d.attaques.length; i++) {
     var at = a.d.attaques[i];
@@ -549,10 +809,27 @@ function victoire(g) {
   else if (humainGagne) $('texteFin').innerHTML = g.d.nom + ' ' + g.d.espece + ' a gagné le combat !';
   else $('texteFin').innerHTML = g.d.nom + ' a gagné cette fois. Tu prends ta revanche ?';
   dessinerDino($('canFin'), g.d, false);
+  var bonus = '';
   if (humainGagne) {
     sonBravo(); setTimeout(sonBravo, 450);
-    if (reglages.joueurs === 1) stocker('victoires', parseInt(lire('victoires') || '0', 10) + 1);
+    if (reglages.joueurs === 1) {
+      stocker('victoires', parseInt(lire('victoires') || '0', 10) + 1);
+      var nouveau = gagnerDino(DINOS.indexOf(j[1].d));
+      if (nouveau) {
+        bonus = 'Nouveau dino gagné : ' + nouveau.nom + ' ' + nouveau.espece + ' !';
+        dessinerDino($('canFin'), nouveau, false);
+        dessinerCartes();
+      }
+      var n = gagnesNiveau(reglages.niv) + 1;
+      stocker('gagnes-' + reglages.niv, n);
+      if (n === POUR_MONTER && NIVEAUX[reglages.niv + 1]) {
+        reglages.niv++;
+        stocker('niv', reglages.niv);
+        bonus += (bonus ? '<br>' : '') + 'Super ! Tu passes au niveau ' + NIVEAUX[reglages.niv].nom + ' !';
+      }
+    }
   }
+  $('bonusFin').innerHTML = bonus;
 }
 
 /* ---------- Calcul : poser la soustraction ou réponse directe ---------- */
@@ -560,10 +837,11 @@ var saisie = [];   // chiffres saisis (mode posé), de gauche à droite
 var sel = 0;
 var directe = '';
 
-function chiffres(n) { return String(n).split(''); }
+/* Nombre de colonnes de l'opération posée (une addition peut avoir un chiffre de plus). */
+function largeur() { return Math.max(chiffres(q.a).length, chiffres(q.b).length, chiffres(q.rep).length); }
 
 function ouvrirCalcul() {
-  var n = chiffres(q.a).length;
+  var n = largeur();
   saisie = []; for (var i = 0; i < n; i++) saisie.push('');
   sel = n - 1;
   directe = '';
@@ -573,6 +851,7 @@ function ouvrirCalcul() {
 
 function montrerMode() {
   if (!q) return;
+  $('ongletPose').innerHTML = q.op === '+' ? 'Poser l\'addition' : 'Poser la soustraction';
   $('ongletPose').className = 'onglet' + (modeCalcul === 'pose' ? ' choisi' : '');
   $('ongletDirect').className = 'onglet' + (modeCalcul === 'direct' ? ' choisi' : '');
   $('pose').style.display = modeCalcul === 'pose' ? 'block' : 'none';
@@ -581,13 +860,14 @@ function montrerMode() {
 }
 
 function dessinerDirect() {
-  $('opDirecte').innerHTML = q.a + ' − ' + q.b;
+  $('opDirecte').innerHTML = q.a + ' ' + q.op + ' ' + q.b;
   $('reponseDirecte').innerHTML = directe || '?';
 }
 
 function dessinerPose(fautes) {
   if (!q) return;
-  var ha = chiffres(q.a), hb = chiffres(q.b), n = ha.length;
+  var ha = chiffres(q.a), hb = chiffres(q.b), n = largeur(), add = q.op === '+';
+  while (ha.length < n) ha.unshift('');
   while (hb.length < n) hb.unshift('');
   var ancienRet = q.ret || {};
   var h = '';
@@ -596,11 +876,15 @@ function dessinerPose(fautes) {
   for (var i = 0; i < n; i++) h += '<span class="case"><span class="petite' + (ancienRet['h' + i] ? ' pleine' : '') + '" data-r="h' + i + '">' + (ancienRet['h' + i] ? '1' : '') + '</span></span>';
   h += '</div><div class="ligne"><span class="case"></span>';
   for (i = 0; i < n; i++) h += '<span class="case">' + ha[i] + '</span>';
-  h += '</div><div class="ligne"><span class="case signe">−</span>';
+  h += '</div><div class="ligne"><span class="case signe">' + q.op + '</span>';
   for (i = 0; i < n; i++) h += '<span class="case">' + hb[i] + '</span>';
-  h += '</div><div class="ligne ret"><span class="case"></span>';
-  for (i = 0; i < n; i++) h += '<span class="case"><span class="petite' + (ancienRet['b' + i] ? ' pleine' : '') + '" data-r="b' + i + '">' + (ancienRet['b' + i] ? '+1' : '') + '</span></span>';
-  h += '</div><div class="trait" style="width:' + ((n + 1) * 64) + 'px"></div><div class="ligne"><span class="case"></span>';
+  h += '</div>';
+  if (!add) {   // soustraction : la retenue "+1" s'écrit sous le chiffre du bas
+    h += '<div class="ligne ret"><span class="case"></span>';
+    for (i = 0; i < n; i++) h += '<span class="case"><span class="petite' + (ancienRet['b' + i] ? ' pleine' : '') + '" data-r="b' + i + '">' + (ancienRet['b' + i] ? '+1' : '') + '</span></span>';
+    h += '</div>';
+  }
+  h += '<div class="trait" style="width:' + ((n + 1) * 64) + 'px"></div><div class="ligne"><span class="case"></span>';
   for (i = 0; i < n; i++) {
     h += '<span class="case rep' + (i === sel ? ' sel' : '') + (fautes && fautes[i] ? ' faux' : '') + '" data-c="' + i + '">' + saisie[i] + '</span>';
   }
@@ -664,19 +948,26 @@ function valider() {
   var r = lireReponse();
   if (r === null) { $('aide').innerHTML = 'Écris ta réponse avec les chiffres.'; return; }
   if (r === 'trou') { $('aide').innerHTML = 'Il manque un chiffre au milieu !'; return; }
+  var a = j[tour], cible = j[1 - tour], calc = q.a + ' ' + q.op + ' ' + q.b + ' = ' + q.rep;
   if (r === q.rep) {
     sonBravo();
-    var a = j[tour], cible = j[1 - tour];
-    if (q.at.sup) a.superFait = true;
-    $('aide').innerHTML = '<span style="color:#1c7a1c">Bravo ! ' + q.a + ' − ' + q.b + ' = ' + q.rep + '</span>';
-    bulle('Bravo ! <b>' + q.at.nom + '</b> !<br>Il reste <b>' + q.rep + ' PV</b> à ' + cible.d.nom + '.');
+    $('aide').innerHTML = '<span style="color:#1c7a1c">Bravo ! ' + calc + '</span>';
     var pts = q.b;
+    if (q.potion) {
+      bulle('Glou glou ! <b>' + a.d.nom + '</b> a maintenant <b>' + q.rep + ' PV</b>.');
+      q = null;
+      setTimeout(function () { soigner(pts, function () { setTimeout(finTour, 500); }); }, 500);
+      return;
+    }
+    if (q.at.sup) a.superFait = true;
+    bulle('Bravo ! <b>' + q.at.nom + '</b> !<br>Il reste <b>' + q.rep + ' PV</b> à ' + cible.d.nom + '.');
     q = null;
     setTimeout(function () { frapper(pts, function () { setTimeout(finTour, 700); }); }, 500);
     return;
   }
   q.essais++;
   sonFaux();
+  var nomOp = q.potion ? 'l\'addition' : 'la soustraction';
   if (q.essais === 1) {
     $('aide').innerHTML = '<span style="color:#e01b1b">Pas tout à fait... Vérifie ton calcul !</span>';
   } else if (q.essais === 2) {
@@ -691,13 +982,18 @@ function valider() {
       dessinerPose(fautes);
       $('aide').innerHTML = '<span style="color:#e01b1b">Les cases rouges sont fausses. Dernier essai !</span>';
     } else {
-      $('aide').innerHTML = '<span style="color:#e01b1b">Encore raté. Essaie de poser la soustraction ! Dernier essai.</span>';
+      $('aide').innerHTML = '<span style="color:#e01b1b">Encore raté. Essaie de poser ' + nomOp + ' ! Dernier essai.</span>';
     }
   } else {
     occupe = true;
-    $('aide').innerHTML = 'La bonne réponse était <b>' + q.a + ' − ' + q.b + ' = ' + q.rep + '</b>';
-    bulle('Oh non, l\'attaque <b>' + q.at.nom + '</b> a raté !');
-    if (q.at.sup) j[tour].superFait = true;
+    $('aide').innerHTML = 'La bonne réponse était <b>' + calc + '</b>';
+    if (q.potion) {
+      a.potions--;
+      bulle('Oh non, la potion s\'est renversée !');
+    } else {
+      bulle('Oh non, l\'attaque <b>' + q.at.nom + '</b> a raté !');
+      if (q.at.sup) a.superFait = true;
+    }
     q = null;
     setTimeout(function () { tour = 1 - tour; debutTour(); }, 3200);
   }
