@@ -141,52 +141,66 @@
   .jeu .desc { font-size: 21px; margin: 6px 20px 0; }
 
   /* Calcul chrono : réglages */
-  #chronoReglages h1 { margin: 12px 0 10px; text-align: center; font-size: 44px; color: #1f5a0e; text-shadow: 3px 3px 0 #fff; }
-  .ligneReg { text-align: center; font-size: 24px; margin: 0 0 14px; }
-  .ligneReg .lib { display: inline-block; width: 210px; text-align: right; margin-right: 8px; font-weight: bold; }
+  #chronoReglages h1 { margin: 16px 0 6px; text-align: center; font-size: 44px; color: #1f5a0e; text-shadow: 3px 3px 0 #fff; }
+  #chronoReglages .intro { text-align: center; font-size: 24px; margin: 0 0 26px; }
+  .ligneReg { text-align: center; font-size: 24px; margin: 0 0 20px; }
+  .ligneReg .lib { display: inline-block; width: 130px; text-align: right; margin-right: 8px; font-weight: bold; }
   .ligneReg .opt { font-size: 22px; padding: 10px 14px; }
-  #infoChrono { text-align: center; font-size: 22px; line-height: 32px; margin-top: 6px; }
+  #infoChrono { text-align: center; font-size: 22px; line-height: 32px; margin-top: 10px; }
   #infoChrono b { color: #b35c00; }
   #btnPartir { position: absolute; left: 365px; top: 466px; width: 270px; }
 
-  /* Calcul chrono : course */
-  #piste { position: absolute; left: 0; top: 0; width: 1000px; height: 196px; }
-  #sol { position: absolute; left: 0; right: 0; top: 160px; height: 40px; background: #8ccb68; border-top: 8px solid #8a5a2b; }
-  #chasseur { position: absolute; left: 0; top: 36px; width: 160px; height: 120px; }
-  #chasseur canvas { width: 160px; height: 120px; }
-  #oeuf { position: absolute; left: 846px; top: 84px; width: 64px; height: 80px; }
-  #oeuf canvas { width: 64px; height: 80px; }
-  #temps { position: absolute; left: 806px; top: 8px; width: 150px; text-align: center; font-size: 38px; font-weight: bold;
-    background: #fff; border-radius: 14px; border: 3px solid #1f3a12; }
-  #temps.urgent { color: #e01b1b; border-color: #e01b1b; }
-  #compteur { position: absolute; left: 150px; top: 10px; width: 640px; text-align: center; font-size: 26px; font-weight: bold;
+  /* Calcul chrono : la fiche */
+  #piste { position: absolute; left: 0; top: 0; width: 1000px; height: 120px; }
+  #sol { position: absolute; left: 0; right: 0; top: 100px; height: 20px; background: #8ccb68; border-top: 6px solid #8a5a2b; }
+  #chasseur { position: absolute; left: 0; top: 14px; width: 120px; height: 90px; }
+  #chasseur canvas { width: 120px; height: 90px; }
+  #oeuf { position: absolute; left: 880px; top: 42px; width: 48px; height: 60px; }
+  #oeuf canvas { width: 48px; height: 60px; }
+  #compteur { position: absolute; left: 200px; top: 8px; width: 600px; text-align: center; font-size: 24px; font-weight: bold;
     color: #1f5a0e; text-shadow: 2px 2px 0 #fff; }
-  #points { position: absolute; left: 150px; top: 46px; width: 640px; text-align: center; }
-  .pt { display: inline-block; width: 22px; height: 22px; margin: 0 3px; border-radius: 11px; background: #fff;
-    border: 3px solid #1f3a12; box-sizing: border-box; -webkit-box-sizing: border-box; }
-  .pt.encours { background: #f2b705; }
-  .pt.bien { background: #3cc23c; }
-  .pt.moyen { background: #f28c05; }
-  .pt.rate { background: #e01b1b; }
-  #panneauChrono { position: absolute; left: 10px; right: 10px; top: 200px; height: 350px; background: #fffbe8;
-    border-radius: 22px; border: 4px solid #1f3a12; }
-  #opChrono { position: absolute; left: 10px; top: 70px; width: 600px; text-align: center; font-size: 76px; font-weight: bold; }
-  #repChrono { display: inline-block; min-width: 160px; height: 96px; line-height: 96px; padding: 0 14px;
-    border: 5px solid #2b7bd9; border-radius: 16px; background: #fff; vertical-align: middle; color: #2b7bd9; }
-  #repChrono.faux { border-color: #e01b1b; background: #ffe3e3; color: #e01b1b; }
-  #aideChrono { position: absolute; left: 10px; top: 220px; width: 600px; text-align: center; font-size: 28px;
-    font-weight: bold; min-height: 34px; }
-  #paveChrono { position: absolute; right: 12px; top: 18px; width: 330px; }
-  #btnStop { left: 14px; top: 12px; font-size: 18px; padding: 6px 12px; background: #ffe3e3; color: #a01313; border-bottom-color: #d9a0a0; }
+  #panneauChrono { position: absolute; left: 6px; right: 6px; top: 120px; height: 432px; background: #fffbe8;
+    border-radius: 18px; border: 4px solid #1f3a12; }
+  .fiche { position: absolute; left: 0; top: 0; width: 640px; height: 432px; }
+  .item { position: absolute; width: 310px; height: 46px; line-height: 46px; font-size: 28px; font-weight: bold; white-space: nowrap; }
+  .item .num { display: inline-block; width: 36px; text-align: right; margin-right: 4px; font-size: 18px; color: #8c8c7a; }
+  .item .calc { display: inline-block; width: 166px; text-align: right; }
+  .boite { display: inline-block; width: 86px; height: 40px; line-height: 36px; margin-left: 6px; text-align: center;
+    background: #fff; border: 3px solid #b9b59a; border-radius: 8px; color: #2b7bd9; vertical-align: middle;
+    box-sizing: border-box; -webkit-box-sizing: border-box; }
+  .item.sel .boite { border-color: #2b7bd9; background: #e3f0ff; border-width: 4px; }
+  .boite.juste { border-color: #1c9a1c; background: #dff5df; color: #1c7a1c; }
+  .boite.faux { border-color: #e01b1b; background: #ffe3e3; color: #e01b1b; text-decoration: line-through; }
+  .boite.vide { border-color: #e01b1b; background: #ffe3e3; }
+  .item .corr { display: inline-block; margin-left: 6px; font-size: 24px; color: #1c7a1c; }
+  #colDroite { position: absolute; left: 646px; top: 8px; width: 330px; text-align: center; }
+  #temps { font-size: 36px; font-weight: bold; height: 46px; line-height: 46px; margin: 0 3px 4px;
+    background: #fff; border-radius: 12px; border: 3px solid #1f3a12; }
+  #temps.urgent { color: #e01b1b; border-color: #e01b1b; }
+  #paveChrono .touche { height: 58px; font-size: 32px; }
+  #paveChrono .touche.eff, #paveChrono .touche.ok { font-size: 22px; }
+  #btnFini { width: 318px; margin-top: 6px; font-size: 28px; padding: 9px 0; background: #d9480f; border-bottom-color: #8a2c06; }
+  #btnStop { left: auto; right: 12px; top: 4px; font-size: 18px; padding: 6px 12px; background: #ffe3e3; color: #a01313; border-bottom-color: #d9a0a0; }
 
-  /* Calcul chrono : fin */
-  #chronoFin { text-align: center; }
-  #chronoFin h2 { font-size: 54px; margin: 16px 0 0; color: #b35c00; text-shadow: 3px 3px 0 #fff; }
-  #chronoFin canvas { width: 360px; height: 180px; }
-  #chronoFin p { font-size: 27px; margin: 4px 0 8px; }
-  #etoilesFin { font-size: 56px; color: #f2b705; text-shadow: 2px 2px 0 #9a6b00; height: 64px; }
-  #recordFin { color: #6b1f8a; font-weight: bold; }
-  #chronoFin .gros { margin: 6px 10px 0; }
+  /* Calcul chrono : correction */
+  #chronoFin h2 { position: absolute; left: 0; top: 4px; width: 1000px; text-align: center; font-size: 40px; margin: 0;
+    color: #b35c00; text-shadow: 3px 3px 0 #fff; }
+  #sousTitreFin { position: absolute; left: 0; top: 54px; width: 1000px; text-align: center; font-size: 24px; }
+  #ficheFin { position: absolute; left: 6px; top: 112px; width: 640px; height: 432px; background: #fffbe8;
+    border-radius: 18px; border: 4px solid #1f3a12; }
+  #ficheFin .fiche { width: 640px; }
+  #ficheFin .item { font-size: 24px; }
+  #ficheFin .item .num { width: 30px; font-size: 16px; }
+  #ficheFin .item .calc { width: 140px; }
+  #ficheFin .boite { width: 70px; margin-left: 4px; }
+  #ficheFin .item .corr { font-size: 22px; margin-left: 4px; }
+  #bilanFin { position: absolute; left: 662px; top: 112px; width: 330px; text-align: center; }
+  #scoreFin { font-size: 64px; font-weight: bold; color: #1f5a0e; background: #fff; border-radius: 18px; border: 4px solid #1f3a12; }
+  #scoreFin small { font-size: 28px; }
+  #etoilesFin { font-size: 52px; color: #f2b705; text-shadow: 2px 2px 0 #9a6b00; height: 60px; line-height: 60px; }
+  #texteChronoFin { font-size: 22px; margin: 0 0 4px; }
+  #recordFin { font-size: 22px; color: #6b1f8a; font-weight: bold; margin: 0 0 8px; min-height: 26px; }
+  #bilanFin .gros { width: 320px; font-size: 26px; padding: 8px 0; margin-bottom: 8px; }
 </style>
 </head>
 <body>
@@ -200,7 +214,7 @@
       <button class="jeu" id="jeuCombat"><canvas id="canMenuCombat" width="720" height="360"></canvas>
         <div class="nom">Combat de dinos</div><div class="desc">Calcule les points de vie pour gagner le combat !</div></button><button
         class="jeu" id="jeuChrono"><canvas id="canMenuChrono" width="720" height="360"></canvas>
-        <div class="nom">Calcul chrono</div><div class="desc">Finis tes calculs avant que le dino attrape l'œuf !</div></button>
+        <div class="nom">Calcul chrono</div><div class="desc">15 calculs en 3 minutes, comme à l'école !</div></button>
     </div>
   </div>
 
@@ -208,40 +222,46 @@
   <div id="chronoReglages" class="ecran">
     <button class="petitBtn" id="regMenu">&#9664; Menu</button>
     <h1>Calcul chrono</h1>
-    <div class="ligneReg"><span class="lib">Calculs :</span><button class="opt" data-cop="+">Additions</button><button class="opt" data-cop="-">Soustractions</button><button class="opt" data-cop="m">Les deux</button></div>
-    <div class="ligneReg"><span class="lib">Combien :</span><button class="opt" data-cnb="10">10</button><button class="opt" data-cnb="15">15</button><button class="opt" data-cnb="20">20</button></div>
+    <div class="intro">Comme à l'école : 15 additions et soustractions sur une fiche.<br>Finis-les avant que le dino attrape l'œuf !</div>
     <div class="ligneReg"><span class="lib">Niveau :</span><button class="opt" data-cniv="0">Débutant</button><button class="opt" data-cniv="1">Facile</button><button class="opt" data-cniv="2">Moyen</button><button class="opt" data-cniv="3">Difficile</button><button class="opt" data-cniv="4">Expert</button></div>
-    <div class="ligneReg"><span class="lib">Vitesse du dino :</span><button class="opt" data-cvit="0">Lent</button><button class="opt" data-cvit="1">Normal</button><button class="opt" data-cvit="2">Rapide</button></div>
+    <div class="ligneReg"><span class="lib">Temps :</span><button class="opt" data-ctps="300">5 min</button><button class="opt" data-ctps="240">4 min</button><button class="opt" data-ctps="180">3 min (examen)</button><button class="opt" data-ctps="120">2 min</button></div>
     <div id="infoChrono"></div>
     <button class="gros" id="btnPartir">Partir !</button>
   </div>
 
-  <!-- ===== Calcul chrono : course ===== -->
+  <!-- ===== Calcul chrono : la fiche ===== -->
   <div id="chrono" class="ecran">
     <div id="piste">
       <div id="sol"></div>
       <div id="compteur"></div>
-      <div id="points"></div>
-      <div id="chasseur"><canvas id="canChasseur" width="320" height="240"></canvas></div>
-      <div id="oeuf"><canvas id="canOeuf" width="128" height="160"></canvas></div>
-      <div id="temps"></div>
+      <button class="petitBtn" id="btnStop">Arrêter</button>
+      <div id="chasseur"><canvas id="canChasseur" width="240" height="180"></canvas></div>
+      <div id="oeuf"><canvas id="canOeuf" width="96" height="120"></canvas></div>
     </div>
     <div id="panneauChrono">
-      <button class="petitBtn" id="btnStop">Arrêter</button>
-      <div id="opChrono"><span id="calcChrono"></span> = <span id="repChrono"></span></div>
-      <div id="aideChrono"></div>
-      <div id="paveChrono"></div>
+      <div class="fiche" id="fiche"></div>
+      <div id="colDroite">
+        <div id="temps"></div>
+        <div id="paveChrono"></div>
+        <button class="gros" id="btnFini">J'ai fini !</button>
+      </div>
     </div>
   </div>
 
-  <!-- ===== Calcul chrono : fin ===== -->
+  <!-- ===== Calcul chrono : correction ===== -->
   <div id="chronoFin" class="ecran">
     <h2 id="titreChronoFin"></h2>
-    <canvas id="canChronoFin" width="720" height="360"></canvas>
-    <div id="etoilesFin"></div>
-    <p id="texteChronoFin"></p>
-    <p id="recordFin"></p>
-    <button class="gros" id="btnChronoRejouer">Rejouer</button><button class="gros bleu" id="btnChronoReglages">Réglages</button><button class="gros gris" id="btnChronoMenu">Menu</button>
+    <div id="sousTitreFin"></div>
+    <div id="ficheFin"><div class="fiche" id="ficheCorrigee"></div></div>
+    <div id="bilanFin">
+      <div id="scoreFin"></div>
+      <div id="etoilesFin"></div>
+      <p id="texteChronoFin"></p>
+      <p id="recordFin"></p>
+      <button class="gros" id="btnChronoRejouer">Nouvelle fiche</button>
+      <button class="gros bleu" id="btnChronoReglages">Réglages</button>
+      <button class="gros gris" id="btnChronoMenu">Menu</button>
+    </div>
   </div>
 
   <!-- ===== Accueil ===== -->
@@ -1157,30 +1177,25 @@ function dessinerMenu() {
   b.getContext('2d').drawImage(o, 560, 140, 128, 160);
 }
 
-/* ================= Calcul chrono ================= */
+/* ================= Calcul chrono (format de l'examen) ================= */
+/* Une fiche de 15 additions et soustractions, à finir avant la fin du temps.
+   Rien n'est corrigé pendant l'épreuve : la correction arrive à la fin. */
+var NB_CALCULS = 15;
 var CHRONO_NIV = [
-  { info: 'des calculs jusqu\'à 10 (comme 6 + 3, 9 − 4)', sec: 7 },
-  { info: 'des calculs jusqu\'à 20 (comme 8 + 7, 15 − 6)', sec: 9 },
-  { info: 'des nombres jusqu\'à 100 sans retenue (comme 43 + 25)', sec: 13 },
-  { info: 'des nombres jusqu\'à 100 avec retenues (comme 47 + 38, 72 − 29)', sec: 20 },
-  { info: 'des nombres à 3 chiffres (comme 345 + 278)', sec: 32 }
+  'des calculs jusqu\'à 10 (comme 6 + 3, 9 − 4)',
+  'des calculs jusqu\'à 20 (comme 8 + 7, 15 − 6)',
+  'des nombres jusqu\'à 100 sans retenue (comme 43 + 25)',
+  'des nombres jusqu\'à 100 avec retenues (comme 47 + 38, 72 − 29)',
+  'des nombres à 3 chiffres (comme 345 + 278)'
 ];
-var VITESSES = [1.6, 1, 0.7];   // multiplie le temps : lent, normal, rapide
-var cr = {
-  op: lire('c-op') || '+',
-  nb: parseInt(lire('c-nb') || '10', 10),
-  niv: parseInt(lire('c-niv') || '1', 10),
-  vit: parseInt(lire('c-vit') || '1', 10)
-};
+var TEMPS = [300, 240, 180, 120];
+var cr = { niv: parseInt(lire('c-niv') || '1', 10), temps: parseInt(lire('c-temps') || '180', 10) };
 if (!CHRONO_NIV[cr.niv]) cr.niv = 1;
-if (!VITESSES[cr.vit]) cr.vit = 1;
-if ([10, 15, 20].indexOf(cr.nb) < 0) cr.nb = 10;
-if (['+', '-', 'm'].indexOf(cr.op) < 0) cr.op = '+';
+if (TEMPS.indexOf(cr.temps) < 0) cr.temps = 180;
 
-var course = null;   // partie en cours
+var course = null;   // fiche en cours
 var minuteur = null;
 
-function dureeTotale() { return Math.round(cr.nb * CHRONO_NIV[cr.niv].sec * VITESSES[cr.vit]); }
 function enMinutes(s) {
   s = Math.max(0, Math.ceil(s));
   var m = Math.floor(s / 60), r = s % 60;
@@ -1193,7 +1208,7 @@ function enMots(s) {
   if (r || !m) t += (t ? ' ' : '') + r + ' s';
   return t;
 }
-function cleRecord() { return 'c-rec-' + (cr.op === '-' ? 'moins' : cr.op === 'm' ? 'mix' : 'plus') + '-' + cr.niv + '-' + cr.nb; }
+function cleRecord() { return 'c-rec-' + cr.niv + '-' + cr.temps; }
 
 /* Un calcul au hasard, selon le niveau. */
 function unCalcul(signe) {
@@ -1216,26 +1231,42 @@ function unCalcul(signe) {
       do { a = hasard(30, 99); b = hasard(11, a - 5); } while ((a % 10) >= (b % 10));
     }
   } else {
-    if (plus) { a = hasard(101, 799); b = hasard(101, 999 - a > 101 ? 999 - a : 101); }
+    if (plus) { a = hasard(101, 799); b = hasard(101, 999 - a); }
     else { a = hasard(300, 999); b = hasard(101, a - 50); }
   }
   return { a: a, b: b, op: plus ? '+' : '−', rep: plus ? a + b : a - b };
 }
 
+/* 15 calculs : 8 additions et 7 soustractions, mélangées, sans doublon. */
 function preparerCalculs() {
-  var liste = [], prec = '';
-  for (var i = 0; i < cr.nb; i++) {
-    var signe = cr.op === 'm' ? (i % 2 ? '-' : '+') : cr.op, c, cle, essai = 0;
-    if (cr.op === 'm' && Math.random() < 0.3) signe = signe === '+' ? '-' : '+';
-    do { c = unCalcul(signe); cle = c.a + c.op + c.b; essai++; } while ((cle === prec || dejaVu(liste, cle)) && essai < 20);
-    prec = cle;
+  var signes = [], liste = [], vus = {}, i;
+  for (i = 0; i < NB_CALCULS; i++) signes.push(i < 8 ? '+' : '-');
+  for (i = signes.length - 1; i > 0; i--) { var k = hasard(0, i), t = signes[i]; signes[i] = signes[k]; signes[k] = t; }
+  for (i = 0; i < NB_CALCULS; i++) {
+    var c, cle, essai = 0;
+    do { c = unCalcul(signes[i]); cle = c.a + c.op + c.b; essai++; } while (vus[cle] && essai < 30);
+    vus[cle] = true;
     liste.push(c);
   }
   return liste;
 }
-function dejaVu(liste, cle) {
-  for (var i = 0; i < liste.length; i++) if (liste[i].a + liste[i].op + liste[i].b === cle) return true;
-  return false;
+
+/* La fiche : 2 colonnes (1 à 8, puis 9 à 15), comme une feuille d'exercices. */
+function htmlFiche(calculs, saisies, corrige, sel) {
+  var h = '';
+  for (var i = 0; i < calculs.length; i++) {
+    var c = calculs[i], s = saisies[i], col = i < 8 ? 0 : 1, lig = i < 8 ? i : i - 8;
+    var cls = 'boite', apres = '';
+    if (corrige) {
+      if (s === '') { cls += ' vide'; apres = '<span class="corr">' + c.rep + '</span>'; }
+      else if (parseInt(s, 10) === c.rep) { cls += ' juste'; apres = '<span class="corr">&#10004;</span>'; }
+      else { cls += ' faux'; apres = '<span class="corr">' + c.rep + '</span>'; }
+    }
+    h += '<div class="item' + (!corrige && i === sel ? ' sel' : '') + '" data-i="' + i + '" style="left:' + (8 + col * 316) + 'px;top:' + (12 + lig * 51) + 'px">' +
+         '<span class="num">' + (i + 1) + '.</span><span class="calc">' + c.a + ' ' + c.op + ' ' + c.b + ' =</span>' +
+         '<span class="' + cls + '">' + s + '</span>' + apres + '</div>';
+  }
+  return h;
 }
 
 /* --- Écran des réglages --- */
@@ -1247,200 +1278,170 @@ function ouvrirReglagesChrono() {
 function majReglagesChrono() {
   var opts = $('chronoReglages').querySelectorAll('.opt');
   for (var i = 0; i < opts.length; i++) {
-    var b = opts[i], on = false;
-    if (b.getAttribute('data-cop')) on = b.getAttribute('data-cop') === cr.op;
-    else if (b.getAttribute('data-cnb')) on = parseInt(b.getAttribute('data-cnb'), 10) === cr.nb;
-    else if (b.getAttribute('data-cniv')) on = parseInt(b.getAttribute('data-cniv'), 10) === cr.niv;
-    else on = parseInt(b.getAttribute('data-cvit'), 10) === cr.vit;
+    var b = opts[i], on = b.getAttribute('data-cniv') ? parseInt(b.getAttribute('data-cniv'), 10) === cr.niv
+                                                    : parseInt(b.getAttribute('data-ctps'), 10) === cr.temps;
     b.className = 'opt' + (on ? ' choisi' : '');
   }
-  var quoi = cr.op === '+' ? 'additions' : cr.op === '-' ? 'soustractions' : 'calculs';
-  var h = '<b>' + cr.nb + ' ' + quoi + '</b> avec ' + CHRONO_NIV[cr.niv].info + '.<br>' +
-          'Le dino attrape l\'œuf en <b>' + enMots(dureeTotale()) + '</b>.';
-  var rec = lire(cleRecord());
-  if (rec) h += '<br>Ton record : <b>' + enMots(parseFloat(rec)) + '</b>';
+  var h = '<b>15 calculs</b> avec ' + CHRONO_NIV[cr.niv] + '.<br>Le dino attrape l\'œuf en <b>' + enMots(cr.temps) + '</b>.';
+  var rec = lireRecord();
+  if (rec) h += '<br>Ton record : <b>' + rec.score + ' / 15</b> en ' + enMots(rec.temps);
   $('infoChrono').innerHTML = h;
+}
+
+function lireRecord() {
+  var r = lire(cleRecord());
+  if (!r) return null;
+  var p = r.split('|');
+  return { score: parseInt(p[0], 10), temps: parseFloat(p[1]) };
 }
 
 function construireChrono() {
   var opts = $('chronoReglages').querySelectorAll('.opt');
   for (var i = 0; i < opts.length; i++) {
     opts[i].onclick = function () {
-      var b = this;
-      if (b.getAttribute('data-cop')) { cr.op = b.getAttribute('data-cop'); stocker('c-op', cr.op); }
-      else if (b.getAttribute('data-cnb')) { cr.nb = parseInt(b.getAttribute('data-cnb'), 10); stocker('c-nb', cr.nb); }
-      else if (b.getAttribute('data-cniv')) { cr.niv = parseInt(b.getAttribute('data-cniv'), 10); stocker('c-niv', cr.niv); }
-      else { cr.vit = parseInt(b.getAttribute('data-cvit'), 10); stocker('c-vit', cr.vit); }
+      if (this.getAttribute('data-cniv')) { cr.niv = parseInt(this.getAttribute('data-cniv'), 10); stocker('c-niv', cr.niv); }
+      else { cr.temps = parseInt(this.getAttribute('data-ctps'), 10); stocker('c-temps', cr.temps); }
       majReglagesChrono();
     };
   }
   var t = ['7', '8', '9', '4', '5', '6', '1', '2', '3', 'eff', '0', 'ok'], h = '';
   for (var k = 0; k < t.length; k++) {
-    var lib = t[k] === 'eff' ? 'Effacer' : (t[k] === 'ok' ? 'Valider' : t[k]);
+    var lib = t[k] === 'eff' ? 'Effacer' : (t[k] === 'ok' ? 'Suivant' : t[k]);
     h += '<button class="touche' + (t[k] === 'eff' ? ' eff' : '') + (t[k] === 'ok' ? ' ok' : '') + '" data-t="' + t[k] + '">' + lib + '</button>';
   }
   $('paveChrono').innerHTML = h;
   var bs = $('paveChrono').getElementsByTagName('button');
   for (var n = 0; n < bs.length; n++) bs[n].onclick = function () { toucheChrono(this.getAttribute('data-t')); };
+  $('fiche').onclick = function (ev) {
+    var el = (ev || window.event).target || (ev || window.event).srcElement;
+    while (el && el !== this && !(el.className && String(el.className).indexOf('item') === 0)) el = el.parentNode;
+    if (!el || el === this || !course || course.fini) return;
+    course.sel = parseInt(el.getAttribute('data-i'), 10);
+    majFiche();
+  };
+  $('btnFini').onclick = appuiFini;
   $('btnPartir').onclick = partirChrono;
   $('regMenu').onclick = allerMenu;
   $('btnStop').onclick = function () { arreterMinuteur(); course = null; ouvrirReglagesChrono(); };
   $('btnChronoRejouer').onclick = partirChrono;
   $('btnChronoReglages').onclick = ouvrirReglagesChrono;
   $('btnChronoMenu').onclick = allerMenu;
-  dessinerOeuf($('canOeuf'));
 }
 
-/* --- La course --- */
+/* --- L'épreuve --- */
 function partirChrono() {
   var dispo = [];
   for (var i = 0; i < DINOS.length; i++) if (debloque(i)) dispo.push(i);
   var d = DINOS[dispo[Math.floor(Math.random() * dispo.length)]];
-  course = { d: d, calculs: preparerCalculs(), i: 0, essais: 0, resultats: [], saisie: '',
-             duree: dureeTotale(), debut: new Date().getTime(), pause: false, fini: false, pas: 0 };
+  var saisies = [];
+  for (var k = 0; k < NB_CALCULS; k++) saisies.push('');
+  course = { d: d, calculs: preparerCalculs(), saisies: saisies, sel: 0, duree: cr.temps,
+             debut: new Date().getTime(), fini: false, pas: 0, confirmer: 0 };
   dessinerDino($('canChasseur'), d, false);
   dessinerOeuf($('canOeuf'));
-  $('oeuf').style.webkitTransform = ''; $('oeuf').style.transform = '';
-  var h = '';
-  for (var k = 0; k < cr.nb; k++) h += '<span class="pt" id="pt' + k + '"></span>';
-  $('points').innerHTML = h;
+  $('btnFini').innerHTML = 'J\'ai fini !';
   afficher('chrono');
-  montrerCalcul();
+  majFiche();
   majCourse();
   arreterMinuteur();
   minuteur = setInterval(majCourse, 100);
 }
 
 function arreterMinuteur() { if (minuteur) { clearInterval(minuteur); minuteur = null; } }
-
 function ecoule() { return (new Date().getTime() - course.debut) / 1000; }
+function nbRemplis() { var n = 0; for (var i = 0; i < NB_CALCULS; i++) if (course.saisies[i] !== '') n++; return n; }
+
+function majFiche() {
+  $('fiche').innerHTML = htmlFiche(course.calculs, course.saisies, false, course.sel);
+  var n = nbRemplis();
+  $('compteur').innerHTML = n + ' calcul' + (n > 1 ? 's' : '') + ' fait' + (n > 1 ? 's' : '') + ' sur 15';
+}
 
 function majCourse() {
   if (!course || course.fini) return;
   var t = ecoule(), p = Math.min(1, t / course.duree), reste = course.duree - t;
-  var x = Math.round(p * 708);
   course.pas++;
-  var saut = (course.pas >> 1) % 2 ? -8 : 0;   // le dino court en sautillant
+  var saut = (course.pas >> 1) % 2 ? -6 : 0;   // le dino court en sautillant
   var st = $('chasseur').style;
-  st.left = x + 'px';
+  st.left = Math.round(p * 774) + 'px';
   st.webkitTransform = 'translateY(' + saut + 'px)'; st.transform = 'translateY(' + saut + 'px)';
   $('temps').innerHTML = enMinutes(reste);
-  $('temps').className = reste <= 10 ? 'urgent' : '';
+  $('temps').className = reste <= 15 ? 'urgent' : '';
   var oe = $('oeuf').style, tr = '';
-  if (p > 0.8) tr = 'rotate(' + ((course.pas % 2) ? 8 : -8) + 'deg)';   // l'œuf tremble quand le dino approche
+  if (p > 0.85) tr = 'rotate(' + ((course.pas % 2) ? 8 : -8) + 'deg)';   // l'œuf tremble quand le dino approche
   oe.webkitTransform = tr; oe.transform = tr;
-  if (p >= 1) perdreChrono();
+  if (course.confirmer && new Date().getTime() > course.confirmer) { course.confirmer = 0; $('btnFini').innerHTML = 'J\'ai fini !'; }
+  if (p >= 1) tempsEcoule();
 }
 
-function montrerCalcul() {
-  var c = course.calculs[course.i];
-  course.saisie = ''; course.essais = 0;
-  $('calcChrono').innerHTML = c.a + ' ' + c.op + ' ' + c.b;
-  $('repChrono').innerHTML = '?';
-  $('repChrono').className = '';
-  $('aideChrono').innerHTML = '';
-  $('compteur').innerHTML = 'Calcul ' + (course.i + 1) + ' sur ' + cr.nb;
-  for (var k = 0; k < cr.nb; k++) {
-    var r = course.resultats[k];
-    $('pt' + k).className = 'pt' + (r ? ' ' + r : (k === course.i ? ' encours' : ''));
+/* Passe à la case suivante (de préférence une case vide). */
+function caseSuivante() {
+  for (var k = 1; k <= NB_CALCULS; k++) {
+    var i = (course.sel + k) % NB_CALCULS;
+    if (course.saisies[i] === '') { course.sel = i; return; }
   }
+  course.sel = (course.sel + 1) % NB_CALCULS;
 }
 
 function toucheChrono(t) {
-  if (!course || course.fini || course.pause) return;
-  if (t === 'ok') { validerChrono(); return; }
-  if (t === 'eff') course.saisie = course.saisie.slice(0, -1);
-  else if (course.saisie.length < 4) course.saisie = (course.saisie === '0' ? '' : course.saisie) + t;
-  $('repChrono').innerHTML = course.saisie || '?';
-  $('repChrono').className = '';
+  if (!course || course.fini) return;
+  var s = course.saisies[course.sel];
+  if (t === 'ok') caseSuivante();
+  else if (t === 'eff') course.saisies[course.sel] = s.slice(0, -1);
+  else if (s.length < 4) course.saisies[course.sel] = (s === '0' ? '' : s) + t;
+  majFiche();
 }
 
-function validerChrono() {
-  var c = course.calculs[course.i];
-  if (course.saisie === '') { $('aideChrono').innerHTML = 'Écris ta réponse avec les chiffres.'; return; }
-  if (parseInt(course.saisie, 10) === c.rep) {
-    son([660, 880], 0.08);
-    course.resultats[course.i] = course.essais === 0 ? 'bien' : 'moyen';
-    suivantChrono(0);
+function appuiFini() {
+  if (!course || course.fini) return;
+  var vides = NB_CALCULS - nbRemplis();
+  if (vides > 0 && !course.confirmer) {   // un 2e appui confirme
+    $('btnFini').innerHTML = vides + ' vide' + (vides > 1 ? 's' : '') + ' : sûr ?';
+    course.confirmer = new Date().getTime() + 3000;
     return;
   }
-  course.essais++;
-  sonFaux();
-  $('repChrono').className = 'faux';
-  if (course.essais === 1) {
-    $('aideChrono').innerHTML = '<span style="color:#e01b1b">Non, essaie encore !</span>';
-    course.saisie = '';
-    return;
-  }
-  // 2e erreur : on montre la réponse et on passe au suivant
-  course.resultats[course.i] = 'rate';
-  $('repChrono').innerHTML = c.rep;
-  $('repChrono').className = '';
-  $('aideChrono').innerHTML = '<span style="color:#b35c00">La réponse était ' + c.rep + '.</span>';
-  suivantChrono(1500);
+  terminerChrono(false);
 }
 
-function suivantChrono(attente) {
-  course.pause = true;
-  setTimeout(function () {
-    if (!course || course.fini) return;
-    course.pause = false;
-    course.i++;
-    if (course.i >= cr.nb) gagnerChrono(); else montrerCalcul();
-  }, attente);
-}
-
-function compter(type) {
-  var n = 0;
-  for (var i = 0; i < course.resultats.length; i++) if (course.resultats[i] === type) n++;
-  return n;
-}
-
-function finChrono() {
+function tempsEcoule() {
   course.fini = true;
   arreterMinuteur();
-  var c = $('canChronoFin');
-  c.getContext('2d').clearRect(0, 0, c.width, c.height);
-  return c;
-}
-
-function gagnerChrono() {
-  var temps = ecoule(), avance = course.duree - temps;
-  var c = finChrono();
-  dinoDans(c, course.d, 0, 40, 380, false);
-  var o = document.createElement('canvas'); o.width = 128; o.height = 160; dessinerOeuf(o);
-  c.getContext('2d').drawImage(o, 560, 160, 128, 160);
-  sonBravo(); setTimeout(sonBravo, 450);
-  var bien = compter('bien'), rate = compter('rate');
-  var etoiles = rate === 0 && compter('moyen') === 0 ? 3 : (rate <= 1 ? 2 : 1);
-  var e = '';
-  for (var i = 0; i < 3; i++) e += i < etoiles ? '&#9733;' : '&#9734;';
-  $('etoilesFin').innerHTML = e;
-  $('titreChronoFin').innerHTML = 'Bravo, l\'œuf est sauvé !';
-  $('texteChronoFin').innerHTML = 'Fini en <b>' + enMots(temps) + '</b>, avec ' + enMots(avance) + ' d\'avance sur ' + course.d.nom + ' !<br>' +
-    bien + ' calcul' + (bien > 1 ? 's' : '') + ' juste' + (bien > 1 ? 's' : '') + ' du premier coup sur ' + cr.nb + '.';
-  var rec = lire(cleRecord()), txt = '';
-  if (!rec || temps < parseFloat(rec)) {
-    if (rec) txt = 'Nouveau record ! (avant : ' + enMots(parseFloat(rec)) + ')';
-    else txt = 'Premier record : ' + enMots(temps) + ' !';
-    stocker(cleRecord(), temps.toFixed(1));
-  } else txt = 'Ton record : ' + enMots(parseFloat(rec));
-  $('recordFin').innerHTML = txt;
-  afficher('chronoFin');
-}
-
-function perdreChrono() {
-  var c = finChrono();
-  var o = document.createElement('canvas'); o.width = 128; o.height = 160; dessinerOeuf(o, true);
-  dinoDans(c, course.d, 150, 20, 400, false);
-  c.getContext('2d').drawImage(o, 520, 180, 128, 160);
+  $('temps').innerHTML = '0:00';
+  dessinerOeuf($('canOeuf'), true);
+  $('compteur').innerHTML = 'Temps écoulé ! ' + course.d.nom + ' a attrapé l\'œuf !';
   son([392, 330, 262], 0.2);
-  $('etoilesFin').innerHTML = '';
-  $('titreChronoFin').innerHTML = 'Oh non ! ' + course.d.nom + ' a attrapé l\'œuf !';
-  var faits = course.i;
-  $('texteChronoFin').innerHTML = 'Tu as fait <b>' + faits + ' calcul' + (faits > 1 ? 's' : '') + ' sur ' + cr.nb + '</b>. ' + (faits * 2 >= cr.nb ? 'Tu y étais presque !' : 'Courage !') + '<br>' +
-    'Essaie encore, ou choisis le dino Lent dans les réglages.';
-  $('recordFin').innerHTML = '';
+  setTimeout(function () { terminerChrono(true); }, 1800);
+}
+
+function terminerChrono(horsTemps) {
+  course.fini = true;
+  arreterMinuteur();
+  var temps = horsTemps ? course.duree : ecoule(), juste = 0;
+  for (var i = 0; i < NB_CALCULS; i++) if (course.saisies[i] !== '' && parseInt(course.saisies[i], 10) === course.calculs[i].rep) juste++;
+  $('ficheCorrigee').innerHTML = htmlFiche(course.calculs, course.saisies, true, -1);
+  $('scoreFin').innerHTML = juste + ' <small>/ 15</small>';
+  var etoiles = juste === 15 ? 3 : juste >= 12 ? 2 : juste >= 8 ? 1 : 0, e = '';
+  for (var k = 0; k < 3; k++) e += k < etoiles ? '&#9733;' : '&#9734;';
+  $('etoilesFin').innerHTML = e;
+  if (horsTemps) {
+    $('titreChronoFin').innerHTML = 'Temps écoulé !';
+    $('sousTitreFin').innerHTML = course.d.nom + ' a attrapé l\'œuf. Voici la correction :';
+  } else {
+    $('titreChronoFin').innerHTML = juste === 15 ? 'Bravo, tout est juste !' : 'Fini à temps !';
+    $('sousTitreFin').innerHTML = 'L\'œuf est sauvé, avec ' + enMots(course.duree - temps) + ' d\'avance. Voici la correction :';
+  }
+  $('texteChronoFin').innerHTML = juste === 15 ? 'Zéro faute !' : (juste >= 12 ? 'Très bien !' : (juste >= 8 ? 'Bien, continue !' : 'Courage, on recommence !'));
+  if (horsTemps) $('texteChronoFin').innerHTML += '<br>' + nbRemplis() + ' calcul' + (nbRemplis() > 1 ? 's' : '') + ' fait' + (nbRemplis() > 1 ? 's' : '') + ' en ' + enMots(course.duree) + '.';
+  else $('texteChronoFin').innerHTML += '<br>Fini en ' + enMots(temps) + '.';
+  var rec = lireRecord(), txt = '';
+  if (!rec || juste > rec.score || (juste === rec.score && temps < rec.temps)) {
+    if (juste > 0) {
+      txt = rec ? 'Nouveau record !' : 'Premier record !';
+      stocker(cleRecord(), juste + '|' + temps.toFixed(1));
+    }
+  } else txt = 'Record : ' + rec.score + ' / 15 en ' + enMots(rec.temps);
+  $('recordFin').innerHTML = txt;
+  if (juste >= 12) { sonBravo(); setTimeout(sonBravo, 450); }
   afficher('chronoFin');
 }
 
