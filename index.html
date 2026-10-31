@@ -124,13 +124,149 @@
   #fin p { font-size: 28px; margin: 4px 0 10px; }
   #fin #bonusFin { font-size: 26px; color: #6b1f8a; font-weight: bold; }
   .etoile { position: absolute; font-size: 40px; color: #f2b705; }
+  .petitBtn { position: absolute; left: 12px; top: 10px; font-size: 20px; font-weight: bold; padding: 8px 14px;
+    border-radius: 12px; background: #fff; color: #2f6d18; border-bottom: 4px solid #9ab98a; }
+  .petitBtn:active { border-bottom-width: 1px; margin-top: 3px; }
+  .gros.bleu { background: #2b7bd9; border-bottom-color: #164f94; }
+  .gros.gris { background: #8c8c7a; border-bottom-color: #5c5c4c; }
+
+  /* Menu */
+  #menu h1 { margin: 22px 0 6px; text-align: center; font-size: 56px; color: #1f5a0e; text-shadow: 3px 3px 0 #fff; }
+  #menu .soustitre { text-align: center; font-size: 26px; margin: 0 0 18px; }
+  .jeu { display: inline-block; vertical-align: top; width: 400px; height: 360px; margin: 0 20px; border-radius: 24px;
+    background: #fff; border: 5px solid #1f3a12; border-bottom-width: 11px; text-align: center; color: #1f3a12; }
+  .jeu:active { border-bottom-width: 5px; margin-top: 6px; }
+  .jeu canvas { width: 360px; height: 180px; margin-top: 10px; }
+  .jeu .nom { font-size: 36px; font-weight: bold; color: #b35c00; }
+  .jeu .desc { font-size: 21px; margin: 6px 20px 0; }
+
+  /* Calcul chrono : réglages */
+  #chronoReglages h1 { margin: 16px 0 6px; text-align: center; font-size: 44px; color: #1f5a0e; text-shadow: 3px 3px 0 #fff; }
+  #chronoReglages .intro { text-align: center; font-size: 24px; margin: 0 0 26px; }
+  .ligneReg { text-align: center; font-size: 24px; margin: 0 0 20px; }
+  .ligneReg .lib { display: inline-block; width: 130px; text-align: right; margin-right: 8px; font-weight: bold; }
+  .ligneReg .opt { font-size: 22px; padding: 10px 14px; }
+  #infoChrono { text-align: center; font-size: 22px; line-height: 32px; margin-top: 10px; }
+  #infoChrono b { color: #b35c00; }
+  #btnPartir { position: absolute; left: 365px; top: 466px; width: 270px; }
+
+  /* Calcul chrono : la fiche */
+  #piste { position: absolute; left: 0; top: 0; width: 1000px; height: 120px; }
+  #sol { position: absolute; left: 0; right: 0; top: 100px; height: 20px; background: #8ccb68; border-top: 6px solid #8a5a2b; }
+  #chasseur { position: absolute; left: 0; top: 14px; width: 120px; height: 90px; }
+  #chasseur canvas { width: 120px; height: 90px; }
+  #oeuf { position: absolute; left: 880px; top: 42px; width: 48px; height: 60px; }
+  #oeuf canvas { width: 48px; height: 60px; }
+  #compteur { position: absolute; left: 200px; top: 8px; width: 600px; text-align: center; font-size: 24px; font-weight: bold;
+    color: #1f5a0e; text-shadow: 2px 2px 0 #fff; }
+  #panneauChrono { position: absolute; left: 6px; right: 6px; top: 120px; height: 432px; background: #fffbe8;
+    border-radius: 18px; border: 4px solid #1f3a12; }
+  .fiche { position: absolute; left: 0; top: 0; width: 640px; height: 432px; }
+  .item { position: absolute; width: 310px; height: 46px; line-height: 46px; font-size: 28px; font-weight: bold; white-space: nowrap; }
+  .item .num { display: inline-block; width: 36px; text-align: right; margin-right: 4px; font-size: 18px; color: #8c8c7a; }
+  .item .calc { display: inline-block; width: 166px; text-align: right; }
+  .boite { display: inline-block; width: 86px; height: 40px; line-height: 36px; margin-left: 6px; text-align: center;
+    background: #fff; border: 3px solid #b9b59a; border-radius: 8px; color: #2b7bd9; vertical-align: middle;
+    box-sizing: border-box; -webkit-box-sizing: border-box; }
+  .item.sel .boite { border-color: #2b7bd9; background: #e3f0ff; border-width: 4px; }
+  .boite.juste { border-color: #1c9a1c; background: #dff5df; color: #1c7a1c; }
+  .boite.faux { border-color: #e01b1b; background: #ffe3e3; color: #e01b1b; text-decoration: line-through; }
+  .boite.vide { border-color: #e01b1b; background: #ffe3e3; }
+  .item .corr { display: inline-block; margin-left: 6px; font-size: 24px; color: #1c7a1c; }
+  #colDroite { position: absolute; left: 646px; top: 8px; width: 330px; text-align: center; }
+  #temps { font-size: 36px; font-weight: bold; height: 46px; line-height: 46px; margin: 0 3px 4px;
+    background: #fff; border-radius: 12px; border: 3px solid #1f3a12; }
+  #temps.urgent { color: #e01b1b; border-color: #e01b1b; }
+  #paveChrono .touche { height: 58px; font-size: 32px; }
+  #paveChrono .touche.eff, #paveChrono .touche.ok { font-size: 22px; }
+  #btnFini { width: 318px; margin-top: 6px; font-size: 28px; padding: 9px 0; background: #d9480f; border-bottom-color: #8a2c06; }
+  #btnStop { left: auto; right: 12px; top: 4px; font-size: 18px; padding: 6px 12px; background: #ffe3e3; color: #a01313; border-bottom-color: #d9a0a0; }
+
+  /* Calcul chrono : correction */
+  #chronoFin h2 { position: absolute; left: 0; top: 4px; width: 1000px; text-align: center; font-size: 40px; margin: 0;
+    color: #b35c00; text-shadow: 3px 3px 0 #fff; }
+  #sousTitreFin { position: absolute; left: 0; top: 54px; width: 1000px; text-align: center; font-size: 24px; }
+  #ficheFin { position: absolute; left: 6px; top: 112px; width: 640px; height: 432px; background: #fffbe8;
+    border-radius: 18px; border: 4px solid #1f3a12; }
+  #ficheFin .fiche { width: 640px; }
+  #ficheFin .item { font-size: 24px; }
+  #ficheFin .item .num { width: 30px; font-size: 16px; }
+  #ficheFin .item .calc { width: 140px; }
+  #ficheFin .boite { width: 70px; margin-left: 4px; }
+  #ficheFin .item .corr { font-size: 22px; margin-left: 4px; }
+  #bilanFin { position: absolute; left: 662px; top: 112px; width: 330px; text-align: center; }
+  #scoreFin { font-size: 64px; font-weight: bold; color: #1f5a0e; background: #fff; border-radius: 18px; border: 4px solid #1f3a12; }
+  #scoreFin small { font-size: 28px; }
+  #etoilesFin { font-size: 52px; color: #f2b705; text-shadow: 2px 2px 0 #9a6b00; height: 60px; line-height: 60px; }
+  #texteChronoFin { font-size: 22px; margin: 0 0 4px; }
+  #recordFin { font-size: 22px; color: #6b1f8a; font-weight: bold; margin: 0 0 8px; min-height: 26px; }
+  #bilanFin .gros { width: 320px; font-size: 26px; padding: 8px 0; margin-bottom: 8px; }
 </style>
 </head>
 <body>
 <div id="app">
 
+  <!-- ===== Menu : choix du jeu ===== -->
+  <div id="menu" class="ecran">
+    <h1>Dino Calcule</h1>
+    <div class="soustitre">À quoi veux-tu jouer ?</div>
+    <div style="text-align:center">
+      <button class="jeu" id="jeuCombat"><canvas id="canMenuCombat" width="720" height="360"></canvas>
+        <div class="nom">Combat de dinos</div><div class="desc">Calcule les points de vie pour gagner le combat !</div></button><button
+        class="jeu" id="jeuChrono"><canvas id="canMenuChrono" width="720" height="360"></canvas>
+        <div class="nom">Calcul chrono</div><div class="desc">15 calculs en 3 minutes, comme à l'école !</div></button>
+    </div>
+  </div>
+
+  <!-- ===== Calcul chrono : réglages ===== -->
+  <div id="chronoReglages" class="ecran">
+    <button class="petitBtn" id="regMenu">&#9664; Menu</button>
+    <h1>Calcul chrono</h1>
+    <div class="intro">Comme à l'école : 15 additions et soustractions sur une fiche.<br>Finis-les avant que le dino attrape l'œuf !</div>
+    <div class="ligneReg"><span class="lib">Niveau :</span><button class="opt" data-cniv="0">Débutant</button><button class="opt" data-cniv="1">Facile</button><button class="opt" data-cniv="2">Moyen</button><button class="opt" data-cniv="3">Difficile</button><button class="opt" data-cniv="4">Expert</button></div>
+    <div class="ligneReg"><span class="lib">Temps :</span><button class="opt" data-ctps="300">5 min</button><button class="opt" data-ctps="240">4 min</button><button class="opt" data-ctps="180">3 min (examen)</button><button class="opt" data-ctps="120">2 min</button></div>
+    <div id="infoChrono"></div>
+    <button class="gros" id="btnPartir">Partir !</button>
+  </div>
+
+  <!-- ===== Calcul chrono : la fiche ===== -->
+  <div id="chrono" class="ecran">
+    <div id="piste">
+      <div id="sol"></div>
+      <div id="compteur"></div>
+      <button class="petitBtn" id="btnStop">Arrêter</button>
+      <div id="chasseur"><canvas id="canChasseur" width="240" height="180"></canvas></div>
+      <div id="oeuf"><canvas id="canOeuf" width="96" height="120"></canvas></div>
+    </div>
+    <div id="panneauChrono">
+      <div class="fiche" id="fiche"></div>
+      <div id="colDroite">
+        <div id="temps"></div>
+        <div id="paveChrono"></div>
+        <button class="gros" id="btnFini">J'ai fini !</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Calcul chrono : correction ===== -->
+  <div id="chronoFin" class="ecran">
+    <h2 id="titreChronoFin"></h2>
+    <div id="sousTitreFin"></div>
+    <div id="ficheFin"><div class="fiche" id="ficheCorrigee"></div></div>
+    <div id="bilanFin">
+      <div id="scoreFin"></div>
+      <div id="etoilesFin"></div>
+      <p id="texteChronoFin"></p>
+      <p id="recordFin"></p>
+      <button class="gros" id="btnChronoRejouer">Nouvelle fiche</button>
+      <button class="gros bleu" id="btnChronoReglages">Réglages</button>
+      <button class="gros gris" id="btnChronoMenu">Menu</button>
+    </div>
+  </div>
+
   <!-- ===== Accueil ===== -->
   <div id="accueil" class="ecran">
+    <button class="petitBtn" id="accMenu">&#9664; Menu</button>
     <div id="victoires"></div>
     <h1>Dino Calcule</h1>
     <div class="soustitre" id="soustitre">Choisis ton dinosaure !</div>
@@ -186,7 +322,7 @@
     <canvas id="canFin" width="640" height="480"></canvas>
     <p id="texteFin"></p>
     <p id="bonusFin"></p>
-    <button class="gros" id="btnRejouer">Rejouer</button>
+    <button class="gros" id="btnRejouer">Rejouer</button> <button class="gros gris" id="btnFinMenu">Menu</button>
   </div>
 </div>
 
@@ -548,7 +684,7 @@ var modeCalcul = lire('mode') === 'direct' ? 'direct' : 'pose';
 var q = null;            // question en cours
 
 function afficher(id) {
-  var e = ['accueil', 'combat', 'fin'];
+  var e = ['menu', 'accueil', 'combat', 'fin', 'chronoReglages', 'chrono', 'chronoFin'];
   for (var i = 0; i < e.length; i++) $(e[i]).style.display = e[i] === id ? 'block' : 'none';
 }
 
@@ -564,7 +700,7 @@ function construireAccueil() {
     $('carte' + k).parentNode.onclick = (function (n) { return function () { choisirDino(n); }; })(k);
   }
   dessinerCartes();
-  var opts = document.querySelectorAll('.opt');
+  var opts = $('accueil').querySelectorAll('.opt');
   for (var o = 0; o < opts.length; o++) {
     opts[o].onclick = function () {
       if (this.getAttribute('data-joueurs')) { reglages.joueurs = parseInt(this.getAttribute('data-joueurs'), 10); stocker('joueurs', reglages.joueurs); }
@@ -595,7 +731,7 @@ function choisirDino(n) {
 function majAccueil() {
   var cartes = document.querySelectorAll('.carte');
   for (var i = 0; i < cartes.length; i++) cartes[i].className = 'carte' + (choix[etapeChoix] === i ? ' choisi' : '') + (debloque(i) ? '' : ' verrou');
-  var opts = document.querySelectorAll('.opt');
+  var opts = $('accueil').querySelectorAll('.opt');
   for (var o = 0; o < opts.length; o++) {
     var b = opts[o], on = b.getAttribute('data-joueurs') ? parseInt(b.getAttribute('data-joueurs'), 10) === reglages.joueurs
                                                      : parseInt(b.getAttribute('data-niv'), 10) === reglages.niv;
@@ -999,12 +1135,339 @@ function valider() {
   }
 }
 
+/* ---------- Menu ---------- */
+function dessinerOeuf(canvas, casse) {
+  var c = canvas.getContext('2d'), k = canvas.width / 64;
+  c.setTransform(k, 0, 0, k, 0, 0);
+  c.clearRect(0, 0, 64, 80);
+  c.lineJoin = 'round';
+  c.fillStyle = 'rgba(0,0,0,0.15)'; ell(c, 32, 76, 24, 4); c.fill();
+  if (casse) {   // il ne reste que la coquille cassée
+    poly(c, [6, 74, 8, 52, 18, 60, 26, 48, 34, 60, 44, 48, 50, 60, 58, 52, 58, 74]); remplir(c, '#fff4d6');
+    return;
+  }
+  ell(c, 32, 44, 26, 32); remplir(c, '#fff4d6');
+  c.fillStyle = '#7cc35a';
+  c.beginPath(); c.arc(22, 32, 6, 0, Math.PI * 2); c.fill();
+  c.beginPath(); c.arc(40, 52, 7, 0, Math.PI * 2); c.fill();
+  c.beginPath(); c.arc(38, 24, 4, 0, Math.PI * 2); c.fill();
+  c.beginPath(); c.arc(20, 58, 4, 0, Math.PI * 2); c.fill();
+  c.fillStyle = 'rgba(255,255,255,0.8)'; ell(c, 20, 22, 5, 9); c.fill();
+}
+
+/* Dessine un dino (repère 240 x 180) dans un rectangle d'un grand canvas. */
+function dinoDans(canvas, d, x, y, w, versGauche) {
+  var tmp = document.createElement('canvas');
+  tmp.width = 480; tmp.height = 360;
+  dessinerDino(tmp, d, versGauche);
+  var c = canvas.getContext('2d');
+  c.setTransform(1, 0, 0, 1, 0, 0);
+  c.drawImage(tmp, x, y, w, w * 0.75);
+}
+
+function dessinerMenu() {
+  var a = $('canMenuCombat'), b = $('canMenuChrono');
+  a.getContext('2d').clearRect(0, 0, a.width, a.height);
+  dinoDans(a, DINOS[0], 0, 20, 400, false);
+  dinoDans(a, DINOS[1], 320, 20, 400, true);
+  b.getContext('2d').clearRect(0, 0, b.width, b.height);
+  dinoDans(b, DINOS[0], 20, 30, 400, false);
+  var o = document.createElement('canvas'); o.width = 128; o.height = 160;
+  dessinerOeuf(o);
+  b.getContext('2d').drawImage(o, 560, 140, 128, 160);
+}
+
+/* ================= Calcul chrono (format de l'examen) ================= */
+/* Une fiche de 15 additions et soustractions, à finir avant la fin du temps.
+   Rien n'est corrigé pendant l'épreuve : la correction arrive à la fin. */
+var NB_CALCULS = 15;
+var CHRONO_NIV = [
+  'des calculs jusqu\'à 10 (comme 6 + 3, 9 − 4)',
+  'des calculs jusqu\'à 20 (comme 8 + 7, 15 − 6)',
+  'des nombres jusqu\'à 100 sans retenue (comme 43 + 25)',
+  'des nombres jusqu\'à 100 avec retenues (comme 47 + 38, 72 − 29)',
+  'des nombres à 3 chiffres (comme 345 + 278)'
+];
+var TEMPS = [300, 240, 180, 120];
+var cr = { niv: parseInt(lire('c-niv') || '1', 10), temps: parseInt(lire('c-temps') || '180', 10) };
+if (!CHRONO_NIV[cr.niv]) cr.niv = 1;
+if (TEMPS.indexOf(cr.temps) < 0) cr.temps = 180;
+
+var course = null;   // fiche en cours
+var minuteur = null;
+
+function enMinutes(s) {
+  s = Math.max(0, Math.ceil(s));
+  var m = Math.floor(s / 60), r = s % 60;
+  return m + ':' + (r < 10 ? '0' : '') + r;
+}
+function enMots(s) {
+  s = Math.round(s);
+  var m = Math.floor(s / 60), r = s % 60, t = '';
+  if (m) t = m + ' min';
+  if (r || !m) t += (t ? ' ' : '') + r + ' s';
+  return t;
+}
+function cleRecord() { return 'c-rec-' + cr.niv + '-' + cr.temps; }
+
+/* Un calcul au hasard, selon le niveau. */
+function unCalcul(signe) {
+  var a, b, n = cr.niv, plus = signe === '+';
+  if (n === 0) {
+    if (plus) { a = hasard(1, 9); b = hasard(1, 10 - a); }
+    else { a = hasard(3, 10); b = hasard(1, a - 1); }
+  } else if (n === 1) {
+    if (plus) { a = hasard(3, 15); b = hasard(2, 20 - a); }
+    else { a = hasard(11, 20); b = hasard(2, a - 1); }
+  } else if (n === 2) {   // sans retenue : chiffre par chiffre
+    var u1 = hasard(0, 9), d1 = hasard(1, 8), u2, d2;
+    if (plus) { u2 = hasard(0, 9 - u1); d2 = hasard(1, 9 - d1); }
+    else { d1 = hasard(2, 9); u2 = hasard(0, u1); d2 = hasard(1, d1 - 1); }
+    a = d1 * 10 + u1; b = d2 * 10 + u2;
+  } else if (n === 3) {   // avec retenue sur les unités
+    if (plus) {
+      do { a = hasard(12, 79); b = hasard(11, 99 - a); } while ((a % 10) + (b % 10) < 10);
+    } else {
+      do { a = hasard(30, 99); b = hasard(11, a - 5); } while ((a % 10) >= (b % 10));
+    }
+  } else {
+    if (plus) { a = hasard(101, 799); b = hasard(101, 999 - a); }
+    else { a = hasard(300, 999); b = hasard(101, a - 50); }
+  }
+  return { a: a, b: b, op: plus ? '+' : '−', rep: plus ? a + b : a - b };
+}
+
+/* 15 calculs : 8 additions et 7 soustractions, mélangées, sans doublon. */
+function preparerCalculs() {
+  var signes = [], liste = [], vus = {}, i;
+  for (i = 0; i < NB_CALCULS; i++) signes.push(i < 8 ? '+' : '-');
+  for (i = signes.length - 1; i > 0; i--) { var k = hasard(0, i), t = signes[i]; signes[i] = signes[k]; signes[k] = t; }
+  for (i = 0; i < NB_CALCULS; i++) {
+    var c, cle, essai = 0;
+    do { c = unCalcul(signes[i]); cle = c.a + c.op + c.b; essai++; } while (vus[cle] && essai < 30);
+    vus[cle] = true;
+    liste.push(c);
+  }
+  return liste;
+}
+
+/* La fiche : 2 colonnes (1 à 8, puis 9 à 15), comme une feuille d'exercices. */
+function htmlFiche(calculs, saisies, corrige, sel) {
+  var h = '';
+  for (var i = 0; i < calculs.length; i++) {
+    var c = calculs[i], s = saisies[i], col = i < 8 ? 0 : 1, lig = i < 8 ? i : i - 8;
+    var cls = 'boite', apres = '';
+    if (corrige) {
+      if (s === '') { cls += ' vide'; apres = '<span class="corr">' + c.rep + '</span>'; }
+      else if (parseInt(s, 10) === c.rep) { cls += ' juste'; apres = '<span class="corr">&#10004;</span>'; }
+      else { cls += ' faux'; apres = '<span class="corr">' + c.rep + '</span>'; }
+    }
+    h += '<div class="item' + (!corrige && i === sel ? ' sel' : '') + '" data-i="' + i + '" style="left:' + (8 + col * 316) + 'px;top:' + (12 + lig * 51) + 'px">' +
+         '<span class="num">' + (i + 1) + '.</span><span class="calc">' + c.a + ' ' + c.op + ' ' + c.b + ' =</span>' +
+         '<span class="' + cls + '">' + s + '</span>' + apres + '</div>';
+  }
+  return h;
+}
+
+/* --- Écran des réglages --- */
+function ouvrirReglagesChrono() {
+  afficher('chronoReglages');
+  majReglagesChrono();
+}
+
+function majReglagesChrono() {
+  var opts = $('chronoReglages').querySelectorAll('.opt');
+  for (var i = 0; i < opts.length; i++) {
+    var b = opts[i], on = b.getAttribute('data-cniv') ? parseInt(b.getAttribute('data-cniv'), 10) === cr.niv
+                                                    : parseInt(b.getAttribute('data-ctps'), 10) === cr.temps;
+    b.className = 'opt' + (on ? ' choisi' : '');
+  }
+  var h = '<b>15 calculs</b> avec ' + CHRONO_NIV[cr.niv] + '.<br>Le dino attrape l\'œuf en <b>' + enMots(cr.temps) + '</b>.';
+  var rec = lireRecord();
+  if (rec) h += '<br>Ton record : <b>' + rec.score + ' / 15</b> en ' + enMots(rec.temps);
+  $('infoChrono').innerHTML = h;
+}
+
+function lireRecord() {
+  var r = lire(cleRecord());
+  if (!r) return null;
+  var p = r.split('|');
+  return { score: parseInt(p[0], 10), temps: parseFloat(p[1]) };
+}
+
+function construireChrono() {
+  var opts = $('chronoReglages').querySelectorAll('.opt');
+  for (var i = 0; i < opts.length; i++) {
+    opts[i].onclick = function () {
+      if (this.getAttribute('data-cniv')) { cr.niv = parseInt(this.getAttribute('data-cniv'), 10); stocker('c-niv', cr.niv); }
+      else { cr.temps = parseInt(this.getAttribute('data-ctps'), 10); stocker('c-temps', cr.temps); }
+      majReglagesChrono();
+    };
+  }
+  var t = ['7', '8', '9', '4', '5', '6', '1', '2', '3', 'eff', '0', 'ok'], h = '';
+  for (var k = 0; k < t.length; k++) {
+    var lib = t[k] === 'eff' ? 'Effacer' : (t[k] === 'ok' ? 'Suivant' : t[k]);
+    h += '<button class="touche' + (t[k] === 'eff' ? ' eff' : '') + (t[k] === 'ok' ? ' ok' : '') + '" data-t="' + t[k] + '">' + lib + '</button>';
+  }
+  $('paveChrono').innerHTML = h;
+  var bs = $('paveChrono').getElementsByTagName('button');
+  for (var n = 0; n < bs.length; n++) bs[n].onclick = function () { toucheChrono(this.getAttribute('data-t')); };
+  $('fiche').onclick = function (ev) {
+    var el = (ev || window.event).target || (ev || window.event).srcElement;
+    while (el && el !== this && !(el.className && String(el.className).indexOf('item') === 0)) el = el.parentNode;
+    if (!el || el === this || !course || course.fini) return;
+    course.sel = parseInt(el.getAttribute('data-i'), 10);
+    majFiche();
+  };
+  $('btnFini').onclick = appuiFini;
+  $('btnPartir').onclick = partirChrono;
+  $('regMenu').onclick = allerMenu;
+  $('btnStop').onclick = function () { arreterMinuteur(); course = null; ouvrirReglagesChrono(); };
+  $('btnChronoRejouer').onclick = partirChrono;
+  $('btnChronoReglages').onclick = ouvrirReglagesChrono;
+  $('btnChronoMenu').onclick = allerMenu;
+}
+
+/* --- L'épreuve --- */
+function partirChrono() {
+  var dispo = [];
+  for (var i = 0; i < DINOS.length; i++) if (debloque(i)) dispo.push(i);
+  var d = DINOS[dispo[Math.floor(Math.random() * dispo.length)]];
+  var saisies = [];
+  for (var k = 0; k < NB_CALCULS; k++) saisies.push('');
+  course = { d: d, calculs: preparerCalculs(), saisies: saisies, sel: 0, duree: cr.temps,
+             debut: new Date().getTime(), fini: false, pas: 0, confirmer: 0 };
+  dessinerDino($('canChasseur'), d, false);
+  dessinerOeuf($('canOeuf'));
+  $('btnFini').innerHTML = 'J\'ai fini !';
+  afficher('chrono');
+  majFiche();
+  majCourse();
+  arreterMinuteur();
+  minuteur = setInterval(majCourse, 100);
+}
+
+function arreterMinuteur() { if (minuteur) { clearInterval(minuteur); minuteur = null; } }
+function ecoule() { return (new Date().getTime() - course.debut) / 1000; }
+function nbRemplis() { var n = 0; for (var i = 0; i < NB_CALCULS; i++) if (course.saisies[i] !== '') n++; return n; }
+
+function majFiche() {
+  $('fiche').innerHTML = htmlFiche(course.calculs, course.saisies, false, course.sel);
+  var n = nbRemplis();
+  $('compteur').innerHTML = n + ' calcul' + (n > 1 ? 's' : '') + ' fait' + (n > 1 ? 's' : '') + ' sur 15';
+}
+
+function majCourse() {
+  if (!course || course.fini) return;
+  var t = ecoule(), p = Math.min(1, t / course.duree), reste = course.duree - t;
+  course.pas++;
+  var saut = (course.pas >> 1) % 2 ? -6 : 0;   // le dino court en sautillant
+  var st = $('chasseur').style;
+  st.left = Math.round(p * 774) + 'px';
+  st.webkitTransform = 'translateY(' + saut + 'px)'; st.transform = 'translateY(' + saut + 'px)';
+  $('temps').innerHTML = enMinutes(reste);
+  $('temps').className = reste <= 15 ? 'urgent' : '';
+  var oe = $('oeuf').style, tr = '';
+  if (p > 0.85) tr = 'rotate(' + ((course.pas % 2) ? 8 : -8) + 'deg)';   // l'œuf tremble quand le dino approche
+  oe.webkitTransform = tr; oe.transform = tr;
+  if (course.confirmer && new Date().getTime() > course.confirmer) { course.confirmer = 0; $('btnFini').innerHTML = 'J\'ai fini !'; }
+  if (p >= 1) tempsEcoule();
+}
+
+/* Passe à la case suivante (de préférence une case vide). */
+function caseSuivante() {
+  for (var k = 1; k <= NB_CALCULS; k++) {
+    var i = (course.sel + k) % NB_CALCULS;
+    if (course.saisies[i] === '') { course.sel = i; return; }
+  }
+  course.sel = (course.sel + 1) % NB_CALCULS;
+}
+
+function toucheChrono(t) {
+  if (!course || course.fini) return;
+  var s = course.saisies[course.sel];
+  if (t === 'ok') caseSuivante();
+  else if (t === 'eff') course.saisies[course.sel] = s.slice(0, -1);
+  else if (s.length < 4) course.saisies[course.sel] = (s === '0' ? '' : s) + t;
+  majFiche();
+}
+
+function appuiFini() {
+  if (!course || course.fini) return;
+  var vides = NB_CALCULS - nbRemplis();
+  if (vides > 0 && !course.confirmer) {   // un 2e appui confirme
+    $('btnFini').innerHTML = vides + ' vide' + (vides > 1 ? 's' : '') + ' : sûr ?';
+    course.confirmer = new Date().getTime() + 3000;
+    return;
+  }
+  terminerChrono(false);
+}
+
+function tempsEcoule() {
+  course.fini = true;
+  arreterMinuteur();
+  $('temps').innerHTML = '0:00';
+  dessinerOeuf($('canOeuf'), true);
+  $('compteur').innerHTML = 'Temps écoulé ! ' + course.d.nom + ' a attrapé l\'œuf !';
+  son([392, 330, 262], 0.2);
+  setTimeout(function () { terminerChrono(true); }, 1800);
+}
+
+function terminerChrono(horsTemps) {
+  course.fini = true;
+  arreterMinuteur();
+  var temps = horsTemps ? course.duree : ecoule(), juste = 0;
+  for (var i = 0; i < NB_CALCULS; i++) if (course.saisies[i] !== '' && parseInt(course.saisies[i], 10) === course.calculs[i].rep) juste++;
+  $('ficheCorrigee').innerHTML = htmlFiche(course.calculs, course.saisies, true, -1);
+  $('scoreFin').innerHTML = juste + ' <small>/ 15</small>';
+  var etoiles = juste === 15 ? 3 : juste >= 12 ? 2 : juste >= 8 ? 1 : 0, e = '';
+  for (var k = 0; k < 3; k++) e += k < etoiles ? '&#9733;' : '&#9734;';
+  $('etoilesFin').innerHTML = e;
+  if (horsTemps) {
+    $('titreChronoFin').innerHTML = 'Temps écoulé !';
+    $('sousTitreFin').innerHTML = course.d.nom + ' a attrapé l\'œuf. Voici la correction :';
+  } else {
+    $('titreChronoFin').innerHTML = juste === 15 ? 'Bravo, tout est juste !' : 'Fini à temps !';
+    $('sousTitreFin').innerHTML = 'L\'œuf est sauvé, avec ' + enMots(course.duree - temps) + ' d\'avance. Voici la correction :';
+  }
+  $('texteChronoFin').innerHTML = juste === 15 ? 'Zéro faute !' : (juste >= 12 ? 'Très bien !' : (juste >= 8 ? 'Bien, continue !' : 'Courage, on recommence !'));
+  if (horsTemps) $('texteChronoFin').innerHTML += '<br>' + nbRemplis() + ' calcul' + (nbRemplis() > 1 ? 's' : '') + ' fait' + (nbRemplis() > 1 ? 's' : '') + ' en ' + enMots(course.duree) + '.';
+  else $('texteChronoFin').innerHTML += '<br>Fini en ' + enMots(temps) + '.';
+  var rec = lireRecord(), txt = '';
+  if (!rec || juste > rec.score || (juste === rec.score && temps < rec.temps)) {
+    if (juste > 0) {
+      txt = rec ? 'Nouveau record !' : 'Premier record !';
+      stocker(cleRecord(), juste + '|' + temps.toFixed(1));
+    }
+  } else txt = 'Record : ' + rec.score + ' / 15 en ' + enMots(rec.temps);
+  $('recordFin').innerHTML = txt;
+  if (juste >= 12) { sonBravo(); setTimeout(sonBravo, 450); }
+  afficher('chronoFin');
+}
+
+/* Clavier (pour jouer sur un ordinateur) */
+document.onkeydown = function (ev) {
+  ev = ev || window.event;
+  var k = ev.keyCode;
+  var t = (k >= 48 && k <= 57) ? String(k - 48) : (k >= 96 && k <= 105) ? String(k - 96) : k === 13 ? 'ok' : k === 8 ? 'eff' : null;
+  if (!t) return;
+  if ($('chrono').style.display === 'block') { toucheChrono(t); return false; }
+  if ($('combat').style.display === 'block' && $('calcul').style.display === 'block') { touche(t); return false; }
+};
+
 /* ---------- Démarrage ---------- */
+function allerMenu() { arreterMinuteur(); course = null; afficher('menu'); }
 $('btnRejouer').onclick = function () { afficher('accueil'); majAccueil(); };
+$('btnFinMenu').onclick = allerMenu;
+$('accMenu').onclick = allerMenu;
+$('jeuCombat').onclick = function () { etapeChoix = 0; afficher('accueil'); majAccueil(); };
+$('jeuChrono').onclick = ouvrirReglagesChrono;
 construireAccueil();
 construirePave();
+construireChrono();
 majAccueil();
-afficher('accueil');
+dessinerMenu();
+afficher('menu');
 ajuster();
 </script>
 </body>
