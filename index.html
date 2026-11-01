@@ -133,11 +133,11 @@
   /* Menu */
   #menu h1 { margin: 22px 0 6px; text-align: center; font-size: 56px; color: #1f5a0e; text-shadow: 3px 3px 0 #fff; }
   #menu .soustitre { text-align: center; font-size: 26px; margin: 0 0 18px; }
-  .jeu { display: inline-block; vertical-align: top; width: 400px; height: 360px; margin: 0 20px; border-radius: 24px;
+  .jeu { display: inline-block; vertical-align: top; width: 300px; height: 360px; margin: 0 8px; border-radius: 24px;
     background: #fff; border: 5px solid #1f3a12; border-bottom-width: 11px; text-align: center; color: #1f3a12; }
   .jeu:active { border-bottom-width: 5px; margin-top: 6px; }
-  .jeu canvas { width: 360px; height: 180px; margin-top: 10px; }
-  .jeu .nom { font-size: 36px; font-weight: bold; color: #b35c00; }
+  .jeu canvas { width: 270px; height: 135px; margin-top: 14px; }
+  .jeu .nom { font-size: 32px; font-weight: bold; color: #b35c00; margin-top: 8px; }
   .jeu .desc { font-size: 21px; margin: 6px 20px 0; }
 
   /* Calcul chrono : réglages */
@@ -201,6 +201,54 @@
   #texteChronoFin { font-size: 22px; margin: 0 0 4px; }
   #recordFin { font-size: 22px; color: #6b1f8a; font-weight: bold; margin: 0 0 8px; min-height: 26px; }
   #bilanFin .gros { width: 320px; font-size: 26px; padding: 8px 0; margin-bottom: 8px; }
+  /* Œufs de dino : choix de la table */
+  #oeufsTables h1 { margin: 10px 0 2px; text-align: center; font-size: 44px; color: #1f5a0e; text-shadow: 3px 3px 0 #fff; }
+  #oeufsTables .intro { text-align: center; font-size: 22px; margin: 0 0 10px; }
+  #grilleTables { text-align: center; }
+  .tableOeuf { display: inline-block; vertical-align: top; width: 172px; height: 176px; margin: 5px 5px; border-radius: 20px;
+    background: #fff; border: 4px solid #1f3a12; border-bottom-width: 9px; color: #1f3a12; padding: 0; }
+  .tableOeuf:active { border-bottom-width: 4px; margin-top: 10px; }
+  .tableOeuf canvas { display: block; width: 64px; height: 80px; margin: 6px auto 0; }
+  .tableOeuf .lib { display: block; font-size: 34px; font-weight: bold; color: #b35c00; height: 40px; line-height: 40px; }
+  .tableOeuf .lib.mot { font-size: 28px; }
+  .tableOeuf .et { display: block; font-size: 30px; color: #f2b705; text-shadow: 1px 1px 0 #9a6b00; height: 34px; line-height: 34px; }
+  .tableOeuf .et.ferme { font-size: 18px; color: #777; text-shadow: none; }
+  .tableOeuf.ferme { background: #e6e6da; border-color: #9a9a8a; }
+  .tableOeuf.ferme canvas { opacity: 0.35; }
+  .tableOeuf.ferme .lib { color: #888; }
+  .tableOeuf.conseil { background: #fff7d1; border-color: #c99600; }
+  #infoTables { position: absolute; left: 20px; right: 20px; top: 502px; text-align: center; font-size: 22px; line-height: 28px; }
+  #infoTables b { color: #b35c00; }
+
+  /* Œufs de dino : la partie */
+  .rangOeufs { position: absolute; top: 20px; width: 800px; height: 84px; }
+  .petitOeuf { position: absolute; top: 0; width: 64px; height: 80px; }
+  .petitOeuf canvas { width: 64px; height: 80px; }
+  .petitOeuf.actuel { background: #fff7d1; border-radius: 18px; -webkit-box-shadow: 0 0 0 4px #f2b705; box-shadow: 0 0 0 4px #f2b705; }
+  .petitOeuf.rate canvas { opacity: 0.35; }
+  #oeTitre { position: absolute; left: 12px; top: 58px; width: 170px; font-size: 26px; font-weight: bold; color: #1f5a0e; text-shadow: 2px 2px 0 #fff; }
+  #panneauOeufs { position: absolute; left: 6px; right: 6px; top: 120px; height: 432px; background: #fffbe8;
+    border-radius: 18px; border: 4px solid #1f3a12; }
+  #oeConsigne { position: absolute; left: 10px; top: 10px; width: 620px; height: 34px; text-align: center; font-size: 24px; }
+  #oeConsigne b { color: #b35c00; }
+  #oeQuestion { position: absolute; left: 10px; top: 46px; width: 620px; text-align: center; font-size: 58px; font-weight: bold; }
+  #oeRep { display: inline-block; min-width: 130px; height: 72px; line-height: 72px; padding: 0 12px;
+    border: 4px solid #2b7bd9; border-radius: 14px; background: #fff; vertical-align: middle; color: #2b7bd9; }
+  #oeRep.juste { border-color: #1c9a1c; background: #dff5df; color: #1c7a1c; }
+  #oeRep.faux { border-color: #e01b1b; background: #ffe3e3; color: #e01b1b; }
+  #canNid { position: absolute; left: 20px; top: 136px; width: 600px; height: 250px; }
+  #oeAide { position: absolute; left: 10px; top: 390px; width: 620px; text-align: center; font-size: 22px; font-weight: bold; color: #1f5a0e; }
+  #oePave { position: absolute; left: 646px; top: 14px; width: 330px; text-align: center; }
+
+  /* Œufs de dino : fin de la couvée */
+  #oeufsFin h2 { position: absolute; left: 0; top: 8px; width: 1000px; text-align: center; font-size: 46px; margin: 0;
+    color: #b35c00; text-shadow: 3px 3px 0 #fff; }
+  #oeufsFin .rangOeufs { left: 100px; top: 74px; }
+  #oeBilan { position: absolute; left: 30px; right: 30px; top: 172px; text-align: center; font-size: 28px; line-height: 38px; }
+  #oeBilan .grosseEtoile { font-size: 72px; line-height: 80px; color: #f2b705; text-shadow: 3px 3px 0 #9a6b00; }
+  #oeBilan .revoir { font-size: 24px; color: #6b1f8a; }
+  #oeBoutons { position: absolute; left: 0; top: 450px; width: 1000px; text-align: center; }
+  #oeBoutons .gros { margin: 0 6px; }
 </style>
 </head>
 <body>
@@ -214,7 +262,9 @@
       <button class="jeu" id="jeuCombat"><canvas id="canMenuCombat" width="720" height="360"></canvas>
         <div class="nom">Combat de dinos</div><div class="desc">Calcule les points de vie pour gagner le combat !</div></button><button
         class="jeu" id="jeuChrono"><canvas id="canMenuChrono" width="720" height="360"></canvas>
-        <div class="nom">Calcul chrono</div><div class="desc">15 calculs en 3 minutes, comme à l'école !</div></button>
+        <div class="nom">Calcul chrono</div><div class="desc">15 calculs en 3 minutes, comme à l'école !</div></button><button
+        class="jeu" id="jeuOeufs"><canvas id="canMenuOeufs" width="720" height="360"></canvas>
+        <div class="nom">Œufs de dino</div><div class="desc">Fais éclore les œufs avec les tables de multiplication !</div></button>
     </div>
   </div>
 
@@ -261,6 +311,39 @@
       <button class="gros" id="btnChronoRejouer">Nouvelle fiche</button>
       <button class="gros bleu" id="btnChronoReglages">Réglages</button>
       <button class="gros gris" id="btnChronoMenu">Menu</button>
+    </div>
+  </div>
+
+  <!-- ===== Œufs de dino : choix de la table ===== -->
+  <div id="oeufsTables" class="ecran">
+    <button class="petitBtn" id="oeMenu">&#9664; Menu</button>
+    <h1>Œufs de dino</h1>
+    <div class="intro">Choisis une table. Chaque bonne réponse fait éclore un œuf !</div>
+    <div id="grilleTables"></div>
+    <div id="infoTables"></div>
+  </div>
+
+  <!-- ===== Œufs de dino : la partie ===== -->
+  <div id="oeufs" class="ecran">
+    <button class="petitBtn" id="oeStop">&#9664; Tables</button>
+    <div id="oeTitre"></div>
+    <div class="rangOeufs" id="rangJeu" style="left:186px"></div>
+    <div id="panneauOeufs">
+      <div id="oeConsigne"></div>
+      <div id="oeQuestion"><span id="oeCalc"></span> = <span id="oeRep"></span></div>
+      <canvas id="canNid" width="1200" height="500"></canvas>
+      <div id="oeAide"></div>
+      <div id="oePave"></div>
+    </div>
+  </div>
+
+  <!-- ===== Œufs de dino : fin de la couvée ===== -->
+  <div id="oeufsFin" class="ecran">
+    <h2 id="oeTitreFin"></h2>
+    <div class="rangOeufs" id="rangFin"></div>
+    <div id="oeBilan"></div>
+    <div id="oeBoutons">
+      <button class="gros" id="oeRejouer">Rejouer</button><button class="gros bleu" id="oeTables">Tables</button><button class="gros gris" id="oeFinMenu">Menu</button>
     </div>
   </div>
 
@@ -684,7 +767,7 @@ var modeCalcul = lire('mode') === 'direct' ? 'direct' : 'pose';
 var q = null;            // question en cours
 
 function afficher(id) {
-  var e = ['menu', 'accueil', 'combat', 'fin', 'chronoReglages', 'chrono', 'chronoFin'];
+  var e = ['menu', 'accueil', 'combat', 'fin', 'chronoReglages', 'chrono', 'chronoFin', 'oeufsTables', 'oeufs', 'oeufsFin'];
   for (var i = 0; i < e.length; i++) $(e[i]).style.display = e[i] === id ? 'block' : 'none';
 }
 
@@ -1175,6 +1258,7 @@ function dessinerMenu() {
   var o = document.createElement('canvas'); o.width = 128; o.height = 160;
   dessinerOeuf(o);
   b.getContext('2d').drawImage(o, 560, 140, 128, 160);
+  dessinerMenuOeufs($('canMenuOeufs'));
 }
 
 /* ================= Calcul chrono (format de l'examen) ================= */
@@ -1445,6 +1529,373 @@ function terminerChrono(horsTemps) {
   afficher('chronoFin');
 }
 
+/* ================= Œufs de dino (tables de multiplication) ================= */
+/* On choisit une table. Pour une nouvelle table, on commence par le nid :
+   des rangées d'œufs pour voir ce qu'est une multiplication (3 × 5 = 3 rangées de 5 œufs).
+   Puis 10 calculs sans image : chaque bonne réponse fait éclore un œuf.
+   9 œufs du premier coup = la table est maîtrisée (une étoile) et la suivante s'ouvre. */
+var OE_ORDRE = [2, 5, 10, 3, 4, 6, 7, 8, 9];   // ordre d'apprentissage
+var OE_NB = 10;          // œufs par couvée
+var OE_POUR_ETOILE = 9;  // bonnes réponses du premier coup pour maîtriser la table
+var OE_NID = 3;          // questions avec le nid pour une table pas encore maîtrisée
+var oe = null;           // partie en cours
+var cacheDinos = {};
+
+function etoilesOeufs() { var s = lire('o-etoiles'); return s ? s.split(',') : []; }
+function maitrisee(t) { return etoilesOeufs().indexOf(String(t)) >= 0; }
+function tableOuverte(i) { return i === 0 || maitrisee(OE_ORDRE[i - 1]); }
+function tablesMaitrisees() {
+  var m = [];
+  for (var i = 0; i < OE_ORDRE.length; i++) if (maitrisee(OE_ORDRE[i])) m.push(OE_ORDRE[i]);
+  return m;
+}
+function melangeOuvert() { return tablesMaitrisees().length >= 2; }
+function melanger(t) {
+  for (var i = t.length - 1; i > 0; i--) { var k = hasard(0, i), x = t[i]; t[i] = t[k]; t[k] = x; }
+  return t;
+}
+
+/* --- Dessins --- */
+function imageDino(d) {
+  if (!cacheDinos[d.id]) {
+    var tmp = document.createElement('canvas');
+    tmp.width = 240; tmp.height = 180;
+    dessinerDino(tmp, d, false);
+    cacheDinos[d.id] = tmp;
+  }
+  return cacheDinos[d.id];
+}
+
+/* Un bébé dino qui sort de sa coquille (canvas au format d'un œuf, 64 x 80). */
+function dessinerBebe(canvas, d) {
+  var c = canvas.getContext('2d'), k = canvas.width / 64;
+  c.setTransform(1, 0, 0, 1, 0, 0);
+  c.clearRect(0, 0, canvas.width, canvas.height);
+  c.drawImage(imageDino(d), -2 * k, 8 * k, 68 * k, 51 * k);
+  var sh = document.createElement('canvas');
+  sh.width = canvas.width; sh.height = canvas.height;
+  dessinerOeuf(sh, true);
+  c.setTransform(1, 0, 0, 1, 0, 0);
+  c.drawImage(sh, 0, 0);
+}
+
+/* Le nid : "paquets" paquets de "taille" œufs (3 × 5 = 3 paquets de 5).
+   Les paquets sont des rangées (toujours pour l'échauffement, qui parle de rangées),
+   ou des colonnes si les œufs y sont plus gros (ex. 9 × 2).
+   Avec "totaux", on affiche le compte paquet par paquet : 5, 10, 15… */
+function dessinerNid(canvas, paquets, taille, totaux, rangees) {
+  var c = canvas.getContext('2d'), k = canvas.width / 600;
+  c.setTransform(k, 0, 0, k, 0, 0);
+  c.clearRect(0, 0, 600, 250);
+  if (!paquets) return;
+  var sR = Math.min(56, 440 / taille, 210 / paquets), sC = Math.min(56, 500 / paquets, 180 / taille);
+  var enRangees = rangees || sR >= sC, s = enRangees ? sR : sC;
+  var cols = enRangees ? taille : paquets, lignes = enRangees ? paquets : taille;
+  var w = cols * s, h = lignes * s;
+  var x0 = Math.round((enRangees ? 260 : 300) - w / 2), y0 = Math.round((enRangees ? 125 : 108) - h / 2);
+  // le nid (de la paille)
+  c.lineJoin = 'round';
+  c.beginPath();
+  c.moveTo(x0 - 12, y0 - 8); c.lineTo(x0 + w + 12, y0 - 8); c.lineTo(x0 + w + 12, y0 + h + 8); c.lineTo(x0 - 12, y0 + h + 8); c.closePath();
+  c.fillStyle = '#e2b46a'; c.fill(); c.lineWidth = 4; c.strokeStyle = '#8a5a2b'; c.stroke();
+  c.lineWidth = 2; c.strokeStyle = '#b7843c';
+  for (var r = 1; r < paquets; r++) {   // un trait de paille entre deux paquets
+    c.beginPath();
+    if (enRangees) { c.moveTo(x0 - 6, y0 + r * s); c.lineTo(x0 + w + 6, y0 + r * s); }
+    else { c.moveTo(x0 + r * s, y0 - 4); c.lineTo(x0 + r * s, y0 + h + 4); }
+    c.stroke();
+  }
+  // les œufs
+  for (var i = 0; i < lignes; i++) {
+    for (var j2 = 0; j2 < cols; j2++) {
+      ell(c, x0 + (j2 + 0.5) * s, y0 + (i + 0.5) * s, s * 0.34, s * 0.43);
+      c.fillStyle = '#fff4d6'; c.fill(); c.lineWidth = Math.max(1, s / 18); c.strokeStyle = '#1f3a12'; c.stroke();
+      c.fillStyle = '#7cc35a';
+      c.beginPath(); c.arc(x0 + (j2 + 0.6) * s, y0 + (i + 0.6) * s, s * 0.09, 0, Math.PI * 2); c.fill();
+    }
+  }
+  if (totaux) {
+    c.fillStyle = '#2b7bd9';
+    c.font = 'bold ' + Math.round(Math.max(14, Math.min(30, s * 0.7))) + 'px Arial';
+    c.textBaseline = 'middle';
+    c.textAlign = enRangees ? 'left' : 'center';
+    for (var p = 0; p < paquets; p++) {
+      if (enRangees) c.fillText(String((p + 1) * taille), x0 + w + 22, y0 + (p + 0.5) * s);
+      else c.fillText(String((p + 1) * taille), x0 + (p + 0.5) * s, y0 + h + 28);
+    }
+    c.textAlign = 'left';
+  }
+}
+
+function dessinerMenuOeufs(canvas) {
+  var c = canvas.getContext('2d');
+  c.setTransform(1, 0, 0, 1, 0, 0);
+  c.clearRect(0, 0, canvas.width, canvas.height);
+  c.fillStyle = '#c99a5b'; ell(c, 360, 300, 330, 50); c.fill();
+  c.lineWidth = 6; c.strokeStyle = '#8a5a2b'; c.stroke();
+  var o = document.createElement('canvas'); o.width = 128; o.height = 160;
+  dessinerOeuf(o);
+  c.setTransform(1, 0, 0, 1, 0, 0);
+  c.drawImage(o, 40, 150, 128, 160);
+  c.drawImage(o, 560, 150, 128, 160);
+  c.drawImage(o, 450, 170, 112, 140);
+  var b = document.createElement('canvas'); b.width = 256; b.height = 320;
+  dessinerBebe(b, DINOS[0]);
+  c.drawImage(b, 180, 10, 256, 320);
+}
+
+/* --- Écran des tables --- */
+function ouvrirTables() {
+  oe = null;
+  afficher('oeufsTables');
+  majTables();
+}
+
+function majTables(message) {
+  var h = '', conseil = -1, i;
+  for (i = 0; i < OE_ORDRE.length; i++) if (tableOuverte(i) && !maitrisee(OE_ORDRE[i])) { conseil = i; break; }
+  for (i = 0; i <= OE_ORDRE.length; i++) {
+    var mix = i === OE_ORDRE.length, ouvert = mix ? melangeOuvert() : tableOuverte(i);
+    var et = !ouvert ? '<span class="et ferme">fermée</span>'
+      : mix ? '<span class="et">' + (lire('o-mix') ? lire('o-mix') + ' / 10' : '&nbsp;') + '</span>'
+      : '<span class="et">' + (maitrisee(OE_ORDRE[i]) ? '&#9733;' : '&#9734;') + '</span>';
+    h += '<button class="tableOeuf' + (!ouvert ? ' ferme' : '') + (i === conseil ? ' conseil' : '') + '" data-i="' + i + '">' +
+         '<canvas width="128" height="160" id="oeT' + i + '"></canvas>' +
+         (mix ? '<span class="lib mot">Mélange</span>' : '<span class="lib">&times; ' + OE_ORDRE[i] + '</span>') + et + '</button>';
+  }
+  $('grilleTables').innerHTML = h;
+  for (i = 0; i <= OE_ORDRE.length; i++) {
+    var cv = $('oeT' + i);
+    if (i < OE_ORDRE.length && maitrisee(OE_ORDRE[i])) dessinerBebe(cv, DINOS[i % DINOS.length]);
+    else dessinerOeuf(cv);
+  }
+  var bs = $('grilleTables').getElementsByTagName('button');
+  for (var b = 0; b < bs.length; b++) bs[b].onclick = function () { choisirTable(parseInt(this.getAttribute('data-i'), 10)); };
+  if (!message) {
+    var m = tablesMaitrisees().length;
+    if (m === OE_ORDRE.length) message = 'Toutes les tables sont maîtrisées, champion ! Essaie le <b>mélange</b>.';
+    else message = 'Fais éclore 10 œufs. <b>' + OE_POUR_ETOILE + ' du premier coup</b> = une étoile, et la table suivante s\'ouvre !';
+  }
+  $('infoTables').innerHTML = message;
+}
+
+function choisirTable(i) {
+  if (i === OE_ORDRE.length) {
+    if (melangeOuvert()) partirOeufs('mix');
+    else majTables('Le <b>mélange</b> s\'ouvre quand tu as l\'étoile de 2 tables.');
+    return;
+  }
+  if (!tableOuverte(i)) {
+    majTables('La table de ' + OE_ORDRE[i] + ' s\'ouvrira quand tu auras l\'étoile de la <b>table de ' + OE_ORDRE[i - 1] + '</b>.');
+    return;
+  }
+  partirOeufs(OE_ORDRE[i]);
+}
+
+/* --- La couvée --- */
+function questionsTable(t) {
+  var q = [], n = melanger([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+  for (var i = 0; i < OE_NB; i++) q.push({ a: n[i], b: t });
+  return q;
+}
+function questionsMelange() {
+  var m = tablesMaitrisees(), q = [], vus = {}, essai = 0;
+  while (q.length < OE_NB && essai < 500) {
+    essai++;
+    var t = m[hasard(0, m.length - 1)], n = hasard(2, 10), cle = Math.min(t, n) + 'x' + Math.max(t, n);
+    if (vus[cle]) continue;
+    vus[cle] = true;
+    q.push(Math.random() < 0.5 ? { a: n, b: t } : { a: t, b: n });
+  }
+  return q;
+}
+
+function partirOeufs(t) {
+  var dispo = [], i;
+  for (i = 0; i < DINOS.length; i++) if (debloque(i)) dispo.push(DINOS[i]);
+  var nid = [];
+  if (t !== 'mix' && !maitrisee(t)) {
+    var n = melanger([2, 3, 4, 5]).slice(0, OE_NID);
+    n.sort(function (x, y) { return x - y; });
+    for (i = 0; i < n.length; i++) nid.push({ a: n[i], b: t });
+  }
+  var bebes = [];
+  for (i = 0; i < OE_NB; i++) bebes.push(dispo[hasard(0, dispo.length - 1)]);
+  oe = { t: t, nid: nid, qs: t === 'mix' ? questionsMelange() : questionsTable(t), phase: nid.length ? 'nid' : 'calc',
+         i: 0, saisie: '', essais: 0, res: [], bebes: bebes, occupe: false };
+  $('oeTitre').innerHTML = t === 'mix' ? 'Mélange' : 'Table de ' + t;
+  construireRang('rangJeu', 'oeJ');
+  afficher('oeufs');
+  if (oe.phase === 'nid') {
+    $('oeAide').innerHTML = 'D\'abord, le nid : compte les œufs !';
+  } else {
+    $('oeAide').innerHTML = 'Fais éclore les 10 œufs !';
+  }
+  poserQuestion();
+}
+
+function construireRang(id, pre) {
+  var h = '';
+  for (var i = 0; i < OE_NB; i++) h += '<div class="petitOeuf" id="' + pre + i + '" style="left:' + (i * 80 + 8) + 'px"><canvas width="128" height="160"></canvas></div>';
+  $(id).innerHTML = h;
+  for (var k = 0; k < OE_NB; k++) majPetitOeuf(pre, k);
+}
+
+function majPetitOeuf(pre, i) {
+  var el = $(pre + i), cv = el.getElementsByTagName('canvas')[0], r = oe.res[i];
+  if (r) dessinerBebe(cv, oe.bebes[i]); else dessinerOeuf(cv);
+  el.className = 'petitOeuf' + (r === 0 ? ' rate' : '') + (pre === 'oeJ' && oe.phase === 'calc' && i === oe.i && r === undefined ? ' actuel' : '');
+  el.style.webkitTransform = ''; el.style.transform = '';
+}
+
+function questionCourante() { return oe.phase === 'nid' ? oe.nid[oe.i] : oe.qs[oe.i]; }
+
+function poserQuestion() {
+  var q = questionCourante();
+  oe.saisie = ''; oe.essais = 0; oe.occupe = false;
+  $('oeCalc').innerHTML = q.a + ' &times; ' + q.b;
+  if (oe.phase === 'nid') {
+    $('oeConsigne').innerHTML = 'Le nid : <b>' + q.a + ' rangée' + (q.a > 1 ? 's' : '') + '</b> de <b>' + q.b + ' œufs</b>. Combien d\'œufs en tout ?';
+    dessinerNid($('canNid'), q.a, q.b, false, true);
+  } else {
+    $('oeConsigne').innerHTML = 'Œuf n° <b>' + (oe.i + 1) + '</b> sur ' + OE_NB;
+    dessinerNid($('canNid'), 0, 0, false);
+  }
+  for (var k = 0; k < OE_NB; k++) majPetitOeuf('oeJ', k);
+  majSaisie('');
+}
+
+function majSaisie(cls) {
+  $('oeRep').innerHTML = oe.saisie === '' ? '&nbsp;' : oe.saisie;
+  $('oeRep').className = cls || '';
+}
+
+function toucheOeufs(t) {
+  if (!oe || oe.occupe) return;
+  if (t === 'ok') { validerOeuf(); return; }
+  if (t === 'eff') oe.saisie = oe.saisie.slice(0, -1);
+  else if (oe.saisie.length < 3) oe.saisie = (oe.saisie === '0' ? '' : oe.saisie) + t;
+  majSaisie('');
+}
+
+function validerOeuf() {
+  if (oe.saisie === '') return;
+  var partie = oe, q = questionCourante(), rep = q.a * q.b;
+  oe.occupe = true;
+  if (parseInt(oe.saisie, 10) === rep) {
+    sonBravo();
+    majSaisie('juste');
+    if (oe.phase === 'nid') {
+      $('oeAide').innerHTML = q.a + ' rangée' + (q.a > 1 ? 's' : '') + ' de ' + q.b + ', ça fait ' + rep + ' œufs. Bravo !';
+      dessinerNid($('canNid'), q.a, q.b, true, true);
+      setTimeout(function () { if (oe === partie) suivanteOeuf(); }, 1800);
+    } else {
+      oe.res[oe.i] = oe.essais === 0 ? 2 : 1;
+      $('oeAide').innerHTML = oe.essais === 0 ? 'Bravo ! L\'œuf éclot !' : 'Oui ! L\'œuf éclot !';
+      eclore(oe.i, function () { if (oe === partie) suivanteOeuf(); });
+    }
+    return;
+  }
+  sonFaux();
+  oe.essais++;
+  majSaisie('faux');
+  if (oe.essais === 1) {
+    $('oeAide').innerHTML = 'Presque ! Regarde le nid : compte de ' + q.b + ' en ' + q.b + '.';
+    dessinerNid($('canNid'), q.a, q.b, true, oe.phase === 'nid');
+    setTimeout(function () { if (oe !== partie) return; oe.saisie = ''; majSaisie(''); oe.occupe = false; }, 900);
+  } else {
+    $('oeAide').innerHTML = 'C\'était ' + q.a + ' &times; ' + q.b + ' = ' + rep + '. On le retient !';
+    oe.saisie = String(rep);
+    setTimeout(function () { if (oe === partie) majSaisie('juste'); }, 400);
+    if (oe.phase === 'calc') { oe.res[oe.i] = 0; majPetitOeuf('oeJ', oe.i); }
+    setTimeout(function () { if (oe === partie) suivanteOeuf(); }, 2600);
+  }
+}
+
+/* L'œuf tremble, puis le bébé dino sort. */
+function eclore(i, ensuite) {
+  var el = $('oeJ' + i), n = 0, partie = oe;
+  var anim = setInterval(function () {
+    if (oe !== partie) { clearInterval(anim); return; }
+    n++;
+    var tr = n < 7 ? 'rotate(' + (n % 2 ? 12 : -12) + 'deg)' : '';
+    el.style.webkitTransform = tr; el.style.transform = tr;
+    if (n >= 7) {
+      clearInterval(anim);
+      majPetitOeuf('oeJ', i);
+      son([784, 988, 1175], 0.08);
+      setTimeout(ensuite, 700);
+    }
+  }, 90);
+}
+
+function suivanteOeuf() {
+  oe.i++;
+  if (oe.phase === 'nid' && oe.i >= oe.nid.length) {
+    oe.phase = 'calc'; oe.i = 0;
+    $('oeAide').innerHTML = 'Super ! Maintenant sans le nid : fais éclore les 10 œufs !';
+  } else if (oe.phase === 'calc' && oe.i >= oe.qs.length) {
+    finOeufs();
+    return;
+  } else {
+    $('oeAide').innerHTML = '&nbsp;';
+  }
+  poserQuestion();
+}
+
+function finOeufs() {
+  var eclos = 0, premier = 0, revoir = [], i, t = oe.t;
+  for (i = 0; i < OE_NB; i++) {
+    if (oe.res[i]) eclos++;
+    if (oe.res[i] === 2) premier++;
+    else revoir.push(oe.qs[i].a + ' &times; ' + oe.qs[i].b + ' = ' + (oe.qs[i].a * oe.qs[i].b));
+  }
+  var titre, h = 'Tu as fait éclore <b>' + eclos + ' œuf' + (eclos > 1 ? 's' : '') + '</b> sur 10, dont <b>' + premier + '</b> du premier coup.';
+  if (t === 'mix') {
+    var rec = parseInt(lire('o-mix') || '0', 10);
+    titre = premier >= OE_POUR_ETOILE ? 'Bravo, quel mélange !' : (eclos >= 7 ? 'Bien joué !' : 'Courage, on recommence !');
+    if (premier > rec) { stocker('o-mix', premier); h += '<br><b>Nouveau record !</b>'; }
+    else h += '<br>Record : ' + rec + ' / 10 du premier coup.';
+  } else if (premier >= OE_POUR_ETOILE) {
+    var deja = maitrisee(t);
+    if (!deja) { var e = etoilesOeufs(); e.push(String(t)); stocker('o-etoiles', e.join(',')); }
+    titre = 'Table de ' + t + ' maîtrisée !';
+    h += '<br><span class="grosseEtoile">&#9733;</span>';
+    if (!deja) {
+      var pos = OE_ORDRE.indexOf(t), m = tablesMaitrisees().length;
+      if (m === OE_ORDRE.length) h += '<br>Toutes les tables sont maîtrisées, champion !';
+      else if (pos + 1 < OE_ORDRE.length && !maitrisee(OE_ORDRE[pos + 1])) h += '<br>La <b>table de ' + OE_ORDRE[pos + 1] + '</b> est ouverte !';
+      if (m === 2) h += '<br>Le <b>mélange</b> est ouvert aussi !';
+    }
+  } else {
+    titre = eclos >= 7 ? 'Bien joué !' : 'Courage, on recommence !';
+    h += '<br>Il faut ' + OE_POUR_ETOILE + ' œufs du premier coup pour l\'étoile. Encore un essai ?';
+  }
+  if (revoir.length && revoir.length <= 4) h += '<br><span class="revoir">À revoir : ' + revoir.join(' &nbsp; ') + '</span>';
+  else if (revoir.length) h += '<br><span class="revoir">À revoir : ' + revoir.slice(0, 4).join(' &nbsp; ') + '…</span>';
+  $('oeTitreFin').innerHTML = titre;
+  $('oeBilan').innerHTML = h;
+  construireRang('rangFin', 'oeF');
+  if (premier >= OE_POUR_ETOILE) { sonBravo(); setTimeout(sonBravo, 450); }
+  afficher('oeufsFin');
+}
+
+function construireOeufs() {
+  var t = ['7', '8', '9', '4', '5', '6', '1', '2', '3', 'eff', '0', 'ok'], h = '';
+  for (var k = 0; k < t.length; k++) {
+    var lib = t[k] === 'eff' ? 'Effacer' : (t[k] === 'ok' ? 'OK' : t[k]);
+    h += '<button class="touche' + (t[k] === 'eff' ? ' eff' : '') + (t[k] === 'ok' ? ' ok' : '') + '" data-t="' + t[k] + '">' + lib + '</button>';
+  }
+  $('oePave').innerHTML = h;
+  var bs = $('oePave').getElementsByTagName('button');
+  for (var n = 0; n < bs.length; n++) bs[n].onclick = function () { toucheOeufs(this.getAttribute('data-t')); };
+  $('oeMenu').onclick = allerMenu;
+  $('oeStop').onclick = ouvrirTables;
+  $('oeRejouer').onclick = function () { partirOeufs(oe ? oe.t : 2); };
+  $('oeTables').onclick = ouvrirTables;
+  $('oeFinMenu').onclick = allerMenu;
+}
+
 /* Clavier (pour jouer sur un ordinateur) */
 document.onkeydown = function (ev) {
   ev = ev || window.event;
@@ -1452,19 +1903,22 @@ document.onkeydown = function (ev) {
   var t = (k >= 48 && k <= 57) ? String(k - 48) : (k >= 96 && k <= 105) ? String(k - 96) : k === 13 ? 'ok' : k === 8 ? 'eff' : null;
   if (!t) return;
   if ($('chrono').style.display === 'block') { toucheChrono(t); return false; }
+  if ($('oeufs').style.display === 'block') { toucheOeufs(t); return false; }
   if ($('combat').style.display === 'block' && $('calcul').style.display === 'block') { touche(t); return false; }
 };
 
 /* ---------- Démarrage ---------- */
-function allerMenu() { arreterMinuteur(); course = null; afficher('menu'); }
+function allerMenu() { arreterMinuteur(); course = null; oe = null; afficher('menu'); }
 $('btnRejouer').onclick = function () { afficher('accueil'); majAccueil(); };
 $('btnFinMenu').onclick = allerMenu;
 $('accMenu').onclick = allerMenu;
 $('jeuCombat').onclick = function () { etapeChoix = 0; afficher('accueil'); majAccueil(); };
 $('jeuChrono').onclick = ouvrirReglagesChrono;
+$('jeuOeufs').onclick = ouvrirTables;
 construireAccueil();
 construirePave();
 construireChrono();
+construireOeufs();
 majAccueil();
 dessinerMenu();
 afficher('menu');
