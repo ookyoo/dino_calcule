@@ -249,6 +249,45 @@
   #oeBilan .revoir { font-size: 24px; color: #6b1f8a; }
   #oeBoutons { position: absolute; left: 0; top: 450px; width: 1000px; text-align: center; }
   #oeBoutons .gros { margin: 0 6px; }
+  /* Mes trophées */
+  #btnTrophees { position: absolute; right: 16px; top: 20px; font-size: 24px; font-weight: bold; padding: 10px 18px;
+    border-radius: 16px; background: #f2b705; color: #3b2a00; border-bottom: 6px solid #9a6b00; }
+  #btnTrophees:active { border-bottom-width: 2px; margin-top: 4px; }
+  #btnTrophees .et { color: #fff; text-shadow: 1px 1px 0 #9a6b00; }
+  #trophees h1 { margin: 6px 0 0; text-align: center; font-size: 40px; color: #1f5a0e; text-shadow: 3px 3px 0 #fff; height: 48px; }
+  #rang { position: absolute; left: 150px; top: 58px; width: 700px; height: 76px; background: #fff7d1; border: 4px solid #c99600;
+    border-radius: 18px; }
+  #rang canvas { position: absolute; left: 8px; top: 2px; width: 96px; height: 72px; }
+  #rangNom { position: absolute; left: 112px; top: 6px; width: 400px; font-size: 26px; font-weight: bold; color: #b35c00; }
+  #rangTotal { position: absolute; right: 14px; top: 4px; font-size: 34px; font-weight: bold; color: #f2b705; text-shadow: 2px 2px 0 #9a6b00; }
+  #rangBarre { position: absolute; left: 112px; right: 14px; top: 42px; height: 22px; background: #fff; border: 3px solid #c99600;
+    border-radius: 11px; overflow: hidden; }
+  #rangVie { position: absolute; left: 0; top: 0; bottom: 0; background: #f2b705; }
+  #rangTxt { position: absolute; left: 0; right: 0; top: 1px; text-align: center; font-size: 16px; font-weight: bold; color: #5a3d00; }
+  .boiteTr { position: absolute; top: 144px; width: 318px; height: 408px; background: #fffbe8; border: 4px solid #1f3a12;
+    border-radius: 18px; text-align: center; }
+  .boiteTr h3 { margin: 6px 0 4px; font-size: 24px; color: #b35c00; }
+  .boiteTr .ligne { height: auto; font-size: 21px; margin: 8px 0; }
+  .boiteTr .ligne b { color: #1f5a0e; }
+  .boiteTr .petit { font-size: 16px; color: #6b6b5a; }
+  .boiteTr .astuce { position: absolute; left: 10px; right: 10px; bottom: 10px; font-size: 17px; color: #6b1f8a; line-height: 22px; }
+  .et3 { color: #f2b705; text-shadow: 1px 1px 0 #9a6b00; }
+  .et3 .vide { color: #d8d3b8; text-shadow: none; }
+  #trCombat { left: 9px; } #trChrono { left: 341px; } #trOeufs { left: 673px; }
+  #trDinos canvas { display: inline-block; width: 58px; height: 44px; margin: 0 1px; border-radius: 8px; background: #fff; }
+  #trDinoNom { height: 24px; font-size: 18px; font-weight: bold; color: #1f5a0e; }
+  .chipNiv { display: inline-block; width: 140px; margin: 2px 2px; padding: 3px 0; border-radius: 10px; background: #e6e6da;
+    color: #888; font-size: 17px; font-weight: bold; }
+  .chipNiv.ok { background: #dff5df; color: #1c7a1c; }
+  .rec { height: 40px; line-height: 40px; margin: 3px 10px; border-radius: 10px; background: #fff; font-size: 19px; text-align: left; padding: 0 8px; }
+  .rec .n { display: inline-block; width: 92px; font-weight: bold; }
+  .rec .et3 { display: inline-block; width: 82px; font-size: 24px; }
+  .rec .s { color: #6b6b5a; font-size: 19px; }
+  .rec .s b { color: #1f5a0e; }
+  #trTables span { display: inline-block; width: 56px; margin: 0 2px; font-size: 16px; font-weight: bold; color: #b35c00; vertical-align: top; }
+  #trTables canvas { display: block; width: 40px; height: 50px; margin: 0 auto; }
+  #trTables .ferme { color: #aaa; }
+  #trTables .ferme canvas { opacity: 0.35; }
 </style>
 </head>
 <body>
@@ -266,6 +305,24 @@
         class="jeu" id="jeuOeufs"><canvas id="canMenuOeufs" width="720" height="360"></canvas>
         <div class="nom">Œufs de dino</div><div class="desc">Fais éclore les œufs avec les tables de multiplication !</div></button>
     </div>
+    <button id="btnTrophees"><span class="et">&#9733;</span> Mes trophées</button>
+  </div>
+
+  <!-- ===== Mes trophées : tout ce que l'enfant a gagné ===== -->
+  <div id="trophees" class="ecran">
+    <button class="petitBtn" id="trMenu">&#9664; Menu</button>
+    <h1>Mes trophées</h1>
+    <div id="rang"><canvas id="canRang" width="192" height="144"></canvas>
+      <div id="rangNom"></div><div id="rangTotal"></div>
+      <div id="rangBarre"><div id="rangVie"></div><div id="rangTxt"></div></div></div>
+    <div class="boiteTr" id="trCombat"><h3>Combat de dinos</h3>
+      <div id="trDinos"></div><div id="trDinoNom"></div>
+      <div id="trCombatTxt"></div>
+      <div class="astuce">&#9733; pour chaque dino gagné<br>et chaque niveau réussi</div></div>
+    <div class="boiteTr" id="trChrono"><h3>Calcul chrono</h3><div id="trChronoTxt"></div>
+      <div class="astuce">Jusqu'à 3 &#9733; par niveau :<br>8, 12 ou 15 bonnes réponses</div></div>
+    <div class="boiteTr" id="trOeufs"><h3>Œufs de dino</h3><div id="trTables"></div><div id="trOeufsTxt"></div>
+      <div class="astuce">&#9733; pour chaque table maîtrisée,<br>et une de plus avec 9 / 10 au mélange</div></div>
   </div>
 
   <!-- ===== Calcul chrono : réglages ===== -->
@@ -767,7 +824,7 @@ var modeCalcul = lire('mode') === 'direct' ? 'direct' : 'pose';
 var q = null;            // question en cours
 
 function afficher(id) {
-  var e = ['menu', 'accueil', 'combat', 'fin', 'chronoReglages', 'chrono', 'chronoFin', 'oeufsTables', 'oeufs', 'oeufsFin'];
+  var e = ['menu', 'accueil', 'combat', 'fin', 'chronoReglages', 'chrono', 'chronoFin', 'oeufsTables', 'oeufs', 'oeufsFin', 'trophees'];
   for (var i = 0; i < e.length; i++) $(e[i]).style.display = e[i] === id ? 'block' : 'none';
 }
 
@@ -1499,6 +1556,7 @@ function tempsEcoule() {
 
 function terminerChrono(horsTemps) {
   course.fini = true;
+  stocker('c-fiches', fichesFaites() + 1);   // avant d'écrire le record (fichesFaites s'en sert)
   arreterMinuteur();
   var temps = horsTemps ? course.duree : ecoule(), juste = 0;
   for (var i = 0; i < NB_CALCULS; i++) if (course.saisies[i] !== '' && parseInt(course.saisies[i], 10) === course.calculs[i].rep) juste++;
@@ -1850,6 +1908,7 @@ function finOeufs() {
     if (oe.res[i] === 2) premier++;
     else revoir.push(oe.qs[i].a + ' &times; ' + oe.qs[i].b + ' = ' + (oe.qs[i].a * oe.qs[i].b));
   }
+  stocker('o-eclos', oeufsEclos() + eclos);   // avant l'étoile et le record (oeufsEclos s'en sert)
   var titre, h = 'Tu as fait éclore <b>' + eclos + ' œuf' + (eclos > 1 ? 's' : '') + '</b> sur 10, dont <b>' + premier + '</b> du premier coup.';
   if (t === 'mix') {
     var rec = parseInt(lire('o-mix') || '0', 10);
@@ -1896,6 +1955,137 @@ function construireOeufs() {
   $('oeFinMenu').onclick = allerMenu;
 }
 
+/* ================= Mes trophées ================= */
+/* Tout ce que l'enfant a gagné dans les 3 jeux, lu dans ce qui est déjà sauvegardé.
+   Chaque réussite rapporte des étoiles, et les étoiles font grandir le dino (le rang). */
+var RANGS = [
+  { nom: 'Œuf de dino', min: 0 },
+  { nom: 'Bébé dino', min: 2 },
+  { nom: 'Petit dino', min: 6 },
+  { nom: 'Dino chasseur', min: 12 },
+  { nom: 'Grand dino', min: 20 },
+  { nom: 'Super dino', min: 28 },
+  { nom: 'Roi des dinos', min: 36 }
+];
+
+function nombre(cle) { return parseInt(lire(cle) || '0', 10) || 0; }
+function etoilesScore(s) { return s === 15 ? 3 : s >= 12 ? 2 : s >= 8 ? 1 : 0; }
+
+/* Meilleure fiche d'un niveau du Calcul chrono, tous temps confondus. */
+function meilleurChrono(niv) {
+  var m = null;
+  for (var i = 0; i < TEMPS.length; i++) {
+    var r = lire('c-rec-' + niv + '-' + TEMPS[i]);
+    if (!r) continue;
+    var p = r.split('|'), x = { score: parseInt(p[0], 10), temps: parseFloat(p[1]), duree: TEMPS[i] };
+    if (!m || x.score > m.score || (x.score === m.score && x.duree < m.duree)) m = x;
+  }
+  return m;
+}
+/* Ces deux compteurs sont nouveaux : avant, on part au moins de ce que les records prouvent. */
+function fichesFaites() {
+  var n = 0;
+  for (var v = 0; v < CHRONO_NIV.length; v++) for (var i = 0; i < TEMPS.length; i++) if (lire('c-rec-' + v + '-' + TEMPS[i])) n++;
+  return Math.max(nombre('c-fiches'), n);
+}
+function oeufsEclos() { return Math.max(nombre('o-eclos'), tablesMaitrisees().length * OE_POUR_ETOILE + nombre('o-mix')); }
+function niveauReussi(n) { return gagnesNiveau(n) >= POUR_MONTER; }
+
+function compterEtoiles() {
+  var t = 0, i;
+  t += nbDebloques() - NB_DEPART;                                   // dinos gagnés
+  for (i = 0; i < NIVEAUX.length; i++) if (niveauReussi(i)) t++;   // niveaux de combat réussis
+  for (i = 0; i < CHRONO_NIV.length; i++) { var m = meilleurChrono(i); if (m) t += etoilesScore(m.score); }
+  t += tablesMaitrisees().length;                                   // tables maîtrisées
+  if (nombre('o-mix') >= OE_POUR_ETOILE) t++;                       // mélange réussi
+  return t;
+}
+
+function etoiles3(n) {
+  var h = '<span class="et3">';
+  for (var k = 0; k < 3; k++) h += k < n ? '&#9733;' : '<span class="vide">&#9733;</span>';
+  return h + '</span>';
+}
+
+/* Le dessin du rang : un œuf, puis un bébé, puis un dino de plus en plus grand. */
+function dessinerRang(canvas, r) {
+  var c = canvas.getContext('2d');
+  c.setTransform(1, 0, 0, 1, 0, 0);
+  c.clearRect(0, 0, canvas.width, canvas.height);
+  if (r === 0) { var o = document.createElement('canvas'); o.width = 96; o.height = 120; dessinerOeuf(o); c.drawImage(o, 60, 12, 96, 120); return; }
+  if (r === 1) { var b = document.createElement('canvas'); b.width = 112; b.height = 140; dessinerBebe(b, DINOS[0]); c.drawImage(b, 40, 2, 112, 140); return; }
+  var w = 120 + (r - 2) * 18;
+  dinoDans(canvas, DINOS[0], (192 - w) / 2, 144 - w * 0.75, w, false);
+  if (r === RANGS.length - 1) {   // une couronne pour le roi
+    c.setTransform(1, 0, 0, 1, 0, 0);
+    poly(c, [118, 22, 124, 6, 132, 18, 140, 4, 148, 18, 156, 6, 160, 22]); remplir(c, '#f2b705');
+  }
+}
+
+function ouvrirTrophees() {
+  afficher('trophees');
+  var total = compterEtoiles(), r = 0, i;
+  while (RANGS[r + 1] && total >= RANGS[r + 1].min) r++;
+  dessinerRang($('canRang'), r);
+  $('rangNom').innerHTML = 'Tu es : ' + RANGS[r].nom;
+  $('rangTotal').innerHTML = total + ' &#9733;';
+  if (RANGS[r + 1]) {
+    var bas = RANGS[r].min, haut = RANGS[r + 1].min, reste = haut - total;
+    $('rangVie').style.width = Math.round((total - bas) / (haut - bas) * 100) + '%';
+    $('rangTxt').innerHTML = 'Encore ' + reste + ' étoile' + (reste > 1 ? 's' : '') + ' pour devenir ' + RANGS[r + 1].nom + ' !';
+  } else {
+    $('rangVie').style.width = '100%';
+    $('rangTxt').innerHTML = 'Tu as tout gagné, champion !';
+  }
+
+  // Combat : la collection de dinos
+  var h = '';
+  for (i = 0; i < DINOS.length; i++) h += '<canvas width="116" height="88" data-i="' + i + '"></canvas>' + (i === 4 ? '<br>' : '');
+  $('trDinos').innerHTML = h;
+  var cvs = $('trDinos').getElementsByTagName('canvas');
+  for (i = 0; i < cvs.length; i++) {
+    dessinerDino(cvs[i], DINOS[i], false, false, !debloque(i));
+    cvs[i].onclick = function () {
+      var n = parseInt(this.getAttribute('data-i'), 10);
+      $('trDinoNom').innerHTML = debloque(n) ? DINOS[n].nom + ', ' + DINOS[n].espece : 'Gagne un combat pour le trouver !';
+    };
+  }
+  $('trDinoNom').innerHTML = 'Dinos : ' + nbDebloques() + ' / ' + DINOS.length;
+  var v = nombre('victoires');
+  h = '<div class="ligne">Victoires : <b>' + v + '</b></div><div class="petit">Niveaux réussis :</div>';
+  for (i = 0; i < NIVEAUX.length; i++) h += '<span class="chipNiv' + (niveauReussi(i) ? ' ok' : '') + '">' + (niveauReussi(i) ? '&#9733; ' : '') + NIVEAUX[i].nom + '</span>';
+  $('trCombatTxt').innerHTML = h;
+
+  // Calcul chrono : le meilleur record de chaque niveau
+  var noms = ['Débutant', 'Facile', 'Moyen', 'Difficile', 'Expert'];
+  h = '';
+  for (i = 0; i < CHRONO_NIV.length; i++) {
+    var m = meilleurChrono(i);
+    h += '<div class="rec"><span class="n">' + noms[i] + '</span>' + etoiles3(m ? etoilesScore(m.score) : 0) +
+         '<span class="s">' + (m ? '<b>' + m.score + '</b> / 15' : 'pas encore') + '</span></div>';
+  }
+  h += '<div class="ligne">Fiches faites : <b>' + fichesFaites() + '</b></div>';
+  $('trChronoTxt').innerHTML = h;
+
+  // Œufs de dino : les tables maîtrisées
+  h = '';
+  for (i = 0; i < OE_ORDRE.length; i++) {
+    var ok = maitrisee(OE_ORDRE[i]);
+    h += '<span' + (ok ? '' : ' class="ferme"') + '><canvas width="80" height="100" id="trT' + i + '"></canvas>&times; ' + OE_ORDRE[i] +
+         (ok ? ' <span class="et3" style="width:auto;margin:0">&#9733;</span>' : '') + '</span>' + (i === 4 ? '<br>' : '');
+  }
+  $('trTables').innerHTML = h;
+  for (i = 0; i < OE_ORDRE.length; i++) {
+    if (maitrisee(OE_ORDRE[i])) dessinerBebe($('trT' + i), DINOS[i % DINOS.length]);
+    else dessinerOeuf($('trT' + i));
+  }
+  h = '<div class="ligne">Tables : <b>' + tablesMaitrisees().length + ' / ' + OE_ORDRE.length + '</b></div>';
+  h += '<div class="ligne">Record mélange : <b>' + (lire('o-mix') ? nombre('o-mix') + ' / 10' : '–') + '</b></div>';
+  h += '<div class="ligne">Œufs éclos : <b>' + oeufsEclos() + '</b></div>';
+  $('trOeufsTxt').innerHTML = h;
+  if (total > 0) sonBravo();
+}
+
 /* Clavier (pour jouer sur un ordinateur) */
 document.onkeydown = function (ev) {
   ev = ev || window.event;
@@ -1915,6 +2105,8 @@ $('accMenu').onclick = allerMenu;
 $('jeuCombat').onclick = function () { etapeChoix = 0; afficher('accueil'); majAccueil(); };
 $('jeuChrono').onclick = ouvrirReglagesChrono;
 $('jeuOeufs').onclick = ouvrirTables;
+$('btnTrophees').onclick = ouvrirTrophees;
+$('trMenu').onclick = allerMenu;
 construireAccueil();
 construirePave();
 construireChrono();
